@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "lu.kolja.expandedae.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "expandedae.refmap.json",
+  "mixins": [
+    "MixinAEBasePart",
+    "MixinSlot"
+  ],
+  "client": [
+    "MixinAbstractContainerScreen",
+    "MixinScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

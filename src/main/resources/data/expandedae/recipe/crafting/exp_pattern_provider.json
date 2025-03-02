@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "ae2:blank_pattern"
+    },
+    "P": {
+      "item": "expatternprovider:ex_pattern_provider"
+    },
+    "E": {
+      "item": "ae2:engineering_processor"
+    }
+  },
+  "pattern": [
+    "EP",
+    "PB"
+  ],
+  "result": {
+    "count": 1,
+    "id": "expandedae:exp_pattern_provider"
+  }
+}
