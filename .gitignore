@@ -1,0 +1,11 @@
+out
+.gradle
+.idea
+bin
+build
+gradle
+run
+run-data
+gradlew
+gradlew.bat
+src/generated/resources/.cache

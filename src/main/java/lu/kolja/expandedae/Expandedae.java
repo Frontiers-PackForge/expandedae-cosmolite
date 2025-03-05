@@ -1,26 +1,19 @@
 package lu.kolja.expandedae;
 
+import appeng.client.gui.implementations.PatternProviderScreen;
+import appeng.init.client.InitScreens;
 import com.mojang.logging.LogUtils;
-import lu.kolja.expandedae.client.ClientRegistryHandler;
-import lu.kolja.expandedae.common.EAEItemAndBlock;
-import lu.kolja.expandedae.common.EAERegistryHandler;
-import lu.kolja.expandedae.common.me.taglist.TagExpParser;
-import lu.kolja.expandedae.common.me.taglist.TagPriorityList;
-import lu.kolja.expandedae.config.EAEConfig;
-import lu.kolja.expandedae.network.EAENetworkHandler;
+import lu.kolja.expandedae.definition.*;
+import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
@@ -29,41 +22,49 @@ public class Expandedae {
 
     public static final String MODID = "expandedae";
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static Expandedae INSTANCE;
+
+    public static ResourceLocation makeId(String path) {
+        return new ResourceLocation(MODID, path);
+    }
 
     public Expandedae() {
-        assert INSTANCE == null;
-        INSTANCE = this;
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, EAEConfig.SPEC);
-        EAEItemAndBlock.init(EAERegistryHandler.INSTANCE);
-        bus.register(EAERegistryHandler.INSTANCE);
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> bus.register(ClientRegistryHandler.INSTANCE));
-        bus.addListener(this::commonSetup);
-        bus.addListener(this::clientSetup);
-        bus.addListener((RegisterEvent e) -> {
-            if (e.getRegistryKey() == Registries.CREATIVE_MODE_TAB) {
-                EAERegistryHandler.INSTANCE.registerTab(e.getVanillaRegistry());
+        init();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::onClientSetup);
+        modEventBus.addListener((RegisterEvent event) -> {
+            if (event.getRegistryKey().equals(Registries.BLOCK)) {
+                ExpBlocks.getBlocks().forEach(b -> {
+                    ForgeRegistries.BLOCKS.register(b.id(), b.block());
+                    ForgeRegistries.ITEMS.register(b.id(), b.asItem());
+                });
+            }
+            if (event.getRegistryKey().equals(Registries.ITEM)) {
+                ExpItems.getItems().forEach(i -> ForgeRegistries.ITEMS.register(i.id(), i.asItem()));
+            }
+            if (event.getRegistryKey().equals(Registries.BLOCK_ENTITY_TYPE)) {
+                ExpBlockEntities.getBlockEntityTypes().forEach(ForgeRegistries.BLOCK_ENTITY_TYPES::register);
+            }
+            if (event.getRegistryKey().equals(Registries.CREATIVE_MODE_TAB)) {
+                Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ExpCreativeTab.ID, ExpCreativeTab.TAB);
+            }
+            if (event.getRegistryKey().equals(Registries.MENU)) {
+                ExpMenus.getMenuTypes().forEach(ForgeRegistries.MENU_TYPES::register);
             }
         });
-        MinecraftForge.EVENT_BUS.addListener(this::onTagUpdate);
     }
 
-    public void commonSetup(FMLCommonSetupEvent event) {
-        EAERegistryHandler.INSTANCE.onInit();
-        EAENetworkHandler.INSTANCE.init();
-    }
-
-    public void clientSetup(FMLClientSetupEvent event) {
-        ClientRegistryHandler.INSTANCE.init();
-    }
-
-    public void onTagUpdate(TagsUpdatedEvent event) {
-        TagExpParser.reset();
-        TagPriorityList.reset();
+    private void onClientSetup(FMLClientSetupEvent event) {
+        InitScreens.register(
+                ExpMenus.EXP_PATTERN_PROVIDER,
+                PatternProviderScreen<ExpPatternProviderMenu>::new,
+                "/screens/exp_pattern_provider.json"
+        );
     }
 
     public static ResourceLocation id(String name) {
         return new ResourceLocation(MODID, name);
+    }
+    public static void init() {
+        ExpBlocks.init();
     }
 }
