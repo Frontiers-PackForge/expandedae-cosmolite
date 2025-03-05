@@ -3,7 +3,9 @@
   "includes": ["common/common.json", "common/player_inventory.json"],
   "background": {
     "texture": "guis/exp_pattern_provider.png",
-    "srcRect": [0, 0, 176, 243]
+    "textureWidth": 512,
+    "textureHeight": 512,
+    "srcRect": [0, 0, 176, 315]
   },
   "slots": {
     "ENCODED_PATTERN": {
@@ -13,7 +15,7 @@
     },
     "STORAGE": {
       "left": 8,
-      "top": 127,
+      "top": 199,
       "grid": "HORIZONTAL"
     }
   },
@@ -42,7 +44,7 @@
       },
       "position": {
         "left": 8,
-        "top": 116
+        "top": 188
       }
     }
   },
