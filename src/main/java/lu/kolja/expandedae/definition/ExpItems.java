@@ -26,7 +26,7 @@ public class ExpItems {
         return Collections.unmodifiableList(ITEMS);
     }
 
-    public static final ItemDefinition<ExpPatternProviderPartItem> EXP_PATTERN_PROVIDER = Util.make(() -> {
+    public static final ItemDefinition<ExpPatternProviderPartItem> EXP_PATTERN_PROVIDER_PART = Util.make(() -> {
         PartModels.registerModels(PartModelsHelper.createModels(ExpPatternProviderPart.class));
         return item("Expanded Pattern Provider", "exp_pattern_provider_part", ExpPatternProviderPartItem::new);
     });

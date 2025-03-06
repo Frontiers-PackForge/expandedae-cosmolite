@@ -67,6 +67,6 @@ public class ExpPatternProviderPart extends PatternProviderPart {
 
     @Override
     public ItemStack getMainMenuIcon() {
-        return ExpItems.EXP_PATTERN_PROVIDER.stack();
+        return ExpItems.EXP_PATTERN_PROVIDER_PART.stack();
     }
 }

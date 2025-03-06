@@ -5,11 +5,13 @@ import appeng.init.client.InitScreens;
 import com.mojang.logging.LogUtils;
 import lu.kolja.expandedae.definition.*;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
+import lu.kolja.expandedae.xmod.ExtendedAE;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -28,7 +30,6 @@ public class Expandedae {
     }
 
     public Expandedae() {
-        init();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener((RegisterEvent event) -> {
@@ -51,6 +52,8 @@ public class Expandedae {
                 ExpMenus.getMenuTypes().forEach(ForgeRegistries.MENU_TYPES::register);
             }
         });
+        initResources();
+        //initXMod();
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
@@ -61,10 +64,18 @@ public class Expandedae {
         );
     }
 
+    public static void initXMod() {
+        if (ModList.get().isLoaded("expatternprovider")) {
+            LOGGER.debug("ExtendedAE found, initializing xmod!");
+            new ExtendedAE();
+        }
+    }
+
     public static ResourceLocation id(String name) {
         return new ResourceLocation(MODID, name);
     }
-    public static void init() {
+
+    public static void initResources() {
         ExpBlocks.init();
     }
 }

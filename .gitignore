@@ -9,3 +9,4 @@ run-data
 gradlew
 gradlew.bat
 src/generated/resources/.cache
+jar

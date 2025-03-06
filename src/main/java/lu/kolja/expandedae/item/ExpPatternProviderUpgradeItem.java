@@ -67,7 +67,7 @@ public class ExpPatternProviderUpgradeItem extends UpgradeItem{
                     var side = basePart.getSide();
                     var contents = new CompoundTag();
 
-                    var partItem = ExpItems.EXP_PATTERN_PROVIDER.asItem();
+                    var partItem = ExpItems.EXP_PATTERN_PROVIDER_PART.asItem();
 
                     part.writeToNBT(contents);
                     var p = cable.replacePart(partItem, side, context.getPlayer(), null);
