@@ -17,6 +17,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
 @Mod(Expandedae.MODID)
@@ -24,10 +26,6 @@ public class Expandedae {
 
     public static final String MODID = "expandedae";
     public static final Logger LOGGER = LogUtils.getLogger();
-
-    public static ResourceLocation makeId(String path) {
-        return new ResourceLocation(MODID, path);
-    }
 
     public Expandedae() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -71,8 +69,9 @@ public class Expandedae {
         }
     }
 
-    public static ResourceLocation id(String name) {
-        return new ResourceLocation(MODID, name);
+    @Contract("_ -> new")
+    public static @NotNull ResourceLocation makeId(String path) {
+        return new ResourceLocation(MODID, path);
     }
 
     public static void initResources() {
