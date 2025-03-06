@@ -7,6 +7,6 @@ import lu.kolja.expandedae.definition.ExpItems;
 public class ExtendedAE {
     public ExtendedAE() {
         ItemMEPackingTape.registerPackableDevice(ExpBlocks.EXP_PATTERN_PROVIDER.id());
-        ItemMEPackingTape.registerPackableDevice(ExpItems.EXP_PATTERN_PROVIDER_UPGRADE.id());
+        ItemMEPackingTape.registerPackableDevice(ExpItems.EXP_PATTERN_PROVIDER_PART.id());
     }
 }

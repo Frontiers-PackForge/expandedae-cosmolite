@@ -53,7 +53,7 @@ public class Expandedae {
             }
         });
         initResources();
-        //initXMod();
+        initXMod();
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {

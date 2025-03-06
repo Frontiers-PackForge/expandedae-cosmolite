@@ -92,6 +92,7 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     implementation fg.deobf("curse.maven:applied-energistics-2-223794:6091401")
     implementation fg.deobf("curse.maven:ex-pattern-provider-892005:6167228")
+    implementation fg.deobf("curse.maven:glodium-957920:5226922")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
