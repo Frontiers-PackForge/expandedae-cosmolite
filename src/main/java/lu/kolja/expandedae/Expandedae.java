@@ -1,6 +1,8 @@
 package lu.kolja.expandedae;
 
+import appeng.api.upgrades.Upgrades;
 import appeng.client.gui.implementations.PatternProviderScreen;
+import appeng.core.definitions.AEItems;
 import appeng.init.client.InitScreens;
 import com.mojang.logging.LogUtils;
 import lu.kolja.expandedae.definition.*;
@@ -14,6 +16,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
@@ -30,6 +33,7 @@ public class Expandedae {
     public Expandedae() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
+        modEventBus.addListener(this::commonSetup);
         modEventBus.addListener((RegisterEvent event) -> {
             if (event.getRegistryKey().equals(Registries.BLOCK)) {
                 ExpBlocks.getBlocks().forEach(b -> {
@@ -52,6 +56,12 @@ public class Expandedae {
         });
         initResources();
         initXMod();
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            Upgrades.add(AEItems.SPEED_CARD, ExpBlocks.EXP_PATTERN_PROVIDER, 4);
+        });
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {
