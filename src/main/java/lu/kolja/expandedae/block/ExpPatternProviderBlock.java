@@ -1,6 +1,7 @@
 package lu.kolja.expandedae.block;
 
 import appeng.api.networking.IManagedGridNode;
+import appeng.api.upgrades.IUpgradeableObject;
 import appeng.block.AEBaseBlock;
 import appeng.block.AEBaseEntityBlock;
 import appeng.block.crafting.PatternProviderBlock;
@@ -25,13 +26,20 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class ExpPatternProviderBlock extends AEBaseEntityBlock<ExpPatternProviderBlockEntity> {
+public class ExpPatternProviderBlock extends AEBaseEntityBlock<ExpPatternProviderBlockEntity> implements IUpgradeableObject {
     private static final EnumProperty<PushDirection> PUSH_DIRECTION = PatternProviderBlock.PUSH_DIRECTION;
 
     public ExpPatternProviderBlock() {
         super(AEBaseBlock.metalProps());
         registerDefaultState(defaultBlockState().setValue(PUSH_DIRECTION, PushDirection.ALL));
     }
+
+    @Override
+    public boolean triggerEvent(BlockState state, Level level, BlockPos pos, int eventID, int eventParam) {
+        System.out.println("Triggered");
+        return super.triggerEvent(state, level, pos, eventID, eventParam);
+    }
+
     public static PatternProviderLogic createLogic(IManagedGridNode mainNode, PatternProviderLogicHost host) {
         return new PatternProviderLogic(mainNode, host, 72);
     }
