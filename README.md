@@ -1,0 +1,15 @@
+Expanded AE currently only adds a few new features.  
+This mod is community-driven, so suggest any ideas you might have and they might get added.
+
+Port to 1.21.1 coming very soon..
+
+ 
+
+## What's included currently:
+
+- Expanded Pattern Provider which has 72 slots for patterns so you don't have to build workarounds if you require more pattern slots for one machine, also added is the cable part version.
+
+- Upgrade item, so you can upgrade existing pattern providers while keeping their patterns in them.
+
+## Roadmap
+- Add an auto complete card to the pattern provider
