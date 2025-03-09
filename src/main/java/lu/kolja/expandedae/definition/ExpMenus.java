@@ -1,16 +1,16 @@
 package lu.kolja.expandedae.definition;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
 import appeng.core.AppEng;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
-import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ExpMenus {
 
@@ -20,8 +20,11 @@ public class ExpMenus {
         return Collections.unmodifiableMap(MENU_TYPES);
     }
 
-    public static final MenuType<ExpPatternProviderMenu> EXP_PATTERN_PROVIDER =
-            create("exp_pattern_provider", ExpPatternProviderMenu::new, PatternProviderLogicHost.class);
+    public static final MenuType<ExpPatternProviderMenu> EXP_PATTERN_PROVIDER = create(
+            "exp_pattern_provider",
+            ExpPatternProviderMenu::new,
+            PatternProviderLogicHost.class
+    );
 
     public static <C extends AEBaseMenu, I> MenuType<C> create(
             String id, MenuTypeBuilder.MenuFactory<C, I> factory, Class<I> host) {
@@ -29,5 +32,4 @@ public class ExpMenus {
         MENU_TYPES.put(AppEng.makeId(id), menu);
         return menu;
     }
-
 }

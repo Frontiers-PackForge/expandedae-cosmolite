@@ -13,8 +13,7 @@ public abstract class UpgradeItem extends Item {
         super(pProperties);
     }
 
-    protected void replaceTile(
-            Level world, BlockPos pos, BlockEntity oldTile, BlockEntity newTile, BlockState newBlock) {
+    protected void replaceTile(Level world, BlockPos pos, BlockEntity oldTile, BlockEntity newTile, BlockState newBlock) {
         CompoundTag contents = oldTile.serializeNBT();
         world.removeBlockEntity(pos);
         world.removeBlock(pos, false);

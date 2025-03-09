@@ -1,30 +1,32 @@
 package lu.kolja.expandedae.definition;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
+
+import lu.kolja.expandedae.Expandedae;
+import lu.kolja.expandedae.item.ExpPatternProviderUpgradeItem;
+import lu.kolja.expandedae.item.ItemAutoCompleteCard;
+import lu.kolja.expandedae.item.part.ExpPatternProviderPart;
+import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.PartModels;
 import appeng.core.definitions.ItemDefinition;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
-import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.item.ExpPatternProviderUpgradeItem;
-import lu.kolja.expandedae.item.part.ExpPatternProviderPart;
-import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import net.minecraft.Util;
 import net.minecraft.world.item.Item;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-
 public class ExpItems {
 
-    private static final List<ItemDefinition<?>> ITEMS = new ArrayList<>();
-
-    public static List<ItemDefinition<?>> getItems() {
-        return Collections.unmodifiableList(ITEMS);
+    public static void init() {
+        // controls static load order
+        Expandedae.LOGGER.info("Initialised items.");
     }
+
+    private static final List<ItemDefinition<?>> ITEMS = new ArrayList<>();
 
     public static final ItemDefinition<ExpPatternProviderPartItem> EXP_PATTERN_PROVIDER_PART = Util.make(() -> {
         PartModels.registerModels(PartModelsHelper.createModels(ExpPatternProviderPart.class));
@@ -36,6 +38,16 @@ public class ExpItems {
             "exp_pattern_provider_upgrade",
             ExpPatternProviderUpgradeItem::new
     );
+
+    public static final ItemDefinition<ItemAutoCompleteCard> AUTO_COMPLETE_CARD = item(
+            "Auto Complete Card",
+            "auto_complete_card",
+            ItemAutoCompleteCard::new
+    );
+
+    public static List<ItemDefinition<?>> getItems() {
+        return Collections.unmodifiableList(ITEMS);
+    }
 
     public static <T extends IPart> ItemDefinition<PartItem<T>> part(
             String englishName, String id, Class<T> partClass, Function<IPartItem<T>, T> factory) {

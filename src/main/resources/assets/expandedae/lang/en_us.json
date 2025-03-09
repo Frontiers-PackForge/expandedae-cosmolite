@@ -4,8 +4,16 @@
 
   "item.expandedae.exp_pattern_provider_upgrade": "Expanded Pattern Provider Upgrade",
   "item.expandedae.exp_pattern_provider_part": "Expanded Pattern Provider",
+  "item.expandedae.auto_complete_card": "Auto Complete Card",
+  "item.expandedae.auto_complete_card.tooltip": "Automatically completes the crafting job",
 
   "block.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
 
-  "gui.expandedae.exp_pattern_provider": "Expanded Pattern Provider"
+  "gui.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
+
+  "group.adv_pattern_provider.name": "ME Advanced Pattern Provider",
+  "group.ex_pattern_provider.name": "ME Extended Pattern Provider",
+  "group.exp_pattern_provider.name": "ME Expanded Pattern Provider",
+  "group.mega_pattern_provider.name": "ME MEGA Pattern Provider",
+  "group.pattern_provider.name": "ME Pattern Provider"
 }

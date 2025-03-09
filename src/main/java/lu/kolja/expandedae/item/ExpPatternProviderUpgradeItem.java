@@ -1,12 +1,14 @@
 package lu.kolja.expandedae.item;
 
+import javax.annotation.Nonnull;
+
+import lu.kolja.expandedae.definition.ExpBlockEntities;
+import lu.kolja.expandedae.definition.ExpBlocks;
+import lu.kolja.expandedae.definition.ExpItems;
 import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.parts.AEBasePart;
 import appeng.parts.crafting.PatternProviderPart;
-import lu.kolja.expandedae.definition.ExpBlockEntities;
-import lu.kolja.expandedae.definition.ExpBlocks;
-import lu.kolja.expandedae.definition.ExpItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -16,12 +18,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.Vec3;
 
-import javax.annotation.Nonnull;
-
-public class ExpPatternProviderUpgradeItem extends UpgradeItem{
+public class ExpPatternProviderUpgradeItem extends UpgradeItem {
     public ExpPatternProviderUpgradeItem(Properties pProperties) {
         super(pProperties);
     }
+
     @SuppressWarnings({"rawtypes", "unchecked"})
     @Nonnull
     @Override

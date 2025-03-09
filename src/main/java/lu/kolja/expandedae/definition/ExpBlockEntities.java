@@ -1,32 +1,32 @@
 package lu.kolja.expandedae.definition;
 
-import appeng.block.AEBaseEntityBlock;
-import appeng.blockentity.AEBaseBlockEntity;
-import appeng.core.definitions.BlockDefinition;
-import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.block.entity.ExpPatternProviderBlockEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
+import lu.kolja.expandedae.Expandedae;
+import lu.kolja.expandedae.block.entity.ExpPatternProviderBlockEntity;
+import appeng.block.AEBaseEntityBlock;
+import appeng.blockentity.AEBaseBlockEntity;
+import appeng.core.definitions.BlockDefinition;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+
 public class ExpBlockEntities {
     private static final Map<ResourceLocation, BlockEntityType<?>> BLOCK_ENTITY_TYPES = new HashMap<>();
-
-    public static Map<ResourceLocation, BlockEntityType<?>> getBlockEntityTypes() {
-        return Collections.unmodifiableMap(BLOCK_ENTITY_TYPES);
-    }
     public static final BlockEntityType<ExpPatternProviderBlockEntity> EXP_PATTERN_PROVIDER = create(
             "exp_pattern_provider",
             ExpPatternProviderBlockEntity.class,
             ExpPatternProviderBlockEntity::new,
             ExpBlocks.EXP_PATTERN_PROVIDER);
+
+    public static Map<ResourceLocation, BlockEntityType<?>> getBlockEntityTypes() {
+        return Collections.unmodifiableMap(BLOCK_ENTITY_TYPES);
+    }
 
     @SafeVarargs
     public static <T extends AEBaseBlockEntity> BlockEntityType<T> create(

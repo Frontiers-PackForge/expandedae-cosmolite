@@ -29,3 +29,21 @@ modId = "ae2"
 mandatory = true
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependency."${mod_id}"]]
+modId = "expatternprovider"
+mandatory = false
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependency."${mod_id}"]]
+modId = "megacells"
+mandatory = false
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependency."${mod_id}"]]
+modId = "advanced_ae"
+mandatory = false
+ordering = "AFTER"
+side = "BOTH"

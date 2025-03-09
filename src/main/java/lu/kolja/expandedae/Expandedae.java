@@ -1,28 +1,25 @@
 package lu.kolja.expandedae;
 
-import appeng.api.upgrades.Upgrades;
-import appeng.client.gui.implementations.PatternProviderScreen;
-import appeng.core.definitions.AEItems;
-import appeng.init.client.InitScreens;
-import com.mojang.logging.LogUtils;
 import lu.kolja.expandedae.definition.*;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
-import lu.kolja.expandedae.xmod.ExtendedAE;
+import lu.kolja.expandedae.xmod.XMod;
+import com.mojang.logging.LogUtils;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import appeng.client.gui.implementations.PatternProviderScreen;
+import appeng.init.client.InitScreens;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
 
 @Mod(Expandedae.MODID)
 public class Expandedae {
@@ -31,6 +28,7 @@ public class Expandedae {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Expandedae() {
+        initResources();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::commonSetup);
@@ -54,29 +52,6 @@ public class Expandedae {
                 ExpMenus.getMenuTypes().forEach(ForgeRegistries.MENU_TYPES::register);
             }
         });
-        initResources();
-        initXMod();
-    }
-
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            Upgrades.add(AEItems.SPEED_CARD, ExpBlocks.EXP_PATTERN_PROVIDER, 4);
-        });
-    }
-
-    private void onClientSetup(FMLClientSetupEvent event) {
-        InitScreens.register(
-                ExpMenus.EXP_PATTERN_PROVIDER,
-                PatternProviderScreen<ExpPatternProviderMenu>::new,
-                "/screens/exp_pattern_provider.json"
-        );
-    }
-
-    public static void initXMod() {
-        if (ModList.get().isLoaded("expatternprovider")) {
-            LOGGER.debug("ExtendedAE found, initializing xmod!");
-            new ExtendedAE();
-        }
     }
 
     @Contract("_ -> new")
@@ -86,5 +61,19 @@ public class Expandedae {
 
     public static void initResources() {
         ExpBlocks.init();
+        ExpItems.init();
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        new ExpUpgrades(event);
+        new XMod();
+    }
+
+    private void onClientSetup(FMLClientSetupEvent event) {
+        InitScreens.register(
+                ExpMenus.EXP_PATTERN_PROVIDER,
+                PatternProviderScreen<ExpPatternProviderMenu>::new,
+                "/screens/exp_pattern_provider.json"
+        );
     }
 }
