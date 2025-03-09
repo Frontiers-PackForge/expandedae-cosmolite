@@ -12,5 +12,6 @@ Port to 1.21.1 coming very soon..
 - Upgrade item, so you can upgrade existing pattern providers while keeping their patterns in them.
 
 ## Roadmap
-- [ ] Add an auto complete card to the pattern provider
+- [x] Add an auto complete card to the pattern provider
+  - Added in Beta 1.0.2
 - [ ] Pattern converter, convert patterns from rs -> ae2
