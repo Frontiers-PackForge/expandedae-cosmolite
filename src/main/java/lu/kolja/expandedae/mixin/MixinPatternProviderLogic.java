@@ -2,6 +2,9 @@ package lu.kolja.expandedae.mixin;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import lu.kolja.expandedae.definition.ExpItems;
 import org.spongepowered.asm.mixin.Final;
@@ -36,6 +39,8 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
     @Final
     @Shadow
     private IManagedGridNode mainNode;
+
+    @Shadow protected abstract void onPushPatternSuccess(IPatternDetails pattern);
 
     @Unique
     private void eae_$onUpgradesChanged() {
@@ -115,7 +120,8 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
                     var outputWhatId = outputs.what().getId();
                     //var outputAmount = outputs.amount(); DEBUG PURPOSES
                     if (whatId == outputWhatId) {
-                        x.cancelJob();
+                        ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
+                        service.schedule(x::cancelJob, 10L, TimeUnit.MILLISECONDS);
                         return;
                     }
                 }

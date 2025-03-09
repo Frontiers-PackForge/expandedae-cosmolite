@@ -19,7 +19,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.ItemLike;
 
-@Mixin(PatternProviderMenu.class)
+@Mixin(value = PatternProviderMenu.class, remap = false)
 public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUpgradableMenu {
 
     @Final

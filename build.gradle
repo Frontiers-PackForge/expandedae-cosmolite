@@ -140,4 +140,5 @@ tasks.withType(Jar).configureEach {
 }
 mixin {
     add sourceSets.main, "mixins.expandedae.refmap.json"
+    config "mixins.expandedae.json"
 }

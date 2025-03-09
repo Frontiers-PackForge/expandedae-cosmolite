@@ -21,7 +21,7 @@ import appeng.menu.implementations.PatternProviderMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
-@Mixin(PatternProviderScreen.class)
+@Mixin(value = PatternProviderScreen.class, remap = false)
 public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> extends AEBaseScreen<C> {
 
     public MixinPatternProviderScreen(C menu, Inventory playerInventory, Component title, ScreenStyle style) {
