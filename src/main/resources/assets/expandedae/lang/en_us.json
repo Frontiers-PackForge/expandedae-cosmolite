@@ -5,7 +5,8 @@
   "item.expandedae.exp_pattern_provider_upgrade": "Expanded Pattern Provider Upgrade",
   "item.expandedae.exp_pattern_provider_part": "Expanded Pattern Provider",
   "item.expandedae.auto_complete_card": "Auto Complete Card",
-  "item.expandedae.auto_complete_card.tooltip": "Automatically completes the crafting job",
+  "item.expandedae.auto_complete_card.tooltip.1": "Automatically completes the crafting job",
+  "item.expandedae.auto_complete_card.tooltip.2": "Note: This only works for single requests",
 
   "block.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
 

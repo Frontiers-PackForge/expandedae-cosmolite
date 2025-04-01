@@ -2,9 +2,6 @@ package lu.kolja.expandedae.mixin;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import lu.kolja.expandedae.definition.ExpItems;
 import org.spongepowered.asm.mixin.Final;
@@ -40,8 +37,6 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
     @Shadow
     private IManagedGridNode mainNode;
 
-    @Shadow protected abstract void onPushPatternSuccess(IPatternDetails pattern);
-
     @Unique
     private void eae_$onUpgradesChanged() {
         this.host.saveChanges();
@@ -56,7 +51,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             method = "<init>(Lappeng/api/networking/IManagedGridNode;Lappeng/helpers/patternprovider/PatternProviderLogicHost;I)V",
             at = @At("TAIL")
     )
-    private void initUpgrade(IManagedGridNode mainNode, PatternProviderLogicHost host, int patternInventorySize, CallbackInfo ci) {
+    private void eae_$initUpgrade(IManagedGridNode mainNode, PatternProviderLogicHost host, int patternInventorySize, CallbackInfo ci) {
         eae_$upgrades = UpgradeInventories.forMachine(host.getTerminalIcon().getItem(), 1, this::eae_$onUpgradesChanged);
     }
 
@@ -64,7 +59,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             method = "writeToNBT",
             at = @At("TAIL")
     )
-    private void saveUpgrade(CompoundTag tag, CallbackInfo ci) {
+    private void eae_$saveUpgrade(CompoundTag tag, CallbackInfo ci) {
         this.eae_$upgrades.writeToNBT(tag, "upgrades");
     }
 
@@ -72,7 +67,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             method = "readFromNBT",
             at = @At("TAIL")
     )
-    private void loadUpgrade(CompoundTag tag, CallbackInfo ci) {
+    private void eae_$loadUpgrade(CompoundTag tag, CallbackInfo ci) {
         this.eae_$upgrades.readFromNBT(tag, "upgrades");
     }
 
@@ -80,7 +75,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             method = "addDrops",
             at = @At("TAIL")
     )
-    private void dropUpgrade(List<ItemStack> drops, CallbackInfo ci) {
+    private void eae_$dropUpgrade(List<ItemStack> drops, CallbackInfo ci) {
         for (var is : this.eae_$upgrades) {
             if (!is.isEmpty()) {
                 drops.add(is);
@@ -92,7 +87,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             method = "clearContent",
             at = @At("TAIL")
     )
-    private void clearUpgrade(CallbackInfo ci) {
+    private void eae_$clearUpgrade(CallbackInfo ci) {
         this.eae_$upgrades.clear();
     }
 
@@ -100,11 +95,11 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             method = "pushPattern",
             at = @At("RETURN")
     )
-    private void checkUpgrades(IPatternDetails patternDetails, KeyCounter[] inputHolder, CallbackInfoReturnable<Boolean> cir) {
+    private void eae_$checkUpgrades(IPatternDetails patternDetails, KeyCounter[] inputHolder, CallbackInfoReturnable<Boolean> cir) {
         if (this.eae_$upgrades.isInstalled(ExpItems.AUTO_COMPLETE_CARD)) {
-            List<ICraftingCPU> matchedCpus = expandedae$getCraftingCpus().stream()
+            List<ICraftingCPU> matchedCpus = eae_$getCraftingCpus().stream()
                     .filter(cpu -> cpu.getJobStatus() != null)
-                    .filter(cpu -> expandedae$getCraftingCpus().stream()
+                    .filter(cpu -> eae_$getCraftingCpus().stream()
                             .map(ICraftingCPU::getJobStatus)
                             .filter(Objects::nonNull)
                             .anyMatch(
@@ -115,13 +110,10 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
 
             matchedCpus.forEach(x -> {
                 var whatId = x.getJobStatus().crafting().what().getId();
-                //var amount = x.getJobStatus().crafting().amount(); DEBUG PURPOSES
                 for (var outputs : patternDetails.getOutputs()) {
                     var outputWhatId = outputs.what().getId();
-                    //var outputAmount = outputs.amount(); DEBUG PURPOSES
                     if (whatId == outputWhatId) {
-                        ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
-                        service.schedule(x::cancelJob, 10L, TimeUnit.MILLISECONDS);
+                        x.cancelJob();
                         return;
                     }
                 }
@@ -130,7 +122,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
     }
 
     @Unique
-    public List<ICraftingCPU> expandedae$getCraftingCpus() {
+    public List<ICraftingCPU> eae_$getCraftingCpus() {
         return mainNode.getGrid().getCraftingService().getCpus().stream().toList();
     }
 }

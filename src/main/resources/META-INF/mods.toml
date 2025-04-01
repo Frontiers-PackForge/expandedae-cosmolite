@@ -1,7 +1,7 @@
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
-logoFile = "../expandedae.png"
+logoFile = "expandedae.png"
 
 [[mods]]
 modId = "${mod_id}"
