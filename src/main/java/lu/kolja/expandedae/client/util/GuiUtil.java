@@ -1,0 +1,20 @@
+package lu.kolja.expandedae.client.util;
+
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
+
+public class GuiUtil {
+    public static AABB rotor(AABB box, Vec3 center, Direction.Axis axis, float a) {
+        return new AABB(rotor(new Vec3(box.minX, box.minY, box.minZ), center, axis, a), rotor(new Vec3(box.maxX, box.maxY, box.maxZ), center, axis, a));
+    }
+    public static Vec3 rotor(Vec3 point, Vec3 center, Direction.Axis axis, float a) {
+        Vec3 normal = Vec3.ZERO;
+        switch (axis) {
+            case X -> normal = point.subtract(center).xRot(a);
+            case Y -> normal = point.subtract(center).yRot(a);
+            case Z -> normal = point.subtract(center).zRot(a);
+        }
+        return normal.add(center);
+    }
+}

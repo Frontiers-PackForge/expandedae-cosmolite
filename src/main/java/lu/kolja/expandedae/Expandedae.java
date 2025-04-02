@@ -2,6 +2,8 @@ package lu.kolja.expandedae;
 
 import lu.kolja.expandedae.definition.*;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
+import lu.kolja.expandedae.menu.FilterTermMenu;
+import lu.kolja.expandedae.screen.FilterTermScreen;
 import lu.kolja.expandedae.xmod.XMod;
 import com.mojang.logging.LogUtils;
 import org.jetbrains.annotations.Contract;
@@ -9,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import appeng.client.gui.implementations.PatternProviderScreen;
 import appeng.init.client.InitScreens;
+import appeng.menu.AEBaseMenu;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -76,6 +80,11 @@ public class Expandedae {
                 ExpMenus.EXP_PATTERN_PROVIDER,
                 PatternProviderScreen<ExpPatternProviderMenu>::new,
                 "/screens/exp_pattern_provider.json"
+        );
+        InitScreens.register(
+                ExpMenus.FILTER_TERMINAL,
+                FilterTermScreen<FilterTermMenu>::new,
+                "/screens/filter_terminal.json"
         );
     }
 }

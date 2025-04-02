@@ -1,0 +1,48 @@
+{
+  "$schema": "schema.json",
+  "includes": ["common/common.json", "common/player_inventory.json"],
+  "text": {
+    "dialog_title": {
+      "text": {
+        "translate": "gui.ae2.PatternAccessTerminalShort"
+      },
+      "position": {
+        "left": 8,
+        "top": 6
+      }
+    },
+    "player_inventory_title": {
+      "text": {
+        "translate": "container.inventory"
+      },
+      "position": {
+        "left": 21,
+        "bottom": 93
+      }
+    }
+  },
+  "slots": {
+    "PLAYER_INVENTORY": {
+      "left": 22,
+      "bottom": 82,
+      "grid": "BREAK_AFTER_9COLS"
+    },
+    "PLAYER_HOTBAR": {
+      "left": 22,
+      "bottom": 24,
+      "grid": "HORIZONTAL"
+    }
+  },
+  "widgets": {
+    "scrollbar": {
+      "left": 175,
+      "top": 18
+    },
+    "search": {
+      "left": 104,
+      "top": 4,
+      "width": 65,
+      "height": 12
+    }
+  }
+}

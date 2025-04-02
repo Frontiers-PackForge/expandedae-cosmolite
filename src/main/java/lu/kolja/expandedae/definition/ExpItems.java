@@ -7,11 +7,13 @@ import java.util.function.Function;
 
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.item.cards.ItemAdvancedBlockingCard;
+import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
 import lu.kolja.expandedae.item.cards.ItemStickyCard;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
-import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPart;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
+import lu.kolja.expandedae.item.part.FilterTerminalPart;
+import lu.kolja.expandedae.item.part.FilterTerminalPartItem;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.PartModels;
@@ -33,6 +35,11 @@ public class ExpItems {
     public static final ItemDefinition<ExpPatternProviderPartItem> EXP_PATTERN_PROVIDER_PART = Util.make(() -> {
         PartModels.registerModels(PartModelsHelper.createModels(ExpPatternProviderPart.class));
         return item("Expanded Pattern Provider", "exp_pattern_provider_part", ExpPatternProviderPartItem::new);
+    });
+
+    public static final ItemDefinition<FilterTerminalPartItem> FILTER_TERMINAL_PART = Util.make(() -> {
+        PartModels.registerModels(PartModelsHelper.createModels(FilterTerminalPart.class));
+        return item("Filter Terminal", "filter_terminal", FilterTerminalPartItem::new);
     });
 
     public static final ItemDefinition<ExpPatternProviderUpgradeItem> EXP_PATTERN_PROVIDER_UPGRADE = item(
