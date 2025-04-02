@@ -6,12 +6,13 @@
   "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
-    "MixinEmiScreenBase",
-    "MixinPatternProviderLogic",
-    "MixinPatternProviderLogicHost",
-    "MixinPatternProviderMenu"
+    "aeinterface.MixinInterfaceLogic",
+    "emi.MixinEmiScreenBase",
+    "patternprovider.MixinPatternProviderLogic",
+    "patternprovider.MixinPatternProviderLogicHost",
+    "patternprovider.MixinPatternProviderMenu"
   ],
   "client": [
-    "MixinPatternProviderScreen"
+    "patternprovider.MixinPatternProviderScreen"
   ]
 }

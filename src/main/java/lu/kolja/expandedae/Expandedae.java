@@ -27,6 +27,8 @@ public class Expandedae {
     public static final String MODID = "expandedae";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    //getActionableNode().getGrid().getStorageService().getInventory().insert() TODO IMPLEMENT TO STICKY CARD
+
     public Expandedae() {
         initResources();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -65,8 +67,8 @@ public class Expandedae {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        new ExpUpgrades(event);
         new XMod();
+        new ExpUpgrades(event);
     }
 
     private void onClientSetup(FMLClientSetupEvent event) {

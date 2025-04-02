@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.mixin;
+package lu.kolja.expandedae.mixin.patternprovider;
 
 import lu.kolja.expandedae.menu.helper.IUpgradableMenu;
 import org.spongepowered.asm.mixin.Final;

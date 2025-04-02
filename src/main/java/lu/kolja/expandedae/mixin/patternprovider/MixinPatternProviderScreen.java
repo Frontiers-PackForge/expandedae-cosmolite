@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.mixin;
+package lu.kolja.expandedae.mixin.patternprovider;
 
 import java.util.ArrayList;
 import java.util.List;

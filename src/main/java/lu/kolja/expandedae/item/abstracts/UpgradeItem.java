@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.item;
+package lu.kolja.expandedae.item.abstracts;
 
 import appeng.blockentity.AEBaseBlockEntity;
 import net.minecraft.core.BlockPos;

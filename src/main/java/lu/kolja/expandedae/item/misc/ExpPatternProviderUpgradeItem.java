@@ -1,10 +1,11 @@
-package lu.kolja.expandedae.item;
+package lu.kolja.expandedae.item.misc;
 
 import javax.annotation.Nonnull;
 
 import lu.kolja.expandedae.definition.ExpBlockEntities;
 import lu.kolja.expandedae.definition.ExpBlocks;
 import lu.kolja.expandedae.definition.ExpItems;
+import lu.kolja.expandedae.item.abstracts.UpgradeItem;
 import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.parts.AEBasePart;

@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.mixin;
+package lu.kolja.expandedae.mixin.emi;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -14,7 +14,7 @@ import dev.emi.emi.mixin.accessor.HandledScreenAccessor;
 import dev.emi.emi.screen.EmiScreenBase;
 import dev.emi.emi.screen.RecipeScreen;
 
-@Mixin(EmiScreenBase.class)
+@Mixin(value = EmiScreenBase.class, remap = false)
 public abstract class MixinEmiScreenBase {
 
     /**
