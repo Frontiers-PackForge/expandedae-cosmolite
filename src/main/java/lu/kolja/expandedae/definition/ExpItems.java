@@ -8,6 +8,7 @@ import java.util.function.Function;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.item.cards.ItemAdvancedBlockingCard;
 import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
+import lu.kolja.expandedae.item.cards.ItemPatternRefillerCard;
 import lu.kolja.expandedae.item.cards.ItemStickyCard;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPart;
@@ -62,6 +63,11 @@ public class ExpItems {
             "Sticky Card",
             "sticky_card",
             ItemStickyCard::new
+    );
+    public static final ItemDefinition<ItemPatternRefillerCard> PATTERN_REFILLER_CARD = item(
+            "Pattern Refiller Card",
+            "pattern_refiller_card",
+            ItemPatternRefillerCard::new
     );
 
     public static List<ItemDefinition<?>> getItems() {

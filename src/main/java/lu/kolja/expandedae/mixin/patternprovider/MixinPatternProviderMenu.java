@@ -26,7 +26,7 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
     @Shadow(remap = false)
     protected PatternProviderLogic logic;
     @Unique
-    private ToolboxMenu af_$toolbox;
+    private ToolboxMenu eae_$toolbox;
 
     public MixinPatternProviderMenu(MenuType<?> menuType, int id, Inventory playerInventory, Object host) {
         super(menuType, id, playerInventory, host);
@@ -38,14 +38,14 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
             remap = false
     )
     private void initToolbox(MenuType menuType, int id, Inventory playerInventory, PatternProviderLogicHost host, CallbackInfo ci) {
-        this.af_$toolbox = new ToolboxMenu(this);
+        this.eae_$toolbox = new ToolboxMenu(this);
         this.setupUpgrades(((IUpgradeableObject) host).getUpgrades());
     }
 
     @SuppressWarnings("AddedMixinMembersNamePattern")
     @Override
     public ToolboxMenu getToolbox() {
-        return this.af_$toolbox;
+        return this.eae_$toolbox;
     }
 
     @SuppressWarnings("AddedMixinMembersNamePattern")
@@ -65,7 +65,7 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
             at = @At("TAIL")
     )
     public void tickToolbox(CallbackInfo ci) {
-        this.af_$toolbox.tick();
+        this.eae_$toolbox.tick();
     }
 
 }

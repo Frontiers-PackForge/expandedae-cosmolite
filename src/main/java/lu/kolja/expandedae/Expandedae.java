@@ -11,8 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import appeng.client.gui.implementations.PatternProviderScreen;
 import appeng.init.client.InitScreens;
-import appeng.menu.AEBaseMenu;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -34,6 +32,7 @@ public class Expandedae {
     //getActionableNode().getGrid().getStorageService().getInventory().insert() TODO IMPLEMENT TO STICKY CARD
 
     public Expandedae() {
+        registerMenus();
         initResources();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::onClientSetup);
@@ -77,14 +76,17 @@ public class Expandedae {
 
     private void onClientSetup(FMLClientSetupEvent event) {
         InitScreens.register(
+                FilterTermMenu.TYPE,
+                FilterTermScreen<FilterTermMenu>::new,
+                "/screens/filter_terminal.json"
+        );
+        InitScreens.register(
                 ExpMenus.EXP_PATTERN_PROVIDER,
                 PatternProviderScreen<ExpPatternProviderMenu>::new,
                 "/screens/exp_pattern_provider.json"
         );
-        InitScreens.register(
-                ExpMenus.FILTER_TERMINAL,
-                FilterTermScreen<FilterTermMenu>::new,
-                "/screens/filter_terminal.json"
-        );
+    }
+    private void registerMenus() {
+        Platform.registerMenuType("filter_terminal", FilterTermMenu.TYPE);
     }
 }

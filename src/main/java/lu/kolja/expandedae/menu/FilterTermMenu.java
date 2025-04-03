@@ -16,12 +16,11 @@ import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
 import appeng.api.networking.security.IActionHost;
 import appeng.api.util.IConfigurableObject;
+import appeng.blockentity.misc.InterfaceBlockEntity;
 import appeng.core.AELog;
 import appeng.helpers.InventoryAction;
-import appeng.helpers.patternprovider.PatternContainer;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
-import appeng.menu.implementations.PatternAccessTermMenu;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.FilteredInternalInventory;
 import appeng.util.inv.filter.IAEItemFilter;
@@ -105,9 +104,9 @@ public class FilterTermMenu extends AEBaseMenu {
     }
 
     private void visitFilterHosts(IGrid grid, Class<? extends FilterContainer> machineClass, VisitorState state) {
-        for(FilterContainer container : grid.getActiveMachines(machineClass)) {
+        for(InterfaceBlockEntity container : grid.getActiveMachines(InterfaceBlockEntity.class)) {
             ContainerTracker tracker = this.diList.get(container);
-            if (tracker == null || !tracker.group.equals(container.getTerminalGroup())) {
+            if (tracker == null || !tracker.group.equals(container.getInterfaceLogic())) {
                 state.forceFullUpdate = true;
             }
             ++state.total;
@@ -232,7 +231,7 @@ public class FilterTermMenu extends AEBaseMenu {
         private VisitorState() {
         }
     }
-    private static class ContainerTracker { //TODO FINISH CLASS
+    private static class ContainerTracker {
         private final FilterContainer container;
         private final long sortBy;
         private final long serverId;
@@ -241,7 +240,7 @@ public class FilterTermMenu extends AEBaseMenu {
         private final InternalInventory server;
 
         public ContainerTracker(FilterContainer container, InternalInventory filters, FilterContainerGroup group) {
-            this.serverId = (long)(FilterTermMenu.inventorySerial++);
+            this.serverId = FilterTermMenu.inventorySerial++;
             this.container = container;
             this.server = filters;
             this.client = new AppEngInternalInventory(this.server.size());

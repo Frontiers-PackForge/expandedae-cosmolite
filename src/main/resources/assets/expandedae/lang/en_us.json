@@ -12,11 +12,13 @@
   "item.expandedae.advanced_blocking_card.tooltip.1": "Exposes the entire networks contents when placed in an interface",
   "item.expandedae.auto_complete_card.tooltip.1": "Automatically completes the crafting job",
   "item.expandedae.auto_complete_card.tooltip.2": "Note: This only works for single requests",
+  "item.expandedae.pattern_refiller_card.tooltip.1": "Automatically refills the blank patterns",
   "item.expandedae.sticky_card.tooltip.1": "Filtered stacks will only enter the network on this storage bus",
 
   "block.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
 
   "gui.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
+  "gui.expandedae.filter_terminal": "Filter Terminal",
 
   "group.adv_pattern_provider.name": "ME Advanced Pattern Provider",
   "group.ex_pattern_provider.name": "ME Extended Pattern Provider",
@@ -29,5 +31,6 @@
   "group.oversize_interface.name": "ME Oversize Interface",
   "group.tag_storage_bus.name": "ME Tagged Storage Bus",
   "group.mod_storage_bus.name": "ME Mod Storage Bus",
-  "group.precise_storage_bus.name": "ME Precise Storage Bus"
+  "group.precise_storage_bus.name": "ME Precise Storage Bus",
+  "group.pattern_encoding_terminal.name": "ME Pattern Encoding Terminal"
 }

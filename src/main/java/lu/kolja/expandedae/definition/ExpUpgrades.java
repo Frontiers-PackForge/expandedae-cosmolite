@@ -16,6 +16,7 @@ public class ExpUpgrades {
             Upgrades.add(ExpItems.ADVANCED_BLOCKING_CARD, AEBlocks.INTERFACE, 1, "group.interface.name");
             Upgrades.add(ExpItems.ADVANCED_BLOCKING_CARD, AEParts.INTERFACE, 1, "group.interface.name");
             Upgrades.add(ExpItems.STICKY_CARD, AEParts.STORAGE_BUS, 1, "group.storage_bus.name");
+            Upgrades.add(ExpItems.PATTERN_REFILLER_CARD, AEParts.PATTERN_ENCODING_TERMINAL, 1, "group.pattern_encoding_terminal.name");
         });
     }
 }

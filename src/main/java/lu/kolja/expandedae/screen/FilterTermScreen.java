@@ -2,7 +2,6 @@ package lu.kolja.expandedae.screen;
 
 import java.util.*;
 
-import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.block.entity.FilterContainerGroup;
 import lu.kolja.expandedae.client.gui.FilterContainerRecord;
 import lu.kolja.expandedae.menu.FilterTermMenu;
@@ -403,7 +402,7 @@ public class FilterTermScreen<C extends FilterTermMenu> extends AEBaseScreen<C> 
     }
 
     private void blit(GuiGraphics guiGraphics, int offsetX, int offsetY, Rect2i srcRect) {
-        ResourceLocation texture = Expandedae.makeId("textures/guis/filter_terminal.png");
+        ResourceLocation texture = AppEng.makeId("textures/guis/filter_terminal.png");
         guiGraphics.blit(texture, offsetX, offsetY, srcRect.getX(), srcRect.getY(), srcRect.getWidth(), srcRect.getHeight());
     }
 
