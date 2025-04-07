@@ -28,3 +28,6 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
   - HOWEVER due to how Modern AE2 treats blocking mode in modern vs 1.7.10, what the card should realistically do on modern is disable insertion to the interface it's in, if the network contains items, as then it's effectively blocking mode 'regardless' of what pattern   provider pushes to that subnet, which would be extremely potent for larger automation setups
 - [ ] ME Filter Configuration terminal
   - A terminal that allows you to view all filters that connected devices contain for ease of locating
+
+- [ ] Locate pattern providers from the crafting status menu by shift+right clicking the item.
+  - Can be useful when you quickly want to diagnose where a craft is stuck.
