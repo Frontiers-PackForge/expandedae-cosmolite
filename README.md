@@ -29,5 +29,5 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
 - [ ] ME Filter Configuration terminal
   - A terminal that allows you to view all filters that connected devices contain for ease of locating
 
-- [ ] Locate pattern providers from the crafting status menu by shift+right clicking the item.
+- [ ] Locate pattern providers from the crafting status menu by shift clicking the item.
   - Can be useful when you quickly want to diagnose where a craft is stuck.
