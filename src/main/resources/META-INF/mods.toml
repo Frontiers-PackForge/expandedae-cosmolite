@@ -2,6 +2,7 @@ modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
 logoFile = "expandedae.png"
+mixins = ["expandedae.mixins.json"]
 
 [[mods]]
 modId = "${mod_id}"
@@ -46,4 +47,10 @@ side = "BOTH"
 modId = "advanced_ae"
 mandatory = false
 ordering = "AFTER"
+side = "BOTH"
+
+[[dependency."${mod_id}"]]
+modId = "ae2wtlib"
+mandatory = true
+ordering = "BEFORE"
 side = "BOTH"

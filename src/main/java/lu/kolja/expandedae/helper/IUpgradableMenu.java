@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.menu.helper;
+package lu.kolja.expandedae.helper;
 
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.menu.ToolboxMenu;

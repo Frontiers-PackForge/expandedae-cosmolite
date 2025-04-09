@@ -3,7 +3,7 @@ package lu.kolja.expandedae.mixin.patternprovider;
 import java.util.ArrayList;
 import java.util.List;
 
-import lu.kolja.expandedae.menu.helper.IUpgradableMenu;
+import lu.kolja.expandedae.helper.IUpgradableMenu;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

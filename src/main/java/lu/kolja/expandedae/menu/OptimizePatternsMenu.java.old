@@ -1,0 +1,34 @@
+package lu.kolja.expandedae.menu;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lu.kolja.expandedae.helper.IMenuTooltipHandler;
+import appeng.api.config.Setting;
+import appeng.api.config.Settings;
+import appeng.api.config.TerminalStyle;
+import appeng.api.stacks.AEKey;
+import appeng.client.gui.widgets.AETextField;
+import appeng.client.gui.widgets.ITooltip;
+import appeng.menu.AEBaseMenu;
+import net.minecraft.client.renderer.Rect2i;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.MenuType;
+
+public class OptimizePatternsMenu extends AEBaseMenu implements IMenuTooltipHandler {
+    private final AETextField amountToCraft;
+    private int amountToCraftI = 1;
+
+    private final List<AEKey> visual = new ArrayList<>();
+    private int rows = 5;
+    private TerminalStyle style;
+
+
+
+    public OptimizePatternsMenu(MenuType<?> menuType, int id, Inventory playerInventory, Object host) {
+        super(menuType, id, playerInventory, host);
+        this.style = TerminalStyle.FULL;
+        this
+    }
+
+}

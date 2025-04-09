@@ -7,7 +7,7 @@ import java.util.Set;
 
 import lu.kolja.expandedae.block.entity.FilterContainerGroup;
 import lu.kolja.expandedae.item.part.FilterTerminalPart;
-import lu.kolja.expandedae.menu.helper.FilterContainer;
+import lu.kolja.expandedae.helper.FilterContainer;
 import lu.kolja.expandedae.packets.ClearFilterTerminalPacket;
 import lu.kolja.expandedae.packets.FilterTerminalPacket;
 import org.jetbrains.annotations.Nullable;
@@ -19,8 +19,8 @@ import appeng.api.util.IConfigurableObject;
 import appeng.blockentity.misc.InterfaceBlockEntity;
 import appeng.core.AELog;
 import appeng.helpers.InventoryAction;
-import appeng.menu.AEBaseMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
+import appeng.menu.implementations.UpgradeableMenu;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.FilteredInternalInventory;
 import appeng.util.inv.filter.IAEItemFilter;
@@ -34,33 +34,26 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 
-public class FilterTermMenu extends AEBaseMenu {
+public class FilterTermMenu extends UpgradeableMenu<FilterTerminalPart> {
     private final IConfigurableObject host;
 
-    public static final MenuType<FilterTermMenu> TYPE = MenuTypeBuilder.create(FilterTermMenu::new, FilterTerminalPart.class).build("filter_terminal");
+    public static final MenuType<FilterTermMenu> TYPE = MenuTypeBuilder.create(FilterTermMenu::new, FilterTerminalPart.class).build("filter_terminal"); //TODO
     private static long inventorySerial = Long.MIN_VALUE;
     private final Map<FilterContainer, ContainerTracker> diList;
     private final Long2ObjectOpenHashMap<ContainerTracker> byId;
     private final Set<FilterContainer> pinnedHosts;
 
-    public FilterTermMenu(int id, Inventory ip, FilterTerminalPart anchor) {
-        this(TYPE, id, ip, anchor, true);
-    }
-
-    public FilterTermMenu(MenuType<?> menuType, int id, Inventory ip, IConfigurableObject host, boolean bindInventory) {
+    public FilterTermMenu(MenuType<? extends FilterTermMenu> menuType, int id, Inventory ip, FilterTerminalPart host) {
         super(menuType, id, ip, host);
         this.diList = new IdentityHashMap<>();
         this.byId = new Long2ObjectOpenHashMap<>();
         this.pinnedHosts = Collections.newSetFromMap(new IdentityHashMap<>());
         this.host = host;
-        if (bindInventory) {
-            this.createPlayerInventorySlots(ip);
-        }
     }
 
     public void broadcastChanges() {
         if (!this.isClientSide()) {
-            super.broadcastChanges();
+            //super.broadcastChanges();
             IGrid grid = this.getGrid();
             VisitorState state = new VisitorState();
             if (grid != null) {
@@ -109,7 +102,6 @@ public class FilterTermMenu extends AEBaseMenu {
             if (tracker == null || !tracker.group.equals(container.getInterfaceLogic())) {
                 state.forceFullUpdate = true;
             }
-            ++state.total;
         }
     }
 

@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.menu.helper;
+package lu.kolja.expandedae.helper;
 
 import lu.kolja.expandedae.block.entity.FilterContainerGroup;
 import org.jetbrains.annotations.Nullable;

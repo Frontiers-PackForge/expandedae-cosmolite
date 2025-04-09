@@ -12,3 +12,5 @@ src/generated/resources/.cache
 jar
 /src/main/resources/assets/expandedae/textures/item/base_card.png
 /src/main/resources/assets/expandedae/textures/item/sticky_card_alternative.png
+/src/main/resources/temp.txt
+/libs/ae2wtlib.jar

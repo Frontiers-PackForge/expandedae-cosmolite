@@ -8,6 +8,9 @@
   "item.expandedae.advanced_blocking_card": "Advanced Blocking Card",
   "item.expandedae.sticky_card": "Sticky Card",
   "item.expandedae.filter_terminal": "Filter Terminal",
+  "item.expandedae.artificial_universe_cell": "Artificial Universe Storage Cell",
+  "item.expandedae.artificial_universe_component": "Artificial Universe Storage Component",
+  "item.expandedae.artificial_universe_cell_housing": "Artificial Universe Storage Cell Housing",
 
   "item.expandedae.advanced_blocking_card.tooltip.1": "Exposes the entire networks contents when placed in an interface",
   "item.expandedae.auto_complete_card.tooltip.1": "Automatically completes the crafting job",

@@ -6,17 +6,17 @@
   "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
+    "cards.MixinNetworkStorage",
     "emi.MixinEmiScreenBase",
-    "emi.MixinEmiStackInteraction",
     "patternprovider.MixinPatternProviderLogic",
     "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
-    "terminal.MixinPatternEncodingTermLogic",
-    "terminal.MixinPatternEncodingTermLogicHost",
-    "terminal.MixinPatternEncodingTermMenu"
+    "storage.MixinCraftingCPUMenu",
+    "storage.MixinCraftingStatusTableRenderer",
+    "storage.MixinStorageBus"
   ],
   "client": [
     "patternprovider.MixinPatternProviderScreen",
-    "terminal.MixinPatternEncodingTerminalScreen"
+    "storage.MixinCraftingCPUScreen"
   ]
 }
