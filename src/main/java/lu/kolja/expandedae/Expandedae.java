@@ -1,25 +1,37 @@
 package lu.kolja.expandedae;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.ServiceLoader;
+import java.util.stream.Stream;
+
 import lu.kolja.expandedae.definition.*;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
 import lu.kolja.expandedae.menu.FilterTermMenu;
 import lu.kolja.expandedae.screen.FilterTermScreen;
+import lu.kolja.expandedae.storage.ExpandedStorageCell;
 import lu.kolja.expandedae.xmod.XMod;
 import com.mojang.logging.LogUtils;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
+import org.spongepowered.asm.mixin.transformer.Config;
+import appeng.api.client.StorageCellModels;
 import appeng.client.gui.implementations.PatternProviderScreen;
+import appeng.init.client.InitBuiltInModels;
 import appeng.init.client.InitScreens;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 
@@ -34,8 +46,9 @@ public class Expandedae {
     public Expandedae() {
         registerMenus();
         initResources();
+
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::onClientSetup);
+        modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener((RegisterEvent event) -> {
             if (event.getRegistryKey().equals(Registries.BLOCK)) {
@@ -57,6 +70,7 @@ public class Expandedae {
                 ExpMenus.getMenuTypes().forEach(ForgeRegistries.MENU_TYPES::register);
             }
         });
+        ExpCells.init();
     }
 
     @Contract("_ -> new")
@@ -74,7 +88,11 @@ public class Expandedae {
         new ExpUpgrades(event);
     }
 
-    private void onClientSetup(FMLClientSetupEvent event) {
+    private void registerMenus() {
+        Platform.registerMenuType("filter_terminal", FilterTermMenu.TYPE);
+    }
+
+    private void clientSetup(FMLClientSetupEvent event) {
         InitScreens.register(
                 FilterTermMenu.TYPE,
                 FilterTermScreen<FilterTermMenu>::new,
@@ -85,8 +103,5 @@ public class Expandedae {
                 PatternProviderScreen<ExpPatternProviderMenu>::new,
                 "/screens/exp_pattern_provider.json"
         );
-    }
-    private void registerMenus() {
-        Platform.registerMenuType("filter_terminal", FilterTermMenu.TYPE);
     }
 }

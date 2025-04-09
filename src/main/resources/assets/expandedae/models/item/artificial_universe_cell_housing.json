@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "expandedae:item/artificial_universe_cell_housing"
+  }
+}

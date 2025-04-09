@@ -4,6 +4,7 @@ import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.menu.FilterTermMenu;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
+import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.util.IConfigManager;
 import appeng.api.util.IConfigurableObject;
 import appeng.items.parts.PartModels;
@@ -18,7 +19,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 
-public class FilterTerminalPart extends AbstractDisplayPart implements IConfigurableObject {
+public class FilterTerminalPart extends AbstractDisplayPart implements IConfigurableObject, IUpgradeableObject {
     @PartModels
     public static final ResourceLocation MODEL_OFF = Expandedae.makeId("part/filter_terminal_off");
     @PartModels
@@ -30,7 +31,7 @@ public class FilterTerminalPart extends AbstractDisplayPart implements IConfigur
 
     public FilterTerminalPart(IPartItem<?> partItem) {
         super(partItem, true);
-        //this.configManager.registerSetting();
+        //this.configManager.registerSetting();                             BRB
     }
 
     public boolean onPartActivate(Player player, InteractionHand hand, Vec3 pos) {

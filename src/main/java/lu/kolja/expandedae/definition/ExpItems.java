@@ -15,15 +15,27 @@ import lu.kolja.expandedae.item.part.ExpPatternProviderPart;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import lu.kolja.expandedae.item.part.FilterTerminalPart;
 import lu.kolja.expandedae.item.part.FilterTerminalPartItem;
+import lu.kolja.expandedae.storage.IExpandedCellItem;
+import lu.kolja.expandedae.storage.ExpandedStorageCell;
+import lu.kolja.expandedae.storage.ExpandedStorageComponentItem;
+import lu.kolja.expandedae.storage.ExpandedStorageTier;
+import appeng.api.ids.AECreativeTabIds;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.PartModels;
+import appeng.api.stacks.AEKeyType;
 import appeng.core.definitions.ItemDefinition;
+import appeng.items.materials.MaterialItem;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
 import net.minecraft.Util;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 
+@SuppressWarnings("ALL")
 public class ExpItems {
 
     public static void init() {
@@ -70,6 +82,26 @@ public class ExpItems {
             ItemPatternRefillerCard::new
     );
 
+    public static final ItemDefinition<ExpandedStorageComponentItem> UNIVERSE_COMPONENT = component("Artificial Universe Storage Component", "artificial_universe_component", Long.MAX_VALUE);
+    public static final ItemDefinition<MaterialItem> ARTIFICIAL_UNIVERSE_CELL_HOUSING = item(
+            "Artificial Universe Cell Housing",
+            "artificial_universe_cell_housing",
+            MaterialItem::new
+    );
+    public static final ExpandedStorageTier TIER_UNIVERSE = tier(12, "DEV", Long.MAX_VALUE, UNIVERSE_COMPONENT);
+    public static final ItemDefinition<ExpandedStorageCell> ARTIFICIAL_UNIVERSE_CELL = itemCell(
+            "Artificial Universe ME Storage Cell",
+            "artificial_universe_cell",
+            TIER_UNIVERSE,
+            ARTIFICIAL_UNIVERSE_CELL_HOUSING,
+            Integer.MAX_VALUE / 16,
+            (Integer.MAX_VALUE / 16) / 128,
+            63
+    );
+    public static List<ItemDefinition<?>> getItemCells() {
+        return List.of(ARTIFICIAL_UNIVERSE_CELL);
+    }
+
     public static List<ItemDefinition<?>> getItems() {
         return Collections.unmodifiableList(ITEMS);
     }
@@ -86,4 +118,49 @@ public class ExpItems {
         ITEMS.add(definition);
         return definition;
     }
+
+    private static ItemDefinition<ExpandedStorageCell> itemCell(String englishName, String id, ExpandedStorageTier tier, ItemLike housingItem, long bytes, long bytesPerType, int totalTypes) {
+        return item(
+                englishName,
+                id,
+                p -> new ExpandedStorageCell(
+                        p.stacksTo(1),
+                        tier.componentSupplier().get(),
+                        housingItem,
+                        tier.idleDrain(),
+                        bytes,
+                        bytesPerType,
+                        totalTypes,
+                        AEKeyType.items())
+        );
+    }
+    private static ExpandedStorageTier tier(int index, String namePrefix, long storageInBytes, ItemDefinition<ExpandedStorageComponentItem> component) {
+        return new ExpandedStorageTier(index, namePrefix, storageInBytes, 0.5 * index, component::asItem);
+    }
+    private static ItemDefinition<ExpandedStorageComponentItem> component(String englishName, String id, long storageInBytes) {
+        return item(
+                englishName,
+                id,
+                properties -> new ExpandedStorageComponentItem(properties, storageInBytes)
+        );
+    }
+
+    static <T extends Item> ItemDefinition<T> item(String name, ResourceLocation id,
+                                                   Function<Item.Properties, T> factory) {
+        return item(name, id, factory, AECreativeTabIds.MAIN);
+    }
+
+    static <T extends Item> ItemDefinition<T> item(String name, ResourceLocation id,
+                                                   Function<Item.Properties, T> factory,
+                                                   ResourceKey<CreativeModeTab> group) {
+
+        Item.Properties p = new Item.Properties();
+        T item = factory.apply(p);
+        ItemDefinition<T> definition = new ItemDefinition<>(name, id, item);
+
+        ITEMS.add(definition);
+        return definition;
+    }
+
+    public static void orderInit() {}
 }
