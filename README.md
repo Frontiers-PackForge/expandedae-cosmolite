@@ -33,4 +33,8 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
   - Can be useful when you quickly want to diagnose where a craft is stuck.
 
 - [ ] Pattern optimization matrix
-  - Check gtnh ae2
+  - Basically gives you the ability to multiply all patterns from the crafting menu, really basic explanation but check gtnh ae2 if this interests you. Still debating if there's any actual usecase for this.
+     
+- [ ] Pattern encoding optimization
+  - Shift clicking when encoding will add the pattern to your inventory
+  - Ability to multiple/divide processing patterns directly in the terminal (credits: [Ghostipedia](https://github.com/Ghostipedia) <3))
