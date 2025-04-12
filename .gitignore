@@ -3,7 +3,6 @@ out
 .idea
 bin
 build
-gradle
 run
 run-data
 src/generated/resources/.cache
