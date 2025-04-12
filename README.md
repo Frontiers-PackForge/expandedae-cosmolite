@@ -41,3 +41,4 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
 - [ ] Pattern provider changes
   - Add button to multiply all patterns inside
 - [ ] Add exponents/scientific notation to the craft amount screen thingy
+- [ ] Middle mouse click on item in emi allows to order item directly
