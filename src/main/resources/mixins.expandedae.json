@@ -13,7 +13,8 @@
     "patternprovider.MixinPatternProviderMenu",
     "storage.MixinCraftingCPUMenu",
     "storage.MixinCraftingStatusTableRenderer",
-    "storage.MixinStorageBus"
+    "storage.MixinStorageBus",
+    "terminal.MixinPatternEncodingTerminalMenu"
   ],
   "client": [
     "patternprovider.MixinPatternProviderScreen",

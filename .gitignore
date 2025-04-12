@@ -6,8 +6,6 @@ build
 gradle
 run
 run-data
-gradlew
-gradlew.bat
 src/generated/resources/.cache
 jar
 /src/main/resources/assets/expandedae/textures/item/base_card.png

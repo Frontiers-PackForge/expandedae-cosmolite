@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.mixin.storage;
+/*package lu.kolja.expandedae.mixin.storage;
 
 import java.util.Arrays;
 
@@ -81,3 +81,4 @@ public abstract class MixinCraftingCPUScreen<T extends AEBaseMenu> extends Abstr
         }
     }
 }
+*/
