@@ -4,7 +4,6 @@ import lu.kolja.expandedae.client.render.ExpHighlightHandler;
 import lu.kolja.expandedae.client.util.GuiUtil;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
-import appeng.client.gui.AEBaseScreen;
 import appeng.client.gui.style.Blitter;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.core.BlockPos;
@@ -12,7 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
 
 public class HighlightButton extends ExpButton {
     private float multiplier;

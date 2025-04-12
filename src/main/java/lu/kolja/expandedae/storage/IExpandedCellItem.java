@@ -1,37 +1,14 @@
 package lu.kolja.expandedae.storage;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import lu.kolja.expandedae.helper.NumberUtil;
 import com.google.common.base.Preconditions;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import appeng.api.config.FuzzyMode;
 import appeng.api.stacks.AEKey;
 import appeng.api.stacks.AEKeyType;
-import appeng.api.stacks.GenericStack;
-import appeng.api.storage.StorageCells;
-import appeng.api.storage.cells.ICellHandler;
 import appeng.api.storage.cells.ICellWorkbenchItem;
-import appeng.api.storage.cells.ISaveProvider;
-import appeng.api.upgrades.IUpgradeInventory;
-import appeng.api.upgrades.UpgradeInventories;
-import appeng.core.AEConfig;
-import appeng.core.localization.PlayerMessages;
-import appeng.items.AEBaseItem;
-import appeng.items.contents.CellConfig;
-import appeng.items.storage.StorageCellTooltipComponent;
 import appeng.me.cells.BasicCellHandler;
-import appeng.util.ConfigInventory;
-import appeng.util.InteractionUtil;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 

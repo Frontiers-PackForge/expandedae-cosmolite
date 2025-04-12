@@ -46,6 +46,7 @@ minecraft {
 
         client {
             arg "-mixin.config=mixins.${mod_id}.json"
+            arg "-XX:+AllowEnhancedClassRedefinition"
             property 'forge.enabledGameTestNamespaces', mod_id
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'

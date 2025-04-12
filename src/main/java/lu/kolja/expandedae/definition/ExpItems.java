@@ -15,7 +15,6 @@ import lu.kolja.expandedae.item.part.ExpPatternProviderPart;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import lu.kolja.expandedae.item.part.FilterTerminalPart;
 import lu.kolja.expandedae.item.part.FilterTerminalPartItem;
-import lu.kolja.expandedae.storage.IExpandedCellItem;
 import lu.kolja.expandedae.storage.ExpandedStorageCell;
 import lu.kolja.expandedae.storage.ExpandedStorageComponentItem;
 import lu.kolja.expandedae.storage.ExpandedStorageTier;

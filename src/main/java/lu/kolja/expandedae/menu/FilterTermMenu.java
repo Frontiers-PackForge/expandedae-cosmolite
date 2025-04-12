@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Set;
 
 import lu.kolja.expandedae.block.entity.FilterContainerGroup;
-import lu.kolja.expandedae.item.part.FilterTerminalPart;
 import lu.kolja.expandedae.helper.FilterContainer;
+import lu.kolja.expandedae.item.part.FilterTerminalPart;
 import lu.kolja.expandedae.packets.ClearFilterTerminalPacket;
 import lu.kolja.expandedae.packets.FilterTerminalPacket;
 import org.jetbrains.annotations.Nullable;

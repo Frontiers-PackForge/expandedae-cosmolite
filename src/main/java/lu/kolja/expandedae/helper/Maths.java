@@ -1,9 +1,6 @@
 package lu.kolja.expandedae.helper;
 
-import appeng.api.util.DimensionalBlockPos;
-
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Position;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
