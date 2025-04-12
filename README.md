@@ -38,3 +38,5 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
 - [ ] Pattern encoding optimization
   - Shift clicking when encoding will add the pattern to your inventory
   - Ability to multiple/divide processing patterns directly in the terminal (credits: [Ghostipedia](https://github.com/Ghostipedia) <3))
+- [ ] Pattern provider changes
+  - Add button to multiply all patterns inside
