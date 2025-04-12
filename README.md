@@ -31,3 +31,6 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
 
 - [ ] Locate pattern providers from the crafting status menu by shift clicking the item.
   - Can be useful when you quickly want to diagnose where a craft is stuck.
+
+- [ ] Pattern optimization matrix
+  - Check gtnh ae2
