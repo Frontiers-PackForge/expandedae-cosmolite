@@ -15,7 +15,7 @@ This mod is community-driven, so suggest any ideas you might have and they might
 ## Roadmap
 - [x] Add an auto complete card to the pattern provider
   - Added in Beta 1.0.2
-- [ ] Pattern Refiller Card 
+- [x] Pattern Refiller Card 
   - Upgrade for Pattern Terminals, automatically restocks the terminal with blank patterns
 - [ ] Sticky Card
   - Lets an item/fluid enter the network only on that storage bus.
