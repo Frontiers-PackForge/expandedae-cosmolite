@@ -26,8 +26,8 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
   - Basically, when you place the card inside of an interface/extended interface/etc, It exposes the entire contents of the connected network to itself, which makes it work with blocking mode
   
   - HOWEVER due to how Modern AE2 treats blocking mode in modern vs 1.7.10, what the card should realistically do on modern is disable insertion to the interface it's in, if the network contains items, as then it's effectively blocking mode 'regardless' of what pattern   provider pushes to that subnet, which would be extremely potent for larger automation setups
-- [ ] ME Filter Configuration terminal
-  - A terminal that allows you to view all filters that connected devices contain for ease of locating
+- [ ] ~~ME Filter Configuration terminal~~ -> ME Interface Terminal
+  - ~~A terminal that allows you to view all filters that connected devices contain for ease of locating~~ -> Configure all Interfaces from a singular terminal
 
 - [ ] Locate pattern providers from the crafting status menu by shift clicking the item.
   - Can be useful when you quickly want to diagnose where a craft is stuck.
@@ -36,9 +36,10 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
   - Basically gives you the ability to multiply all patterns from the crafting menu, really basic explanation but check gtnh ae2 if this interests you. Still debating if there's any actual usecase for this.
      
 - [ ] Pattern encoding optimization
-  - Shift clicking when encoding will add the pattern to your inventory
-  - Ability to multiple/divide processing patterns directly in the terminal (credits: [Ghostipedia](https://github.com/Ghostipedia) <3))
-- [ ] Pattern provider changes
-  - Add button to multiply all patterns inside
+  - [x] Shift clicking when encoding will add the pattern to your inventory
+  - Ability to multiple/divide processing patterns directly in the terminal (credits: [Ghostipedia](https://github.com/Ghostipedia) <3)
+- [x] Pattern provider changes
+  - Add button to multiply/divide all patterns inside
 - [ ] Add exponents/scientific notation to the craft amount screen thingy
 - [ ] Middle mouse click on a stack in emi allows to order it directly
+- [ ] Shift click patterns into pattern access terminal(?)
