@@ -104,36 +104,6 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             at = @At("RETURN")
     )
     private void eae_$checkUpgrades(IPatternDetails patternDetails, KeyCounter[] inputHolder, CallbackInfoReturnable<Boolean> cir) {
-        if (this.eae_$upgrades.isInstalled(ExpItems.AUTO_COMPLETE_CARD)) {
-            List<ICraftingCPU> matchedCpus = eae_$getCraftingCpus().stream()
-                    .filter(cpu -> cpu.getJobStatus() != null)
-                    .filter(cpu -> eae_$getCraftingCpus().stream()
-                            .map(ICraftingCPU::getJobStatus)
-                            .filter(Objects::nonNull)
-                            .anyMatch(
-                                    job -> cpu.getJobStatus().progress() == job.progress()
-                                            && cpu.getJobStatus().crafting().equals(job.crafting())
-                            )
-                    ).toList();
-
-            matchedCpus.forEach(x -> {
-                var what = x.getJobStatus().crafting().what();
-                var whatId = what.getId();
-                for (var outputs : patternDetails.getOutputs()) {
-                    var outputWhatId = outputs.what().getId();
-                    if (whatId == outputWhatId) {
-                        x.cancelJob();
-                        var minecraft = Minecraft.getInstance();
-                        if (AEConfig.instance().isNotifyForFinishedCraftingJobs()
-                            && !(minecraft.screen instanceof MEStorageScreen<?>)
-                            && minecraft.player != null && expandedae$hasNotificationEnablingItem(minecraft.player)) {
-                            minecraft.getToasts().addToast(new FinishedJobToast(what, 1)); //set to 1 since the card doesn't support more
-                        }
-                        return;
-                    }
-                }
-            });
-        }
     }
     @Unique
     private static boolean expandedae$hasNotificationEnablingItem(LocalPlayer player) {

@@ -2,6 +2,7 @@ package lu.kolja.expandedae.client.button;
 
 import lu.kolja.expandedae.client.render.ExpHighlightHandler;
 import lu.kolja.expandedae.client.util.GuiUtil;
+import com.glodblock.github.extendedae.client.button.EPPIcon;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 import appeng.client.gui.style.Blitter;
@@ -69,6 +70,6 @@ public class HighlightButton extends ExpButton {
 
     @Override
     Blitter getBlitterIcon() {
-        return ExpIcon.HIGHLIGHT;
+        return EPPIcon.HIGHLIGHT_BLOCK;
     }
 }

@@ -116,7 +116,6 @@ dependencies {
     implementation fg.deobf("curse.maven:guideme-1173950:6227045")
     //implementation fg.deobf("curse.maven:applied-energistics-2-wireless-terminals-459929:5217955")
     //compileOnly fg.deobf("curse.maven:applied-flux-965012:5989701")
-    implementation fg.deobf("curse.maven:advancedae-1084104:6205290")
     implementation fg.deobf("curse.maven:geckolib-388172:6027567")
     implementation fg.deobf("curse.maven:mega-cells-622112:6175008")
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")

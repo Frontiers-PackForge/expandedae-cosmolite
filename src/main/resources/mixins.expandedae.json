@@ -17,7 +17,6 @@
     "terminal.MixinPatternEncodingTerminalMenu"
   ],
   "client": [
-    "patternprovider.MixinPatternProviderScreen",
-    "storage.MixinCraftingCPUScreen"
+    "patternprovider.MixinPatternProviderScreen"
   ]
 }

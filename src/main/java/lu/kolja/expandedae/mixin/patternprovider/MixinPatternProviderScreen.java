@@ -3,7 +3,16 @@ package lu.kolja.expandedae.mixin.patternprovider;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.glodblock.github.extendedae.client.button.ActionEPPButton;
+import lu.kolja.expandedae.client.button.ExpButton;
+import lu.kolja.expandedae.client.gui.widgets.ExpActionButton;
+import lu.kolja.expandedae.client.gui.widgets.ExpActionItems;
+import lu.kolja.expandedae.helper.IPatternProvider;
 import lu.kolja.expandedae.helper.IUpgradableMenu;
+import lu.kolja.expandedae.helper.KeybindUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,8 +32,10 @@ import net.minecraft.world.entity.player.Inventory;
 
 @Mixin(value = PatternProviderScreen.class, remap = false)
 public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> extends AEBaseScreen<C> {
+    @Unique
+    private ExpActionButton modifyPatterns;
 
-    public MixinPatternProviderScreen(C menu, Inventory playerInventory, Component title, ScreenStyle style) {
+    private MixinPatternProviderScreen(C menu, Inventory playerInventory, Component title, ScreenStyle style) {
         super(menu, playerInventory, title, style);
     }
 
@@ -33,10 +44,14 @@ public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> 
             at = @At("TAIL"),
             remap = false
     )
-    private void initUpgrade(PatternProviderMenu menu, Inventory playerInventory, Component title, ScreenStyle style, CallbackInfo ci) {
+    private void init(PatternProviderMenu menu, Inventory playerInventory, Component title, ScreenStyle style, CallbackInfo ci) {
         this.widgets.add("upgrades", new UpgradesPanel(
                 menu.getSlots(SlotSemantics.UPGRADE),
                 this::eae_$getCompatibleUpgrades));
+        this.modifyPatterns = new ExpActionButton(ExpActionItems.MODIFY_PATTERNS, act -> ((IPatternProvider) menu).modifyPatterns(
+                ((AEBaseScreen<?>) Minecraft.getInstance().screen).isHandlingRightClick()
+        ));
+        this.addToLeftToolbar(this.modifyPatterns);
         if (((IUpgradableMenu) menu).getToolbox().isPresent()) {
             this.widgets.add("toolbox", new ToolboxPanel(style, ((IUpgradableMenu) menu).getToolbox().getName()));
         }
@@ -49,5 +64,4 @@ public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> 
         list.addAll(Upgrades.getTooltipLinesForMachine(((IUpgradableMenu) menu).getUpgrades().getUpgradableItem()));
         return list;
     }
-
 }
