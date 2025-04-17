@@ -15,7 +15,7 @@ This mod is community-driven, so suggest any ideas you might have and they might
 ## Roadmap
 - [x] Add an auto complete card to the pattern provider
   - Added in Beta 1.0.2
-- [ ] Pattern Refiller Card 
+- [x] Pattern Refiller Card 
   - Upgrade for Pattern Terminals, automatically restocks the terminal with blank patterns
 - [ ] Sticky Card
   - Lets an item/fluid enter the network only on that storage bus.
@@ -40,6 +40,9 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
   - Ability to multiple/divide processing patterns directly in the terminal (credits: [Ghostipedia](https://github.com/Ghostipedia) <3)
 - [x] Pattern provider changes
   - Add button to multiply/divide all patterns inside
-- [ ] Add exponents/scientific notation to the craft amount screen thingy
+- [x] Add exponents/scientific notation to the craft amount screen thingy
+  - Also added support for scientific notation <br />
+   ![image](https://github.com/user-attachments/assets/1a3a4dd5-48de-4cf3-ae5c-a72420bc3c6f)
+
 - [ ] Middle mouse click on a stack in emi allows to order it directly
 - [ ] Shift click patterns into pattern access terminal(?)
