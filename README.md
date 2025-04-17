@@ -41,5 +41,8 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
 - [x] Pattern provider changes
   - Add button to multiply/divide all patterns inside
 - [x] Add exponents/scientific notation to the craft amount screen thingy
+  - Also added support for scientific notation <br />
+   ![image](https://github.com/user-attachments/assets/1a3a4dd5-48de-4cf3-ae5c-a72420bc3c6f)
+
 - [ ] Middle mouse click on a stack in emi allows to order it directly
 - [ ] Shift click patterns into pattern access terminal(?)
