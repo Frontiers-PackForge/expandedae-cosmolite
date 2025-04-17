@@ -58,7 +58,6 @@ public class Expandedae {
                 ExpMenus.getMenuTypes().forEach(ForgeRegistries.MENU_TYPES::register);
             }
         });
-        ExpCells.init();
     }
 
     @Contract("_ -> new")
