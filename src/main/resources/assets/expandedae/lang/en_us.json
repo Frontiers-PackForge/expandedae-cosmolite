@@ -6,11 +6,9 @@
   "item.expandedae.exp_pattern_provider_part": "Expanded Pattern Provider",
   "item.expandedae.auto_complete_card": "Auto Complete Card",
   "item.expandedae.advanced_blocking_card": "Advanced Blocking Card",
+  "item.expandedae.pattern_refiller_card": "Pattern Refiller Card",
   "item.expandedae.sticky_card": "Sticky Card",
   "item.expandedae.filter_terminal": "Filter Terminal",
-  "item.expandedae.artificial_universe_cell": "Artificial Universe Storage Cell",
-  "item.expandedae.artificial_universe_component": "Artificial Universe Storage Component",
-  "item.expandedae.artificial_universe_cell_housing": "Artificial Universe Storage Cell Housing",
 
   "item.expandedae.advanced_blocking_card.tooltip.1": "Exposes the entire networks contents when placed in an interface",
   "item.expandedae.auto_complete_card.tooltip.1": "Automatically completes the crafting job",
@@ -22,6 +20,8 @@
 
   "gui.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
   "gui.expandedae.filter_terminal": "Filter Terminal",
+  "gui.tooltips.expandedae.modifyPatterns": "Modify Patterns",
+  "gui.tooltips.expandedae.modifyPatternsHint": "Left click to multiply, right click to divide\nMultipliers: Shift 2x, Ctrl 8x",
 
   "group.adv_pattern_provider.name": "ME Advanced Pattern Provider",
   "group.ex_pattern_provider.name": "ME Extended Pattern Provider",

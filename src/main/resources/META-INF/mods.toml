@@ -44,13 +44,20 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependency."${mod_id}"]]
-modId = "advanced_ae"
-mandatory = false
+modId = "ae2wtlib"
+mandatory = true
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependency."${mod_id}"]]
-modId = "ae2wtlib"
-mandatory = true
-ordering = "BEFORE"
+modId = "architectury"
+mandatory = false
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "curios"
+mandatory = false
+versionRange = "[5.0.0,)"
+ordering = "AFTER"
 side = "BOTH"

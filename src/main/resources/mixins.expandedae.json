@@ -1,5 +1,5 @@
 {
-  "required": false,
+  "required": true,
   "minVersion": "0.8",
   "package": "lu.kolja.expandedae.mixin",
   "compatibilityLevel": "JAVA_17",
@@ -8,6 +8,7 @@
   "mixins": [
     "cards.MixinNetworkStorage",
     "emi.MixinEmiScreenBase",
+    "misc.MixinMathExpressionParser",
     "patternprovider.MixinPatternProviderLogic",
     "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
@@ -18,5 +19,8 @@
   ],
   "client": [
     "patternprovider.MixinPatternProviderScreen"
-  ]
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

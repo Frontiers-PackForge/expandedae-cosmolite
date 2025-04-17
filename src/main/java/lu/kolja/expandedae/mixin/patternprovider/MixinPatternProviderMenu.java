@@ -23,7 +23,6 @@ import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
 import appeng.menu.ToolboxMenu;
 import appeng.menu.implementations.PatternProviderMenu;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.ItemLike;
@@ -46,7 +45,7 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
     @Inject(
             method = "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/patternprovider/PatternProviderLogicHost;)V",
             at = @At("TAIL"),
-            remap = false
+            remap = true
     )
     private void initToolbox(MenuType<?> menuType, int id, Inventory playerInventory, PatternProviderLogicHost host, CallbackInfo ci) {
         this.eae_$toolbox = new ToolboxMenu(this);
@@ -58,7 +57,6 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
     @Override
     public void modifyPatterns(boolean rightClick) {
         if (this.isClientSide()) this.sendClientAction("modifyPatterns", rightClick);
-
         for (var slot : this.getSlots(SlotSemantics.ENCODED_PATTERN)) {
             var stack = slot.getItem();
             var detail = PatternDetailsHelper.decodePattern(stack, this.getPlayer().level());
@@ -135,8 +133,10 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
 
     @Inject(
             method = "broadcastChanges",
-            at = @At("TAIL")
+            at = @At("TAIL"),
+            remap = true
     )
+    @Unique
     public void tickToolbox(CallbackInfo ci) {
         this.eae_$toolbox.tick();
     }
