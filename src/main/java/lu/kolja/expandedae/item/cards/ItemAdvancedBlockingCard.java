@@ -17,6 +17,7 @@ public class ItemAdvancedBlockingCard extends UpgradeCardItem {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag advancedTooltips) {
         tooltip.add(Component.translatable("item.expandedae.advanced_blocking_card.tooltip.1").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("info.expandedae.useless").withStyle(ChatFormatting.DARK_RED));
         super.appendHoverText(stack, level, tooltip, advancedTooltips);
     }
 }
