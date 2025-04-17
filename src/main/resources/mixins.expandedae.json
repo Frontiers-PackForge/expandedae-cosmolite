@@ -12,9 +12,6 @@
     "patternprovider.MixinPatternProviderLogic",
     "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
-    "storage.MixinCraftingCPUMenu",
-    "storage.MixinCraftingStatusTableRenderer",
-    "storage.MixinStorageBus",
     "terminal.MixinPatternEncodingTerminalMenu"
   ],
   "client": [

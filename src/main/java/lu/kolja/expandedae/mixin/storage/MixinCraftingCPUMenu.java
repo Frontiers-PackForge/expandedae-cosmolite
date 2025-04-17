@@ -39,12 +39,17 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/**
+ * TODO Fix this up whenever
+ */
+@Deprecated()
 @Mixin(value = CraftingCPUMenu.class, remap = false)
 public class MixinCraftingCPUMenu extends AEBaseMenu implements IPatternProviderFinder {
     @Shadow
     @Final
     private IGrid grid;
 
+    @Unique
     private static final String ACTION_FIND_PATTERN_PROVIDER = "findPatternProvider";
 
     protected MixinCraftingCPUMenu(MenuType<?> menuType, int id, Inventory ip, Object te) {
