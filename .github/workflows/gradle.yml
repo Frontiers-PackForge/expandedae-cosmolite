@@ -65,3 +65,10 @@ jobs:
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
+    - name: Upload Main Jar
+      if: steps.filter.outputs.code == 'true'
+      uses: actions/upload-artifact@v4.0.0
+      with:
+        name: Main Jar
+        path: build/libs/*[0-9]-DEV-*.jar
+        retention-days: 30
