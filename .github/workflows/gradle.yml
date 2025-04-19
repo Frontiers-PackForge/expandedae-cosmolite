@@ -72,4 +72,10 @@ jobs:
         name: Main Jar
         path: build/libs/*[0-9]-DEV-*.jar
         retention-days: 30
+    - name: Upload All
+      uses: actions/upload-artifact@v4.6.2
+      with:
+          name: Full Package
+          path: build/libs/*
+          retention-days: 30
       
