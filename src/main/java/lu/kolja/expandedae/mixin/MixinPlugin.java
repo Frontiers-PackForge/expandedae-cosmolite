@@ -3,6 +3,7 @@ package lu.kolja.expandedae.mixin;
 import java.util.List;
 import java.util.Set;
 
+import lu.kolja.expandedae.helper.Tuple;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -15,14 +16,16 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 public class MixinPlugin implements IMixinConfigPlugin {
 
-    public static final Object2ObjectMap<String, String> mixinMap = new Object2ObjectOpenHashMap<>(
-            new String[]{
-                    "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderLogicHost",
-                    "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderScreen",
-                    "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderMenu",
-            },
-            new String[]{"appflux", "appflux", "appflux"},
-            Object2ObjectOpenHashMap.DEFAULT_LOAD_FACTOR);
+    /**
+     * Basically if mod A is loaded, load B, else load C
+     * @A modId
+     * @B Mixin Class 1
+     * @C Mixin Class 2
+     */
+    public static final Object2ObjectMap<String, Tuple<String, String>> mixinMap = new Object2ObjectOpenHashMap<>( //TODO Refactor, probably
+            new String[]{},
+            new Tuple[]{}
+    );
 
     private static boolean isModLoaded(String modId) {
         if (ModList.get() == null) {
@@ -47,7 +50,8 @@ public class MixinPlugin implements IMixinConfigPlugin {
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinMap.containsKey(mixinClassName)) return !isModLoaded(mixinMap.get(mixinClassName));
+        /*if (mixinMap.containsKey(mixinClassName)) return !isModLoaded(mixinMap.get(mixinClassName));
+        return isModLoaded(mixinMap.); //TODO FIX THIS*/
         return true;
     }
 

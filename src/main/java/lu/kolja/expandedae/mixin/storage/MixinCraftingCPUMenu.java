@@ -1,8 +1,10 @@
 package lu.kolja.expandedae.mixin.storage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import lu.kolja.expandedae.helper.ICPUAccessor;
 import lu.kolja.expandedae.helper.IPatternProviderFinder;
 import lu.kolja.expandedae.helper.Maths;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -17,9 +19,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import appeng.api.networking.IGrid;
+import appeng.api.networking.IGridNode;
+import appeng.api.networking.IGridService;
 import appeng.api.networking.crafting.ICraftingProvider;
+import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
+import appeng.api.stacks.AEKeyType;
+import appeng.api.stacks.GenericStack;
 import appeng.api.util.DimensionalBlockPos;
+import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.me.service.CraftingService;
 import appeng.menu.AEBaseMenu;
@@ -39,12 +47,9 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-/**
- * TODO Fix this up whenever
- */
-@Deprecated()
+
 @Mixin(value = CraftingCPUMenu.class, remap = false)
-public class MixinCraftingCPUMenu extends AEBaseMenu implements IPatternProviderFinder {
+public class MixinCraftingCPUMenu extends AEBaseMenu implements IPatternProviderFinder, ICPUAccessor {
     @Shadow
     @Final
     private IGrid grid;
@@ -58,16 +63,29 @@ public class MixinCraftingCPUMenu extends AEBaseMenu implements IPatternProvider
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void onInit(MenuType<?> menuType, int id, Inventory ip, Object te, CallbackInfo ci) {
-        registerClientAction(ACTION_FIND_PATTERN_PROVIDER, AEKey.class, this::findPatternProvider);
+        //registerClientAction(ACTION_FIND_PATTERN_PROVIDER, GenericStack.class, this::findPatternProvider);
     }
 
     @Override
-    public void findPatternProvider(AEKey key) {
-        System.out.println("DEBUG: findPatternProvider called with key: " + key);
-
+    public void findPatternProvider(GenericStack stack) {
+        if (this.isClientSide()) {
+            //this.sendClientAction(ACTION_FIND_PATTERN_PROVIDER, stack);
+        }
+        check(stack.what());
+        System.out.println("DEBUG: findPatternProvider called with key: " + stack.what());
+        try {
+            //var grid0 = this.getGrid();
+            //var grid1 = grid;
+            //var grid2 = this.getActionSource().machine().get().getActionableNode().getGrid();
+            var grid3 = this.getActionHost().getActionableNode().getGrid();
+        } catch (NullPointerException ex) {
+            System.out.println("DEBUG: NullPointerException" + Arrays.toString(ex.getStackTrace()));
+            System.out.println(ex.getMessage());
+            System.out.println(ex.getLocalizedMessage());
+        }
         if (grid != null) {
             System.out.println("DEBUG: Grid is not null, proceeding");
-            var patterns = grid.getCraftingService().getCraftingFor(key);
+            var patterns = grid.getCraftingService().getCraftingFor(stack.what());
             System.out.println("DEBUG: Found " + (patterns.isEmpty() ? "no" : patterns.size()) + " patterns");
 
             if (!patterns.isEmpty()) {
@@ -239,5 +257,26 @@ public class MixinCraftingCPUMenu extends AEBaseMenu implements IPatternProvider
 
         builder.vertex(matrix, (float)(x + 1), (float)(y + 1), (float)z).color(red, green, blue, alpha).endVertex();
         builder.vertex(matrix, (float)x, (float)(y + 1), (float)z).color(red, green, blue, alpha).endVertex();
+    }
+
+    @Override
+    public IGrid getGrid() {
+        return this.grid;
+    }
+    private void check(AEKey hoveredStack) {
+        if (grid == null) return;
+        for (var machine : grid.getMachines(PatternProviderBlockEntity.class)) {
+            BlockPos pos = machine.getBlockPos();
+
+            for (var pattern : machine.getLogic().getAvailablePatterns()) {
+                if (Arrays.stream(pattern.getOutputs()).anyMatch(output -> output.what().equals(hoveredStack))) {
+                    // Found a match! Send coordinates to player
+                    this.getActionSource().player().get().sendSystemMessage(Component.literal(
+                            String.format("§aPattern Provider found at: §e%d, %d, %d",
+                                    pos.getX(), pos.getY(), pos.getZ())));
+                    return;
+                }
+            }
+        }
     }
 }

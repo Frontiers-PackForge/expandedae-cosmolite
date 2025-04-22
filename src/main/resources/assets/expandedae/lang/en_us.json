@@ -22,7 +22,7 @@
   "gui.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
   "gui.expandedae.filter_terminal": "Filter Terminal",
   "gui.tooltips.expandedae.modifyPatterns": "Modify Patterns",
-  "gui.tooltips.expandedae.modifyPatternsHint": "Left click to multiply, right click to divide\nMultipliers: Shift 2x, Ctrl 8x",
+  "gui.tooltips.expandedae.modifyPatternsHint": "Left click to multiply, right click to divide \nMultipliers: Shift 2x, Ctrl 8x",
 
   "group.adv_pattern_provider.name": "ME Advanced Pattern Provider",
   "group.ex_pattern_provider.name": "ME Extended Pattern Provider",

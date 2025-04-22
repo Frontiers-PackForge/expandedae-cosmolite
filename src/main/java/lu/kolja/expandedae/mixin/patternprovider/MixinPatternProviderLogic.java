@@ -104,6 +104,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject {
             at = @At("RETURN")
     )
     private void eae_$checkUpgrades(IPatternDetails patternDetails, KeyCounter[] inputHolder, CallbackInfoReturnable<Boolean> cir) {
+        if (!cir.getReturnValue()) return;
         if (this.eae_$upgrades.isInstalled(ExpItems.AUTO_COMPLETE_CARD)) {
             List<ICraftingCPU> matchedCpus = eae_$getCraftingCpus().stream()
                     .filter(cpu -> cpu.getJobStatus() != null)

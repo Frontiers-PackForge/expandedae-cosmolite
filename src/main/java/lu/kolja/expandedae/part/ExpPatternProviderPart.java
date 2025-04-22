@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.item.part;
+package lu.kolja.expandedae.part;
 
 import java.util.Arrays;
 import java.util.List;

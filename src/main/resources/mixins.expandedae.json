@@ -12,10 +12,13 @@
     "patternprovider.MixinPatternProviderLogic",
     "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
+    "storage.MixinCraftingCPUMenu",
+    "storage.MixinCraftingStatusTableRenderer",
     "terminal.MixinPatternEncodingTerminalMenu"
   ],
   "client": [
-    "patternprovider.MixinPatternProviderScreen"
+    "patternprovider.MixinPatternProviderScreen",
+    "storage.MixinCraftingCPUScreen"
   ],
   "injectors": {
     "defaultRequire": 1

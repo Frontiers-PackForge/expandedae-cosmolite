@@ -11,7 +11,7 @@ import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
 import lu.kolja.expandedae.item.cards.ItemPatternRefillerCard;
 import lu.kolja.expandedae.item.cards.ItemStickyCard;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
-import lu.kolja.expandedae.item.part.ExpPatternProviderPart;
+import lu.kolja.expandedae.part.ExpPatternProviderPart;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import appeng.api.ids.AECreativeTabIds;
 import appeng.api.parts.IPart;

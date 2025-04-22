@@ -7,7 +7,7 @@ import java.util.Set;
 
 import lu.kolja.expandedae.block.entity.FilterContainerGroup;
 import lu.kolja.expandedae.helper.FilterContainer;
-import lu.kolja.expandedae.item.part.FilterTerminalPart;
+import lu.kolja.expandedae.part.FilterTerminalPart;
 import lu.kolja.expandedae.packets.ClearFilterTerminalPacket;
 import lu.kolja.expandedae.packets.FilterTerminalPacket;
 import org.jetbrains.annotations.Nullable;
@@ -25,6 +25,7 @@ import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.FilteredInternalInventory;
 import appeng.util.inv.filter.IAEItemFilter;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.ItemStack;

@@ -1,7 +1,7 @@
 package lu.kolja.expandedae.helper;
 
-import appeng.api.stacks.AEKey;
+import appeng.api.stacks.GenericStack;
 
 public interface IPatternProviderFinder {
-    void findPatternProvider(AEKey key);
+    void findPatternProvider(GenericStack key);
 }
