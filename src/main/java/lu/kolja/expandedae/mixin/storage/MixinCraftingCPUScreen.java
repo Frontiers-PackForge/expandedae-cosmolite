@@ -1,13 +1,11 @@
 package lu.kolja.expandedae.mixin.storage;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicReference;
 
 import lu.kolja.expandedae.helper.ICPUAccessor;
 import lu.kolja.expandedae.helper.IPatternProviderFinder;
 import org.spongepowered.asm.mixin.Mixin;
 import appeng.api.networking.IGrid;
-import appeng.api.stacks.AEKey;
 import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.client.gui.StackWithBounds;
 import appeng.client.gui.me.crafting.CraftingCPUScreen;

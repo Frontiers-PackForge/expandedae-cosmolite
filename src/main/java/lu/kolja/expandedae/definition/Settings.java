@@ -6,7 +6,7 @@ import java.util.Map;
 
 import lu.kolja.expandedae.enums.ShowInterfaces;
 import com.google.common.base.Preconditions;
-import appeng.api.config.*;
+import appeng.api.config.Setting;
 
 public class Settings {
     private static final Map<String, Setting<?>> SETTINGS = new HashMap<>();

@@ -22,9 +22,9 @@ public class MixinPlugin implements IMixinConfigPlugin {
      * @B Mixin Class 1
      * @C Mixin Class 2
      */
-    public static final Object2ObjectMap<String, Tuple<String, String>> mixinMap = new Object2ObjectOpenHashMap<>( //TODO Refactor, probably
-            new String[]{},
-            new Tuple[]{}
+    public static final Object2ObjectMap<Tuple<String, String>, String> mixinMap = new Object2ObjectOpenHashMap<>( //TODO Refactor, probably
+            Tuple.arrayOf(Tuple.of("", "")),
+            new String[]{"appflux"}
     );
 
     private static boolean isModLoaded(String modId) {
@@ -50,8 +50,15 @@ public class MixinPlugin implements IMixinConfigPlugin {
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        /*if (mixinMap.containsKey(mixinClassName)) return !isModLoaded(mixinMap.get(mixinClassName));
-        return isModLoaded(mixinMap.); //TODO FIX THIS*/
+        for (var entry : mixinMap.keySet()) {
+            if (entry.contains(mixinClassName)) {
+                if (isModLoaded(mixinMap.get(entry))) {
+                    return entry.isLeft(mixinClassName);
+                } else {
+                    return entry.isRight(mixinClassName);
+                }
+            }
+        }
         return true;
     }
 

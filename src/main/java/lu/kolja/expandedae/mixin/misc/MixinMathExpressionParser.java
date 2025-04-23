@@ -18,7 +18,7 @@ public class MixinMathExpressionParser {
 
     /**
      * @author Kolja
-     * @reason Add support for exponents
+     * @reason Add support for exponents, factorials, and lowercase-e scientific notation
      */
     @Overwrite
     public static Optional<BigDecimal> parse(String expression, DecimalFormat decimalFormat) {
@@ -34,7 +34,7 @@ public class MixinMathExpressionParser {
                 continue;
             }
 
-            // First try to parse as scientific notation (e.g., 2e5, 1.5E-2)
+            // First try to parse as scientific notation (e.g., 2e5, 1.5e-2)
             if (!wasNumberOrRightBracket || expression.charAt(i) != '-') {
                 int start = i;
                 int numLen = 0;
@@ -43,7 +43,7 @@ public class MixinMathExpressionParser {
 
                 // Look ahead to check for scientific notation format
                 while (i + numLen < expression.length()) {
-                    char c = Character.toUpperCase(expression.charAt(i + numLen));
+                    char c = expression.charAt(i + numLen); // Don't convert to uppercase
 
                     // First part: digits and decimal point
                     if (!hasE && (Character.isDigit(c) || c == '.')) {
@@ -51,15 +51,15 @@ public class MixinMathExpressionParser {
                         continue;
                     }
 
-                    // Found 'E' character
-                    if (!hasE && (c == 'E')) {
+                    // Found 'e' character - only accept lowercase
+                    if (!hasE && (c == 'e')) {
                         hasE = true;
                         numLen++;
                         continue;
                     }
 
-                    // After 'E': optional sign and digits
-                    if (hasE && numLen == i - start + 1) { // Right after E
+                    // After 'e': optional sign and digits
+                    if (hasE && numLen == i - start + 1) { // Right after e
                         if (c == '+' || c == '-') {
                             numLen++;
                             continue;
@@ -68,7 +68,7 @@ public class MixinMathExpressionParser {
 
                     if (hasE && Character.isDigit(c)) {
                         numLen++;
-                        isValidScientific = true; // Need at least one digit after E
+                        isValidScientific = true; // Need at least one digit after e
                         continue;
                     }
 
@@ -105,6 +105,15 @@ public class MixinMathExpressionParser {
             }
 
             char currentOperator = expression.charAt(i);
+
+            // Check for factorial operator
+            if (currentOperator == '!' && wasNumberOrRightBracket) {
+                // Process factorial immediately since it's a postfix operator
+                output.add('!');
+                i++;
+                continue;
+            }
+
             if (currentOperator == '-' && !wasNumberOrRightBracket) {
                 currentOperator = 'u'; // unitary minus
             }
@@ -157,7 +166,35 @@ public class MixinMathExpressionParser {
                 number.push(bigDecimal);
             } else {
                 char currentOperator = (char) object;
-                if (currentOperator != 'u') {
+                if (currentOperator == '!') {
+                    // Factorial is a unary operator, so we only need one operand
+                    if (number.isEmpty()) {
+                        return Optional.empty();
+                    }
+                    BigDecimal operand = number.pop();
+
+                    // Check if the number is a non-negative integer
+                    if (operand.compareTo(BigDecimal.ZERO) < 0 || operand.scale() > 0) {
+                        return Optional.empty(); // Factorial only defined for non-negative integers
+                    }
+
+                    try {
+                        int n = operand.intValueExact();
+                        if (n > 20) {
+                            // Factorial grows very quickly, limit to reasonable size to prevent overflow
+                            return Optional.empty();
+                        }
+
+                        BigDecimal result = BigDecimal.ONE;
+                        for (int i = 2; i <= n; i++) {
+                            result = result.multiply(new BigDecimal(i));
+                        }
+                        number.push(result);
+                    } catch (ArithmeticException e) {
+                        // Number too large for int
+                        return Optional.empty();
+                    }
+                } else if (currentOperator != 'u') {
                     if (number.size() < 2) {
                         return Optional.empty();
                     } else {
@@ -221,23 +258,26 @@ public class MixinMathExpressionParser {
             return Optional.of(number.pop().stripTrailingZeros());
         }
     }
+
     /**
      * @author Kolja
-     * @reason Add support for exponents
+     * @reason Add support for exponents and factorials
      */
     @Overwrite
     private static int getPrecedence(char operator) {
         return switch (operator) {
-            case 'u' -> 0;  // Highest precedence
-            case '^' -> 1;  // Added exponent operator with higher precedence than multiplication/division
+            case '!' -> -1; // Highest precedence (factorial)
+            case 'u' -> 0;  // Next highest precedence (unary minus)
+            case '^' -> 1;  // Exponent operator
             case '/', '*' -> 2;
             case '+', '-' -> 3;
             default -> throw new IllegalArgumentException("Invalid Operator : " + operator);
         };
     }
+
     /**
      * @author Kolja
-     * @reason Add support for exponents
+     * @reason Add support for exponents and factorials
      */
     @Overwrite
     private static boolean precedenceCheck(char first, char second) {

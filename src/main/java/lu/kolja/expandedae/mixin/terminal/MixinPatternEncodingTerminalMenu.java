@@ -18,8 +18,6 @@ import appeng.api.upgrades.IUpgradeableItem;
 import appeng.core.definitions.AEItems;
 import appeng.helpers.IMenuCraftingPacket;
 import appeng.menu.me.common.MEStorageMenu;
-import appeng.menu.me.crafting.CraftingStatus;
-import appeng.menu.me.crafting.CraftingStatusMenu;
 import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.menu.slot.RestrictedInputSlot;
 import net.minecraft.client.Minecraft;
