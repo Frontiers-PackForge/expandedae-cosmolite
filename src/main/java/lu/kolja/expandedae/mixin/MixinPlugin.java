@@ -18,10 +18,9 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 public class MixinPlugin implements IMixinConfigPlugin {
 
     /**
-     * Basically if mod A is loaded, load B, else load C
-     * @A modId
-     * @B Mixin Class 1
-     * @C Mixin Class 2
+     * Basically if mod B is loaded, load AA, else load AB
+     * @A Tuple<@AA Mixin Class 1, @AB Mixin Class 2>
+     * @B modId
      */
     public static final Object2ObjectMap<Tuple<Class<?>, Class<?>>, String> mixinMap = new Object2ObjectOpenHashMap<>( //TODO Refactor, probably
             Tuple.arrayOf(Tuple.of(com.glodblock.github.appflux.mixins.MixinPatternProviderMenu.class , MixinPatternProviderMenu.class)),
