@@ -51,16 +51,18 @@ import de.mari_023.ae2wtlib.wut.WUTHandler;
         AtomicReference<Player> player = new AtomicReference<>();
         this.getActionSource().player().ifPresent(player::set);
         if (encodedPatternSlot.getItem() != ItemStack.EMPTY) {
-            if (!ContainerScreen.hasShiftDown()) return;
-            if (player.get().getInventory().items.stream().filter(i -> !i.equals(ItemStack.EMPTY)).toList().size() >= 36) return; //this because Inventory#add does not work for whatever reason
-            player.get().getInventory().add(encodedPatternSlot.getItem());
-            encodedPatternSlot.set(ItemStack.EMPTY);
-            encodedPatternSlot.setChanged();
+            if (ContainerScreen.hasShiftDown()) {
+                //if (player.get().getInventory().items.stream().filter(i -> !i.equals(ItemStack.EMPTY)).toList().size() >= 36)
+                player.get().getInventory().add(encodedPatternSlot.getItem());
+                encodedPatternSlot.set(ItemStack.EMPTY);
+                encodedPatternSlot.setChanged();
+            }
         }
 
         if (Minecraft.getInstance().screen instanceof WETScreen) {
-            if (expandedae$getTerminalItem(player.get()) == null) return;
-            if (expandedae$getTerminalItem(player.get()).getItem() instanceof IUpgradeableItem item) {
+            var terminalItem = expandedae$getTerminalItem(player.get());
+            if (terminalItem == null) return;
+            if (terminalItem.getItem() instanceof IUpgradeableItem item) {
                 IUpgradeInventory inventory = item.getUpgrades(player.get().getMainHandItem());
                 if (!inventory.isInstalled(ExpItems.PATTERN_REFILLER_CARD)) return;
             }

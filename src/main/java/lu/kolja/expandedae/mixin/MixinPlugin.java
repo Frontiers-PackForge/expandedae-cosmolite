@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import lu.kolja.expandedae.helper.Tuple;
+import lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderMenu;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -22,8 +23,8 @@ public class MixinPlugin implements IMixinConfigPlugin {
      * @B Mixin Class 1
      * @C Mixin Class 2
      */
-    public static final Object2ObjectMap<Tuple<String, String>, String> mixinMap = new Object2ObjectOpenHashMap<>( //TODO Refactor, probably
-            Tuple.arrayOf(Tuple.of("", "")),
+    public static final Object2ObjectMap<Tuple<Class<?>, Class<?>>, String> mixinMap = new Object2ObjectOpenHashMap<>( //TODO Refactor, probably
+            Tuple.arrayOf(Tuple.of(com.glodblock.github.appflux.mixins.MixinPatternProviderMenu.class , MixinPatternProviderMenu.class)),
             new String[]{"appflux"}
     );
 
@@ -50,6 +51,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+
         for (var entry : mixinMap.keySet()) {
             if (entry.contains(mixinClassName)) {
                 if (isModLoaded(mixinMap.get(entry))) {

@@ -18,8 +18,7 @@
   ],
   "client": [
     "patternprovider.MixinPatternProviderScreen",
-    "storage.MixinCraftingCPUScreen",
-    "terminal.MixinPatternAccessTermScreen"
+    "storage.MixinCraftingCPUScreen"
   ],
   "injectors": {
     "defaultRequire": 1

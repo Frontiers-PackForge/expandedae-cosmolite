@@ -34,7 +34,6 @@ public class Expandedae {
     public Expandedae() {
         registerMenus();
         initResources();
-
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::commonSetup);
