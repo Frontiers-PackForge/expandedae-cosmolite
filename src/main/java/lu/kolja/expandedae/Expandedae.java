@@ -31,10 +31,11 @@ public class Expandedae {
 
     //getActionableNode().getGrid().getStorageService().getInventory().insert() TODO IMPLEMENT TO STICKY CARD
 
-    public Expandedae() {
+    public Expandedae(FMLJavaModLoadingContext context) {
         registerMenus();
         initResources();
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        IEventBus modEventBus = context.getModEventBus();
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener((RegisterEvent event) -> {

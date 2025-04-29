@@ -10,10 +10,13 @@
   "item.expandedae.pattern_refiller_card": "Pattern Refiller Card",
   "item.expandedae.sticky_card": "Sticky Card",
   "item.expandedae.filter_terminal": "Filter Terminal",
+  "item.expandedae.greater_acceleration_card": "Greater Acceleration Card",
 
   "item.expandedae.advanced_blocking_card.tooltip.1": "Exposes the entire networks contents when placed in an interface",
   "item.expandedae.auto_complete_card.tooltip.1": "Automatically completes the crafting job",
   "item.expandedae.auto_complete_card.tooltip.2": "Note: This only works for single requests",
+  "item.expandedae.greater_acceleration_card.tooltip.1": "Even better acceleration card!",
+  "item.expandedae.greater_acceleration_card.tooltip.2": "Currently being worked on to add to all card containers",
   "item.expandedae.pattern_refiller_card.tooltip.1": "Automatically refills the blank patterns",
   "item.expandedae.sticky_card.tooltip.1": "Filtered stacks will only enter the network on this storage bus",
 

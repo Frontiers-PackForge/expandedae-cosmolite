@@ -8,6 +8,9 @@
   "mixins": [
     "cards.MixinNetworkStorage",
     "emi.MixinEmiScreenBase",
+    "greateraccel.MixinInscriberBlockEntity",
+    "greateraccel.MixinIOPortBlockEntity",
+    "greateraccel.MixinMolecularAssemblerBlockEntity",
     "misc.MixinMathExpressionParser",
     "patternprovider.MixinPatternProviderLogic",
     "patternprovider.MixinPatternProviderLogicHost",

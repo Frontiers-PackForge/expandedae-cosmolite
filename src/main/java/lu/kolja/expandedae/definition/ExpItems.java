@@ -6,10 +6,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.item.cards.ItemAdvancedBlockingCard;
-import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
-import lu.kolja.expandedae.item.cards.ItemPatternRefillerCard;
-import lu.kolja.expandedae.item.cards.ItemStickyCard;
+import lu.kolja.expandedae.item.cards.*;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import lu.kolja.expandedae.part.ExpPatternProviderPart;
@@ -72,6 +69,11 @@ public class ExpItems {
             "Pattern Refiller Card",
             "pattern_refiller_card",
             ItemPatternRefillerCard::new
+    );
+    public static final ItemDefinition<GreaterAccelCard> GREATER_ACCEL_CARD = item(
+            "Greater Acceleration Card",
+            "greater_acceleration_card",
+            GreaterAccelCard::new
     );
 
     public static List<ItemDefinition<?>> getItems() {
