@@ -1,17 +1,17 @@
 package lu.kolja.expandedae.definition;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
-import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
-import lu.kolja.expandedae.menu.FilterTermMenu;
 import appeng.core.AppEng;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
+import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
+import lu.kolja.expandedae.menu.FilterTermMenu;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExpMenus {
 

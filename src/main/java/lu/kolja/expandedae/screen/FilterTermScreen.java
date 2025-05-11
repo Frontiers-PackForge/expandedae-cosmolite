@@ -1,14 +1,5 @@
 package lu.kolja.expandedae.screen;
 
-import java.util.*;
-
-import lu.kolja.expandedae.block.entity.FilterContainerGroup;
-import lu.kolja.expandedae.client.gui.FilterContainerRecord;
-import lu.kolja.expandedae.menu.FilterTermMenu;
-import com.google.common.collect.HashMultimap;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import appeng.api.config.Settings;
 import appeng.api.config.TerminalStyle;
 import appeng.api.stacks.AEItemKey;
@@ -28,6 +19,12 @@ import appeng.core.sync.packets.InventoryActionPacket;
 import appeng.helpers.InventoryAction;
 import appeng.menu.slot.FakeSlot;
 import appeng.util.inv.AppEngInternalInventory;
+import com.google.common.collect.HashMultimap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import lu.kolja.expandedae.block.entity.FilterContainerGroup;
+import lu.kolja.expandedae.client.gui.FilterContainerRecord;
+import lu.kolja.expandedae.menu.FilterTermMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -43,9 +40,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
+import java.util.*;
 
 public class FilterTermScreen<C extends FilterTermMenu> extends AEBaseScreen<C> {
     private static final Logger LOGGER = LoggerFactory.getLogger(FilterTermScreen.class);

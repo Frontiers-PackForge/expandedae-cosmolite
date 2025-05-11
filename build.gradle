@@ -13,6 +13,7 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+'
+    id 'io.freefair.lombok' version '8.13.1'
 }
 
 apply plugin: 'org.spongepowered.mixin'
@@ -107,6 +108,17 @@ repositories {
         name = "Illusive Soulworks maven"
         url = "https://maven.theillusivec4.top/"
     }
+    maven {
+        name = 'GTCEu Maven'
+        url = 'https://maven.gtceu.com'
+        content {
+            includeGroup 'com.gregtechceu.gtceu'
+        }
+    }
+    maven {
+        name "firstdarkdev"
+        url "https://maven.firstdarkdev.xyz/snapshots"
+    }
 }
 
 dependencies {
@@ -115,6 +127,8 @@ dependencies {
     implementation fg.deobf("curse.maven:ex-pattern-provider-892005:6167228")
     implementation fg.deobf("curse.maven:glodium-957920:5226922")
     implementation fg.deobf("curse.maven:guideme-1173950:6227045")
+
+    runtimeOnly fg.deobf("curse.maven:modern-ae2-additions-1028068:6342203")
 
     implementation fg.deobf("curse.maven:applied-energistics-2-wireless-terminals-459929:5217955")
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
@@ -126,6 +140,7 @@ dependencies {
     implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
     compileOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
+
     implementation 'org.spongepowered:mixin:0.8.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))

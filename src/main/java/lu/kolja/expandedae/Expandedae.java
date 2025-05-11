@@ -1,16 +1,13 @@
 package lu.kolja.expandedae;
 
+import appeng.client.gui.implementations.PatternProviderScreen;
+import appeng.init.client.InitScreens;
+import com.mojang.logging.LogUtils;
 import lu.kolja.expandedae.definition.*;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
 import lu.kolja.expandedae.menu.FilterTermMenu;
 import lu.kolja.expandedae.screen.FilterTermScreen;
 import lu.kolja.expandedae.xmod.XMod;
-import com.mojang.logging.LogUtils;
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import appeng.client.gui.implementations.PatternProviderScreen;
-import appeng.init.client.InitScreens;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -22,6 +19,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 @Mod(Expandedae.MODID)
 public class Expandedae {
@@ -31,11 +31,11 @@ public class Expandedae {
 
     //getActionableNode().getGrid().getStorageService().getInventory().insert() TODO IMPLEMENT TO STICKY CARD
 
-    public Expandedae(FMLJavaModLoadingContext context) {
+    public Expandedae() {
         registerMenus();
         initResources();
 
-        IEventBus modEventBus = context.getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener((RegisterEvent event) -> {

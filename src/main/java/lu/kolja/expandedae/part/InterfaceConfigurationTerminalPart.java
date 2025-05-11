@@ -1,7 +1,5 @@
 package lu.kolja.expandedae.part;
 
-import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.menu.FilterTermMenu;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.IPartModel;
 import appeng.api.util.IConfigManager;
@@ -12,6 +10,8 @@ import appeng.menu.locator.MenuLocators;
 import appeng.parts.PartModel;
 import appeng.parts.reporting.AbstractDisplayPart;
 import appeng.util.ConfigManager;
+import lu.kolja.expandedae.Expandedae;
+import lu.kolja.expandedae.menu.FilterTermMenu;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;

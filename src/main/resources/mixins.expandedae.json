@@ -6,20 +6,25 @@
   "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
-    "cards.MixinNetworkStorage",
+    "compat.cosmic.MixinPatternEncodingTerminalMenuCosm",
+    "compat.cosmic.MixinPatternProviderLogicCosm",
+    "compat.cosmic.MixinPatternProviderMenuCosm",
     "emi.MixinEmiScreenBase",
-    "greateraccel.MixinInscriberBlockEntity",
-    "greateraccel.MixinIOPortBlockEntity",
-    "greateraccel.MixinMolecularAssemblerBlockEntity",
     "misc.MixinMathExpressionParser",
+    "misc.MixinSettings",
+    "misc.MixinSlot",
+    "misc.MixinStyleManager",
     "patternprovider.MixinPatternProviderLogic",
     "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
     "storage.MixinCraftingCPUMenu",
     "storage.MixinCraftingStatusTableRenderer",
-    "terminal.MixinPatternEncodingTerminalMenu"
+    "terminal.MixinPatternEncodingTerminalMenu",
+    "terminal.MixinProcessingEncodingPanel"
   ],
   "client": [
+    "compat.cosmic.MixinPatternProviderScreenCosm",
+    "misc.MixinSettingToggleButton",
     "patternprovider.MixinPatternProviderScreen",
     "storage.MixinCraftingCPUScreen"
   ],

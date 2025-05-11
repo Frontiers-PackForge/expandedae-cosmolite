@@ -1,15 +1,14 @@
 package lu.kolja.expandedae.packets;
 
-import lu.kolja.expandedae.screen.FilterTermScreen;
 import appeng.core.sync.BasePacket;
+import io.netty.buffer.Unpooled;
+import lu.kolja.expandedae.screen.FilterTermScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import io.netty.buffer.Unpooled;
 
 public class ClearFilterTerminalPacket extends BasePacket {
     public ClearFilterTerminalPacket(FriendlyByteBuf stream) {

@@ -1,20 +1,20 @@
 package lu.kolja.expandedae.mixin.storage;
 
-import java.util.Arrays;
-
-import lu.kolja.expandedae.helper.ICPUAccessor;
-import lu.kolja.expandedae.helper.IPatternProviderFinder;
-import org.spongepowered.asm.mixin.Mixin;
 import appeng.api.networking.IGrid;
 import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.client.gui.StackWithBounds;
 import appeng.client.gui.me.crafting.CraftingCPUScreen;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.me.crafting.CraftingStatusMenu;
+import lu.kolja.expandedae.helper.ICPUAccessor;
+import lu.kolja.expandedae.helper.IPatternProviderFinder;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import org.spongepowered.asm.mixin.Mixin;
+
+import java.util.Arrays;
 
 @Mixin(value = CraftingCPUScreen.class)
 public abstract class MixinCraftingCPUScreen<T extends AEBaseMenu> extends Screen{

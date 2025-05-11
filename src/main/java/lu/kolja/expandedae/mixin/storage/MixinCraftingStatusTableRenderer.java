@@ -1,15 +1,15 @@
 package lu.kolja.expandedae.mixin.storage;
 
-import java.util.List;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import appeng.client.gui.me.crafting.CraftingStatusTableRenderer;
 import appeng.menu.me.crafting.CraftingStatusEntry;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import java.util.List;
 
 @Mixin(value = CraftingStatusTableRenderer.class, remap = false)
 public abstract class MixinCraftingStatusTableRenderer {

@@ -1,15 +1,5 @@
 package lu.kolja.expandedae.definition;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
-
-import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.item.cards.*;
-import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
-import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
-import lu.kolja.expandedae.part.ExpPatternProviderPart;
 import appeng.api.ids.AECreativeTabIds;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
@@ -17,11 +7,22 @@ import appeng.api.parts.PartModels;
 import appeng.core.definitions.ItemDefinition;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
+import lu.kolja.expandedae.Expandedae;
+import lu.kolja.expandedae.item.cards.*;
+import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
+import lu.kolja.expandedae.item.misc.ExtPatternProviderUpgradeItem;
+import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
+import lu.kolja.expandedae.part.ExpPatternProviderPart;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 
 @SuppressWarnings("ALL")
 public class ExpItems {
@@ -49,6 +50,11 @@ public class ExpItems {
             "exp_pattern_provider_upgrade",
             ExpPatternProviderUpgradeItem::new
     );
+    public static final ItemDefinition<ExtPatternProviderUpgradeItem> EXT_PATTERN_PROVIDER_UPGRADE = item(
+            "Extended Pattern Provider Upgrader",
+            "ext_pattern_provider_upgrader",
+            ExtPatternProviderUpgradeItem::new
+    );
 
     public static final ItemDefinition<ItemAutoCompleteCard> AUTO_COMPLETE_CARD = item(
             "Auto Complete Card",
@@ -60,6 +66,11 @@ public class ExpItems {
             "advanced_blocking_card",
             ItemAdvancedBlockingCard::new
     );
+    public static final ItemDefinition<ItemSmartBlockingCard> SMART_BLOCKING_CARD = item(
+            "Smart Blocking Card",
+            "smart_blocking_card",
+            ItemSmartBlockingCard::new
+    );
     public static final ItemDefinition<ItemStickyCard> STICKY_CARD = item(
             "Sticky Card",
             "sticky_card",
@@ -69,11 +80,6 @@ public class ExpItems {
             "Pattern Refiller Card",
             "pattern_refiller_card",
             ItemPatternRefillerCard::new
-    );
-    public static final ItemDefinition<GreaterAccelCard> GREATER_ACCEL_CARD = item(
-            "Greater Acceleration Card",
-            "greater_acceleration_card",
-            GreaterAccelCard::new
     );
 
     public static List<ItemDefinition<?>> getItems() {

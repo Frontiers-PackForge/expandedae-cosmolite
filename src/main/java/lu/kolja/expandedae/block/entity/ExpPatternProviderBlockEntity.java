@@ -1,8 +1,5 @@
 package lu.kolja.expandedae.block.entity;
 
-import lu.kolja.expandedae.block.ExpPatternProviderBlock;
-import lu.kolja.expandedae.definition.ExpBlocks;
-import lu.kolja.expandedae.definition.ExpMenus;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
@@ -12,6 +9,9 @@ import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.menu.ISubMenu;
 import appeng.menu.MenuOpener;
 import appeng.menu.locator.MenuLocator;
+import lu.kolja.expandedae.block.ExpPatternProviderBlock;
+import lu.kolja.expandedae.definition.ExpBlocks;
+import lu.kolja.expandedae.definition.ExpMenus;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

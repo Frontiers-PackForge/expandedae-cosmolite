@@ -1,17 +1,17 @@
 package lu.kolja.expandedae.client.button;
 
+import appeng.client.gui.style.Blitter;
+import com.glodblock.github.extendedae.client.button.EPPIcon;
 import lu.kolja.expandedae.client.render.ExpHighlightHandler;
 import lu.kolja.expandedae.client.util.GuiUtil;
-import com.glodblock.github.extendedae.client.button.EPPIcon;
-import org.jetbrains.annotations.Nullable;
-import org.lwjgl.opengl.GL11;
-import appeng.client.gui.style.Blitter;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import org.jetbrains.annotations.Nullable;
+import org.lwjgl.opengl.GL11;
 
 public class HighlightButton extends ExpButton {
     private float multiplier;

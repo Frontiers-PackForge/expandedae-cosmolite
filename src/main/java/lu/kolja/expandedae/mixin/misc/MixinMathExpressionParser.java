@@ -1,5 +1,9 @@
 package lu.kolja.expandedae.mixin.misc;
 
+import appeng.client.gui.MathExpressionParser;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -8,10 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Stack;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import appeng.client.gui.MathExpressionParser;
 
 @Mixin(value = MathExpressionParser.class, remap = false)
 public class MixinMathExpressionParser {
@@ -237,9 +237,7 @@ public class MixinMathExpressionParser {
                             case '(', ')' -> {
                                 return Optional.empty(); // should not have any remaining parenthesis in the stack
                             }
-                            default -> {
-                                throw new IllegalStateException("Unreachable character : " + currentOperator);
-                            }
+                            default -> throw new IllegalStateException("Unreachable character : " + currentOperator);
                         }
                     }
                 } else {

@@ -1,10 +1,10 @@
 package lu.kolja.expandedae.xmod.extendedae;
 
-import lu.kolja.expandedae.definition.ExpBlocks;
-import lu.kolja.expandedae.definition.ExpItems;
+import appeng.api.upgrades.Upgrades;
 import com.glodblock.github.extendedae.common.EPPItemAndBlock;
 import com.glodblock.github.extendedae.common.items.ItemMEPackingTape;
-import appeng.api.upgrades.Upgrades;
+import lu.kolja.expandedae.definition.ExpBlocks;
+import lu.kolja.expandedae.definition.ExpItems;
 
 public class ExtendedAE {
     public ExtendedAE() {

@@ -1,12 +1,12 @@
 package lu.kolja.expandedae.definition;
 
+import appeng.api.config.Setting;
+import com.google.common.base.Preconditions;
+import lu.kolja.expandedae.enums.ShowInterfaces;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
-
-import lu.kolja.expandedae.enums.ShowInterfaces;
-import com.google.common.base.Preconditions;
-import appeng.api.config.Setting;
 
 public class Settings {
     private static final Map<String, Setting<?>> SETTINGS = new HashMap<>();

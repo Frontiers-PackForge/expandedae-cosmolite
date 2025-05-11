@@ -1,9 +1,9 @@
 package lu.kolja.expandedae.menu;
 
-import org.jetbrains.annotations.Nullable;
 import appeng.api.implementations.blockentities.PatternContainerGroup;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGrid;
+import org.jetbrains.annotations.Nullable;
 
 public interface InterfaceInventory {
     /**

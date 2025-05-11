@@ -4,28 +4,37 @@
   "info.expandedae.useless": "This is currently disabled",
 
   "item.expandedae.exp_pattern_provider_upgrade": "Expanded Pattern Provider Upgrade",
+  "item.expandedae.ext_pattern_provider_upgrader": "Extended Pattern Provider Upgrader",
   "item.expandedae.exp_pattern_provider_part": "Expanded Pattern Provider",
   "item.expandedae.auto_complete_card": "Auto Complete Card",
   "item.expandedae.advanced_blocking_card": "Advanced Blocking Card",
   "item.expandedae.pattern_refiller_card": "Pattern Refiller Card",
+  "item.expandedae.smart_blocking_card": "Smart Blocking Card",
   "item.expandedae.sticky_card": "Sticky Card",
   "item.expandedae.filter_terminal": "Filter Terminal",
-  "item.expandedae.greater_acceleration_card": "Greater Acceleration Card",
 
   "item.expandedae.advanced_blocking_card.tooltip.1": "Exposes the entire networks contents when placed in an interface",
   "item.expandedae.auto_complete_card.tooltip.1": "Automatically completes the crafting job",
   "item.expandedae.auto_complete_card.tooltip.2": "Note: This only works for single requests",
-  "item.expandedae.greater_acceleration_card.tooltip.1": "Even better acceleration card!",
-  "item.expandedae.greater_acceleration_card.tooltip.2": "Currently being worked on to add to all card containers",
   "item.expandedae.pattern_refiller_card.tooltip.1": "Automatically refills the blank patterns",
+  "item.expandedae.smart_blocking_card.tooltip": "Adds blocking mode options",
   "item.expandedae.sticky_card.tooltip.1": "Filtered stacks will only enter the network on this storage bus",
+  "item.expandedae.upgrade.tooltip": "Upgrade %s",
 
   "block.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
 
   "gui.expandedae.exp_pattern_provider": "Expanded Pattern Provider",
   "gui.expandedae.filter_terminal": "Filter Terminal",
+  "gui.expandedae.blocking_mode.all": "Blocks if target contains anything",
+  "gui.expandedae.blocking_mode.default": "Default blocking mode",
+  "gui.expandedae.blocking_mode.smart": "Allows same pattern to be pushed",
   "gui.tooltips.expandedae.modifyPatterns": "Modify Patterns",
   "gui.tooltips.expandedae.modifyPatternsHint": "Left click to multiply, right click to divide \nMultipliers: Shift 2x, Ctrl 8x",
+
+  "gui.buttons.pattern.div": "§c/%d§f",
+  "gui.buttons.pattern.mult": "§bx%d§f",
+  "gui.buttons.tooltips.pattern.div": "Divides contents by §b%d§f",
+  "gui.buttons.tooltips.pattern.mult": "Multiplies contents by §c%d§f",
 
   "group.adv_pattern_provider.name": "ME Advanced Pattern Provider",
   "group.ex_pattern_provider.name": "ME Extended Pattern Provider",
@@ -39,5 +48,9 @@
   "group.tag_storage_bus.name": "ME Tagged Storage Bus",
   "group.mod_storage_bus.name": "ME Mod Storage Bus",
   "group.precise_storage_bus.name": "ME Precise Storage Bus",
-  "group.pattern_encoding_terminal.name": "ME Pattern Encoding Terminal"
+  "group.pattern_encoding_terminal.name": "ME Pattern Encoding Terminal",
+
+  "block.expandedae.expanded_pattern_buffer.desc.0": "§fAllows direct §6AE2 pattern storage §ffor GregTech Multiblocks.",
+  "block.expandedae.expanded_pattern_buffer.desc.1": "§fAE2 Patterns can utilize anything stored in the §6shared inventory §fwidget.",
+  "block.expandedae.expanded_pattern_buffer.desc.2": "§fLink §6Pattern Buffer Proxies §fwith a §bdatastick §fto link machines together!"
 }

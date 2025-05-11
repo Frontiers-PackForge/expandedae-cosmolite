@@ -1,10 +1,9 @@
 package lu.kolja.expandedae.xmod.megacells;
 
-import lu.kolja.expandedae.definition.ExpItems;
 import appeng.api.upgrades.Upgrades;
-
 import gripe._90.megacells.definition.MEGABlocks;
 import gripe._90.megacells.definition.MEGAItems;
+import lu.kolja.expandedae.definition.ExpItems;
 
 public class MegaCells {
     public MegaCells() {

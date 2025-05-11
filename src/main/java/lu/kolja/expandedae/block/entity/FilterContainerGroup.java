@@ -1,9 +1,5 @@
 package lu.kolja.expandedae.block.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.jetbrains.annotations.Nullable;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.inventories.ItemTransfer;
 import appeng.api.parts.IPart;
@@ -20,6 +16,10 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public record FilterContainerGroup(@Nullable AEItemKey icon, Component name, List<Component> tooltip) {
     private static final FilterContainerGroup NOTHING;

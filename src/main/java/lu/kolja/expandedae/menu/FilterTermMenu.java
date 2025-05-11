@@ -1,16 +1,5 @@
 package lu.kolja.expandedae.menu;
 
-import java.util.Collections;
-import java.util.IdentityHashMap;
-import java.util.Map;
-import java.util.Set;
-
-import lu.kolja.expandedae.block.entity.FilterContainerGroup;
-import lu.kolja.expandedae.helper.FilterContainer;
-import lu.kolja.expandedae.packets.ClearFilterTerminalPacket;
-import lu.kolja.expandedae.packets.FilterTerminalPacket;
-import lu.kolja.expandedae.part.FilterTerminalPart;
-import org.jetbrains.annotations.Nullable;
 import appeng.api.inventories.InternalInventory;
 import appeng.api.networking.IGrid;
 import appeng.api.networking.IGridNode;
@@ -24,15 +13,25 @@ import appeng.menu.implementations.UpgradeableMenu;
 import appeng.util.inv.AppEngInternalInventory;
 import appeng.util.inv.FilteredInternalInventory;
 import appeng.util.inv.filter.IAEItemFilter;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.ItemStack;
-
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import lu.kolja.expandedae.block.entity.FilterContainerGroup;
+import lu.kolja.expandedae.helper.FilterContainer;
+import lu.kolja.expandedae.packets.ClearFilterTerminalPacket;
+import lu.kolja.expandedae.packets.FilterTerminalPacket;
+import lu.kolja.expandedae.part.FilterTerminalPart;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class FilterTermMenu extends UpgradeableMenu<FilterTerminalPart> {
     private final IConfigurableObject host;

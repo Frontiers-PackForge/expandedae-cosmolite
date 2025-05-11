@@ -1,8 +1,11 @@
 package lu.kolja.expandedae.packets;
 
+import appeng.core.sync.BasePacket;
+import io.netty.buffer.Unpooled;
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import lu.kolja.expandedae.block.entity.FilterContainerGroup;
 import lu.kolja.expandedae.screen.FilterTermScreen;
-import appeng.core.sync.BasePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.FriendlyByteBuf;
@@ -10,11 +13,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import io.netty.buffer.Unpooled;
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.objects.ObjectIterator;
 
 public class FilterTerminalPacket extends BasePacket {
     private boolean fullUpdate;
@@ -54,12 +52,10 @@ public class FilterTerminalPacket extends BasePacket {
         }
 
         data.writeVarInt(slots.size());
-        ObjectIterator var10 = slots.int2ObjectEntrySet().iterator();
 
-        while(var10.hasNext()) {
-            Int2ObjectMap.Entry<ItemStack> entry = (Int2ObjectMap.Entry)var10.next();
-            data.writeVarInt(entry.getIntKey());
-            data.writeItem((ItemStack)entry.getValue());
+        for (Int2ObjectMap.Entry<ItemStack> itemStackEntry : slots.int2ObjectEntrySet()) {
+            data.writeVarInt(itemStackEntry.getIntKey());
+            data.writeItem((ItemStack) ((Int2ObjectMap.Entry<?>) itemStackEntry).getValue());
         }
         this.configureWrite(data);
     }

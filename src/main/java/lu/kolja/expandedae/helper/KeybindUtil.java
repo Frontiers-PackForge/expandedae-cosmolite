@@ -25,7 +25,6 @@ public class KeybindUtil {
     public static final int SHIFT_MULTIPLIER = 2;
     public static final int CTRL_MULTIPLIER = 8;
 
-
     public static int shiftMultiplier() {
         return isShiftDown() ? SHIFT_MULTIPLIER : 1;
     }

@@ -1,18 +1,17 @@
 package lu.kolja.expandedae.mixin.emi;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.gen.Invoker;
 import appeng.menu.me.crafting.CraftConfirmMenu;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-
 import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.mixin.accessor.HandledScreenAccessor;
 import dev.emi.emi.screen.EmiScreenBase;
 import dev.emi.emi.screen.RecipeScreen;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.recipebook.RecipeUpdateListener;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(value = EmiScreenBase.class, remap = false)
 public abstract class MixinEmiScreenBase {

@@ -1,8 +1,8 @@
 package lu.kolja.expandedae.client.gui;
 
+import appeng.util.inv.AppEngInternalInventory;
 import lu.kolja.expandedae.block.entity.FilterContainerGroup;
 import org.jetbrains.annotations.NotNull;
-import appeng.util.inv.AppEngInternalInventory;
 
 public class FilterContainerRecord implements Comparable<FilterContainerRecord> {
     private final FilterContainerGroup group;

@@ -1,7 +1,7 @@
 package lu.kolja.expandedae.item.part;
 
-import lu.kolja.expandedae.part.ExpPatternProviderPart;
 import appeng.items.parts.PartItem;
+import lu.kolja.expandedae.part.ExpPatternProviderPart;
 
 public class ExpPatternProviderPartItem extends PartItem<ExpPatternProviderPart> {
     public ExpPatternProviderPartItem(Properties properties) {

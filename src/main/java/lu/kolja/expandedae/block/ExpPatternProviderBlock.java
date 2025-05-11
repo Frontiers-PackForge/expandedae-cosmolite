@@ -1,7 +1,5 @@
 package lu.kolja.expandedae.block;
 
-import lu.kolja.expandedae.block.entity.ExpPatternProviderBlockEntity;
-import org.jetbrains.annotations.Nullable;
 import appeng.api.networking.IManagedGridNode;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.block.AEBaseBlock;
@@ -13,6 +11,7 @@ import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.menu.locator.MenuLocators;
 import appeng.util.InteractionUtil;
 import appeng.util.Platform;
+import lu.kolja.expandedae.block.entity.ExpPatternProviderBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -25,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
 public class ExpPatternProviderBlock extends AEBaseEntityBlock<ExpPatternProviderBlockEntity> implements IUpgradeableObject {
     private static final EnumProperty<PushDirection> PUSH_DIRECTION = PatternProviderBlock.PUSH_DIRECTION;

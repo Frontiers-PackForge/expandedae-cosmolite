@@ -1,33 +1,45 @@
 package lu.kolja.expandedae.item.misc;
 
-import javax.annotation.Nonnull;
-
-import lu.kolja.expandedae.definition.ExpBlockEntities;
-import lu.kolja.expandedae.definition.ExpBlocks;
-import lu.kolja.expandedae.definition.ExpItems;
-import lu.kolja.expandedae.item.abstracts.UpgradeItem;
 import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.parts.AEBasePart;
 import appeng.parts.crafting.PatternProviderPart;
+import lu.kolja.expandedae.definition.ExpBlockEntities;
+import lu.kolja.expandedae.definition.ExpBlocks;
+import lu.kolja.expandedae.definition.ExpItems;
+import lu.kolja.expandedae.item.abstracts.UpgradeItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class ExpPatternProviderUpgradeItem extends UpgradeItem {
     public ExpPatternProviderUpgradeItem(Properties pProperties) {
         super(pProperties);
     }
 
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    @Nonnull
     @Override
-    public InteractionResult useOn(@Nonnull UseOnContext context) {
+    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag advancedTooltips) {
+        tooltip.add(Component.translatable("item.expandedae.upgrade.tooltip",
+                        "a Pattern Provider\n to an Expanded Pattern Provider")
+                .withStyle(ChatFormatting.GRAY));
+        super.appendHoverText(stack, level, tooltip, advancedTooltips);
+    }
+
+    @Override
+    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
         var pos = context.getClickedPos();
         var world = context.getLevel();
         var entity = world.getBlockEntity(pos);

@@ -1,18 +1,18 @@
 package lu.kolja.expandedae.definition;
 
+import appeng.core.definitions.BlockDefinition;
+import lu.kolja.expandedae.Expandedae;
+import lu.kolja.expandedae.block.ExpPatternProviderBlock;
+import lu.kolja.expandedae.block.ExpPatternProviderBlockItem;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
-
-import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.block.ExpPatternProviderBlock;
-import lu.kolja.expandedae.block.ExpPatternProviderBlockItem;
-import appeng.core.definitions.BlockDefinition;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 public class ExpBlocks {
 

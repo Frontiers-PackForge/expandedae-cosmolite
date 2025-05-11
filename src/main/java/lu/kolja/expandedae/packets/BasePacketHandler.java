@@ -1,11 +1,11 @@
 package lu.kolja.expandedae.packets;
 
+import appeng.core.sync.BasePacket;
+import net.minecraft.network.FriendlyByteBuf;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
-import appeng.core.sync.BasePacket;
-import net.minecraft.network.FriendlyByteBuf;
 
 public class BasePacketHandler {
     private static final Map<Class<? extends BasePacket>, PacketTypes> REVERSE_LOOKUP = new HashMap<>();
