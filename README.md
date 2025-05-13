@@ -40,11 +40,12 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
 - [ ] Pattern optimization matrix
   - Basically gives you the ability to multiply all patterns from the crafting menu, really basic explanation but check gtnh ae2 if this interests you. Still debating if there's any actual usecase for this.
      
-- [ ] Pattern encoding optimization
-  - [x] Shift clicking when encoding will add the pattern to your inventory
+- [x] Pattern encoding optimization
+  - Shift clicking when encoding will add the pattern to your inventory
   - Ability to multiple/divide processing patterns directly in the terminal (credits: [Ghostipedia](https://github.com/Ghostipedia) <3)
 - [x] Pattern provider changes
   - Add button to multiply/divide all patterns inside
+  - Add more blocking modes
 - [x] Add exponents/scientific notation to the craft amount screen thingy
   - Added support for scientific notation and factorials <br />
    ![image](https://github.com/user-attachments/assets/0b15978f-88cf-46da-8944-9bfd237dba64)
