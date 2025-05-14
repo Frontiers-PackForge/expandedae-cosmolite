@@ -5,11 +5,15 @@ This mod is community-driven, so suggest any ideas you might have and they might
 ~~**No.**~~
 Okay maybe
 
-### At first this mod was made to only add a bigger pattern provider, now it has turned into a full on project to port all of those feature you miss from old ae2 and its addons. I'm always open to further suggestions.
+## At first this mod was made to only add a bigger pattern provider, now it has turned into a full on project to port all of those feature you miss from old ae2 and its addons. I'm always open to further suggestions.
 Currently porting features from:
 - [GT New Horizons AE2](https://github.com/GTNewHorizons/Applied-Energistics-2-Unofficial)
 - [AE2-UEL](https://github.com/AE2-UEL/Applied-Energistics-2)
 - [Neeve's AE2](https://github.com/AE2-UEL/NAE2)
+### What's to come porting wise?
+- Mods that haven't or won't update to 1.21.1
+  - Better P2P
+  - Pattern P2P (maybe multi p2p's aswell)
 
 ## What's included currently:
 
