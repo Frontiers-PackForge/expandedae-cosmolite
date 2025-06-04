@@ -1,20 +1,14 @@
-package lu.kolja.expandedae.mixin.patternprovider;
+package lu.kolja.expandedae.mixin.compat.appflux;
 
-import appeng.api.upgrades.Upgrades;
 import appeng.client.gui.AEBaseScreen;
-import appeng.client.gui.implementations.PatternProviderScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.ServerSettingToggleButton;
-import appeng.client.gui.widgets.ToolboxPanel;
-import appeng.client.gui.widgets.UpgradesPanel;
-import appeng.core.localization.GuiText;
-import appeng.menu.SlotSemantics;
 import appeng.menu.implementations.PatternProviderMenu;
+import com.glodblock.github.appflux.mixins.MixinPatternProviderScreen;
 import lu.kolja.expandedae.client.gui.widgets.ExpActionButton;
 import lu.kolja.expandedae.client.gui.widgets.ExpActionItems;
 import lu.kolja.expandedae.definition.ExpSettings;
 import lu.kolja.expandedae.enums.BlockingMode;
-import lu.kolja.expandedae.helper.base.IUpgradableMenu;
 import lu.kolja.expandedae.helper.patternprovider.IPatternProvider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -25,16 +19,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Mixin(value = PatternProviderScreen.class, remap = false)
-public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> extends AEBaseScreen<C> {
+@Mixin(value = MixinPatternProviderScreen.class, remap = false)
+public abstract class MixinPatternProviderScreenAppFlux<C extends PatternProviderMenu> extends AEBaseScreen<C> {
 
     @Unique
     private ServerSettingToggleButton<BlockingMode> eae$blockingMode;
 
-    private MixinPatternProviderScreen(C menu, Inventory playerInventory, Component title, ScreenStyle style) {
+    private MixinPatternProviderScreenAppFlux(C menu, Inventory playerInventory, Component title, ScreenStyle style) {
         super(menu, playerInventory, title, style);
     }
 
@@ -44,16 +35,10 @@ public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> 
             remap = false
     )
     private void init(PatternProviderMenu menu, Inventory playerInventory, Component title, ScreenStyle style, CallbackInfo ci) {
-        this.widgets.add("upgrades", new UpgradesPanel(
-                menu.getSlots(SlotSemantics.UPGRADE),
-                this::eae_$getCompatibleUpgrades));
         ExpActionButton modifyPatterns = new ExpActionButton(ExpActionItems.MODIFY_PATTERNS, act -> ((IPatternProvider) menu).expandedae$modifyPatterns(
                 ((AEBaseScreen<?>) Minecraft.getInstance().screen).isHandlingRightClick()
         ));
         this.addToLeftToolbar(modifyPatterns);
-        if (((IUpgradableMenu) menu).getToolbox().isPresent()) {
-            this.widgets.add("toolbox", new ToolboxPanel(style, ((IUpgradableMenu) menu).getToolbox().getName()));
-        }
         this.eae$blockingMode = new ServerSettingToggleButton<>(
                 ExpSettings.BLOCKING_MODE,
                 BlockingMode.DEFAULT
@@ -61,13 +46,6 @@ public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> 
         this.addToLeftToolbar(this.eae$blockingMode);
     }
 
-    @Unique
-    private List<Component> eae_$getCompatibleUpgrades() {
-        var list = new ArrayList<Component>();
-        list.add(GuiText.CompatibleUpgrades.text());
-        list.addAll(Upgrades.getTooltipLinesForMachine(((IUpgradableMenu) menu).getUpgrades().getUpgradableItem()));
-        return list;
-    }
 
     @Inject(method = "updateBeforeRender", at = @At("TAIL"), remap = false)
     private void updateBeforeRender(CallbackInfo ci) {

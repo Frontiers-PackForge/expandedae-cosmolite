@@ -47,11 +47,6 @@ public class ExpActionButton extends ExpIconButton{
             if (i <= 0) {
                 i = 0;
             }
-
-            while(i + 30 < sb.length() && (i = sb.lastIndexOf(" ", i + 30)) != -1) {
-                sb.replace(i, i + 1, "\n");
-            }
-
             return Component.literal(name + "\n" + sb);
         }
     }

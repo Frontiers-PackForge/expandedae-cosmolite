@@ -2,7 +2,6 @@ package lu.kolja.expandedae.definition;
 
 import appeng.api.config.Setting;
 import com.google.common.base.Preconditions;
-import lu.kolja.expandedae.enums.ShowInterfaces;
 
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -28,10 +27,6 @@ public class Settings {
         SETTINGS.put(name, setting);
         return setting;
     }
-
-    public static final Setting<ShowInterfaces> TERMINAL_SHOW_INTERFACES= register(
-            "show_interfaces", ShowInterfaces.class
-    );
 
     public static Setting<?> getOrThrow(String name) {
         var setting = SETTINGS.get(name);

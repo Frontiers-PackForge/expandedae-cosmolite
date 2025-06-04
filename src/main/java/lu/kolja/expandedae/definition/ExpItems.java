@@ -8,9 +8,9 @@ import appeng.core.definitions.ItemDefinition;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
 import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.item.cards.*;
+import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
+import lu.kolja.expandedae.item.cards.ItemPatternRefillerCard;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
-import lu.kolja.expandedae.item.misc.ExtPatternProviderUpgradeItem;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import lu.kolja.expandedae.part.ExpPatternProviderPart;
 import net.minecraft.Util;
@@ -38,43 +38,18 @@ public class ExpItems {
         PartModels.registerModels(PartModelsHelper.createModels(ExpPatternProviderPart.class));
         return item("Expanded Pattern Provider", "exp_pattern_provider_part", ExpPatternProviderPartItem::new);
     });
-    /*
-    public static final ItemDefinition<FilterTerminalPartItem> FILTER_TERMINAL_PART = Util.make(() -> {
-        PartModels.registerModels(PartModelsHelper.createModels(FilterTerminalPart.class));
-        return item("Filter Terminal", "filter_terminal", FilterTerminalPartItem::new);
-    });
-    */
+
 
     public static final ItemDefinition<ExpPatternProviderUpgradeItem> EXP_PATTERN_PROVIDER_UPGRADE = item(
             "Expanded Pattern Provider Upgrade",
             "exp_pattern_provider_upgrade",
             ExpPatternProviderUpgradeItem::new
     );
-    public static final ItemDefinition<ExtPatternProviderUpgradeItem> EXT_PATTERN_PROVIDER_UPGRADE = item(
-            "Extended Pattern Provider Upgrader",
-            "ext_pattern_provider_upgrader",
-            ExtPatternProviderUpgradeItem::new
-    );
 
     public static final ItemDefinition<ItemAutoCompleteCard> AUTO_COMPLETE_CARD = item(
             "Auto Complete Card",
             "auto_complete_card",
             ItemAutoCompleteCard::new
-    );
-    public static final ItemDefinition<ItemAdvancedBlockingCard> ADVANCED_BLOCKING_CARD = item(
-            "Advanced Blocking Card",
-            "advanced_blocking_card",
-            ItemAdvancedBlockingCard::new
-    );
-    public static final ItemDefinition<ItemSmartBlockingCard> SMART_BLOCKING_CARD = item(
-            "Smart Blocking Card",
-            "smart_blocking_card",
-            ItemSmartBlockingCard::new
-    );
-    public static final ItemDefinition<ItemStickyCard> STICKY_CARD = item(
-            "Sticky Card",
-            "sticky_card",
-            ItemStickyCard::new
     );
     public static final ItemDefinition<ItemPatternRefillerCard> PATTERN_REFILLER_CARD = item(
             "Pattern Refiller Card",
@@ -121,4 +96,31 @@ public class ExpItems {
     }
 
     public static void orderInit() {}
+
+    /*
+    public static final ItemDefinition<FilterTerminalPartItem> FILTER_TERMINAL_PART = Util.make(() -> {
+        PartModels.registerModels(PartModelsHelper.createModels(FilterTerminalPart.class));
+        return item("Filter Terminal", "filter_terminal", FilterTerminalPartItem::new);
+    });
+    public static final ItemDefinition<ExtPatternProviderUpgradeItem> EXT_PATTERN_PROVIDER_UPGRADE = item(
+            "Extended Pattern Provider Upgrader",
+            "ext_pattern_provider_upgrader",
+            ExtPatternProviderUpgradeItem::new
+    );
+    public static final ItemDefinition<ItemAdvancedBlockingCard> ADVANCED_BLOCKING_CARD = item(
+            "Advanced Blocking Card",
+            "advanced_blocking_card",
+            ItemAdvancedBlockingCard::new
+    );
+    public static final ItemDefinition<ItemSmartBlockingCard> SMART_BLOCKING_CARD = item(
+            "Smart Blocking Card",
+            "smart_blocking_card",
+            ItemSmartBlockingCard::new
+    );
+    public static final ItemDefinition<ItemStickyCard> STICKY_CARD = item(
+            "Sticky Card",
+            "sticky_card",
+            ItemStickyCard::new
+    );
+    */
 }

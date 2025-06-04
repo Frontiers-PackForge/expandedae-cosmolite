@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.mixin.patternprovider;
+package lu.kolja.expandedae.mixin.compat.appflux;
 
 import appeng.api.config.Actionable;
 import appeng.api.config.LockCraftingMode;
@@ -16,11 +16,12 @@ import appeng.api.upgrades.UpgradeInventories;
 import appeng.client.gui.me.common.FinishedJobToast;
 import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.core.AEConfig;
-import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.items.tools.powered.WirelessTerminalItem;
 import appeng.util.ConfigManager;
 import appeng.util.SearchInventoryEvent;
+import com.glodblock.github.appflux.mixins.MixinPatternProviderLogic;
+import com.llamalad7.mixinextras.injector.ModifyReceiver;
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import lu.kolja.expandedae.definition.ExpItems;
 import lu.kolja.expandedae.definition.ExpSettings;
@@ -32,7 +33,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,24 +49,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Mixin(value = PatternProviderLogic.class, remap = false, priority = 1001)
-public abstract class MixinPatternProviderLogic implements IUpgradeableObject, IPatternProviderLogic {
+@Mixin(value = MixinPatternProviderLogic.class, remap = false)
+public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableObject, IPatternProviderLogic {
 
     @Unique
     private PatternProviderTargetCache[] expandedae$targetCaches;
-
-    @Shadow @Final private IActionSource actionSource;
-
     @Unique
-    private IUpgradeInventory eae_$upgrades = UpgradeInventories.empty();
-
+    private IUpgradeInventory af_$upgrades = UpgradeInventories.empty();
     @Final
     @Shadow
     private PatternProviderLogicHost host;
-
     @Final
     @Shadow
     private IManagedGridNode mainNode;
+    @Final
+    @Shadow
+    private IActionSource actionSource;
 
     @Shadow(remap = false)
     @Final
@@ -96,64 +94,22 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject, I
 
     @Shadow protected abstract void addToSendList(AEKey what, long amount);
 
-    @Unique
-    private void eae_$onUpgradesChanged() {
-        /*
-        if (!eae_$upgrades.isInstalled(ExpItems.SMART_BLOCKING_CARD)) { //TODO: smart card unlocks extra blocking modes
-            assert Minecraft.getInstance().screen != null;
-            ((IBlockingMode) Minecraft.getInstance().screen).setVisible(false);
-        } else {
-            assert Minecraft.getInstance().screen != null;
-            ((IBlockingMode) Minecraft.getInstance().screen).setVisible(true);
-        }*/
-        this.host.saveChanges();
-    }
+    @Shadow protected abstract void af_$onUpgradesChanged();
 
-    @Override
-    public IUpgradeInventory getUpgrades() {
-        return this.eae_$upgrades;
-    }
-
-    @Inject(
-            method = "<init>(Lappeng/api/networking/IManagedGridNode;Lappeng/helpers/patternprovider/PatternProviderLogicHost;I)V",
-            at = @At("TAIL")
-    )
-    private void eae_$initUpgrade(IManagedGridNode mainNode, PatternProviderLogicHost host, int patternInventorySize, CallbackInfo ci) {
-        eae_$upgrades = UpgradeInventories.forMachine(host.getTerminalIcon().getItem(), 1, this::eae_$onUpgradesChanged);
+    @Inject(method = "initUpgrade", at = @At("HEAD"))
+    private void initUpgrade(IManagedGridNode mainNode, PatternProviderLogicHost host, int patternInventorySize, CallbackInfo ci) {
         this.expandedae$targetCaches = new PatternProviderTargetCache[6];
     }
 
-    @Inject(
-            method = "writeToNBT",
-            at = @At("TAIL")
+    // Switch logic
+    @ModifyReceiver(
+            method = "initUpgrade",
+            at = @At(value = "INVOKE", target = "Lappeng/api/upgrades/UpgradeInventories;forMachine(Lnet/minecraft/world/level/ItemLike;ILappeng/api/upgrades/MachineUpgradesChanged;)Lappeng/api/upgrades/IUpgradeInventory;")
     )
-    private void eae_$saveUpgrade(CompoundTag tag, CallbackInfo ci) {
-        this.eae_$upgrades.writeToNBT(tag, "upgrades");
+    private IUpgradeInventory initUpgrade() {
+        return UpgradeInventories.forMachine(host.getTerminalIcon().getItem(), 2, this::af_$onUpgradesChanged);
     }
-
-    @Inject(
-            method = "readFromNBT",
-            at = @At("TAIL")
-    )
-    private void eae_$loadUpgrade(CompoundTag tag, CallbackInfo ci) {
-        this.eae_$upgrades.readFromNBT(tag, "upgrades");
-    }
-
-    @Inject(
-            method = "addDrops",
-            at = @At("TAIL")
-    )
-    private void eae_$dropUpgrade(List<ItemStack> drops, CallbackInfo ci) {
-        for (var is : this.eae_$upgrades) if (!is.isEmpty()) drops.add(is);
-    }
-
-    @Inject(
-            method = "clearContent",
-            at = @At("TAIL")
-    )
-    private void eae_$clearUpgrade(CallbackInfo ci) {
-        this.eae_$upgrades.clear();
-    }
+    // End switch logic
 
     @Inject(
             method = "pushPattern",
@@ -161,7 +117,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject, I
     )
     private void eae_$checkUpgrades(IPatternDetails patternDetails, KeyCounter[] inputHolder, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue()) return;
-        if (this.eae_$upgrades.isInstalled(ExpItems.AUTO_COMPLETE_CARD)) {
+        if (this.af_$upgrades.isInstalled(ExpItems.AUTO_COMPLETE_CARD)) {
             List<ICraftingCPU> matchedCpus = eae_$getCraftingCpus().stream()
                     .filter(cpu -> cpu.getJobStatus() != null)
                     .filter(cpu -> eae_$getCraftingCpus().stream()
@@ -182,8 +138,8 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject, I
                         x.cancelJob();
                         var minecraft = Minecraft.getInstance();
                         if (AEConfig.instance().isNotifyForFinishedCraftingJobs()
-                            && !(minecraft.screen instanceof MEStorageScreen<?>)
-                            && minecraft.player != null && expandedae$hasNotificationEnablingItem(minecraft.player)) {
+                                && !(minecraft.screen instanceof MEStorageScreen<?>)
+                                && minecraft.player != null && expandedae$hasNotificationEnablingItem(minecraft.player)) {
                             minecraft.getToasts().addToast(new FinishedJobToast(what, 1)); //set to 1 since the card doesn't support more
                         }
                         return;

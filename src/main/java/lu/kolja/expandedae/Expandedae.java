@@ -5,8 +5,6 @@ import appeng.init.client.InitScreens;
 import com.mojang.logging.LogUtils;
 import lu.kolja.expandedae.definition.*;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
-import lu.kolja.expandedae.menu.FilterTermMenu;
-import lu.kolja.expandedae.screen.FilterTermScreen;
 import lu.kolja.expandedae.xmod.XMod;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -75,16 +73,9 @@ public class Expandedae {
         new ExpUpgrades(event);
     }
 
-    private void registerMenus() {
-        Platform.registerMenuType("filter_terminal", FilterTermMenu.TYPE);
-    }
+    private void registerMenus() {}
 
     private void clientSetup(FMLClientSetupEvent event) {
-        InitScreens.register(
-                FilterTermMenu.TYPE,
-                FilterTermScreen<FilterTermMenu>::new,
-                "/screens/filter_terminal.json"
-        );
         InitScreens.register(
                 ExpMenus.EXP_PATTERN_PROVIDER,
                 PatternProviderScreen<ExpPatternProviderMenu>::new,

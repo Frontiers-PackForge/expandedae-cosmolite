@@ -5,7 +5,6 @@ import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
-import lu.kolja.expandedae.menu.FilterTermMenu;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 
@@ -26,8 +25,6 @@ public class ExpMenus {
             ExpPatternProviderMenu::new,
             PatternProviderLogicHost.class
     );
-
-    public static final MenuType<FilterTermMenu> FILTER_TERMINAL = FilterTermMenu.TYPE;
 
     public static <C extends AEBaseMenu, I> MenuType<C> create(
             String id, MenuTypeBuilder.MenuFactory<C, I> factory, Class<I> host) {

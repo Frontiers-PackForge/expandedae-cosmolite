@@ -12,21 +12,17 @@
     "emi.MixinEmiScreenBase",
     "misc.MixinMathExpressionParser",
     "misc.MixinSettings",
-    "misc.MixinSlot",
     "misc.MixinStyleManager",
     "patternprovider.MixinPatternProviderLogic",
     "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
-    "storage.MixinCraftingCPUMenu",
-    "storage.MixinCraftingStatusTableRenderer",
     "terminal.MixinPatternEncodingTerminalMenu",
     "terminal.MixinProcessingEncodingPanel"
   ],
   "client": [
     "compat.cosmic.MixinPatternProviderScreenCosm",
     "misc.MixinSettingToggleButton",
-    "patternprovider.MixinPatternProviderScreen",
-    "storage.MixinCraftingCPUScreen"
+    "patternprovider.MixinPatternProviderScreen"
   ],
   "injectors": {
     "defaultRequire": 1

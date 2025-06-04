@@ -5,7 +5,7 @@ import appeng.client.gui.me.items.EncodingModePanel;
 import appeng.client.gui.me.items.PatternEncodingTermScreen;
 import appeng.client.gui.me.items.ProcessingEncodingPanel;
 import lu.kolja.expandedae.client.button.ModifyIconButton;
-import lu.kolja.expandedae.helper.IPatternEncodingTerminalMenu;
+import lu.kolja.expandedae.helper.patternprovider.IPatternEncodingTerminalMenu;
 import net.minecraft.network.chat.Component;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

@@ -41,9 +41,15 @@ public class MixinPlugin implements IMixinConfigPlugin {
                 "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderLogic",
                 "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderScreen",
                 "lu.kolja.expandedae.mixin.terminal.MixinPatternEncodingTerminalMenu",
-                "lu.kolja.expandedae.mixin.misc.MixinStyleManager"
+                "lu.kolja.expandedae.mixin.misc.MixinStyleManager",
+                "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderLogic",
+                "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderLogicHost",
+                "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderMenu",
+                "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderScreen"
         },
-        new String[]{"cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore"}
+        new String[]{"cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore",
+                "appflux", "appflux", "appflux", "appflux",
+        }
     );
 
     /**
@@ -54,9 +60,15 @@ public class MixinPlugin implements IMixinConfigPlugin {
                     "lu.kolja.expandedae.mixin.compat.cosmic.MixinPatternProviderLogicCosm",
                     "lu.kolja.expandedae.mixin.compat.cosmic.MixinPatternProviderScreenCosm",
                     "lu.kolja.expandedae.mixin.compat.cosmic.MixinPatternEncodingTerminalMenuCosm",
+                    "lu.kolja.expandedae.mixin.compat.appflux.MixinPatternProviderLogicAppFlux",
+                    "lu.kolja.expandedae.mixin.compat.appflux.MixinPatternProviderMenuAppFlux",
+                    "lu.kolja.expandedae.mixin.compat.appflux.MixinPatternProviderScreenAppFlux",
                     "lu.kolja.expandedae.mixin.emi.MixinEmiScreenBase"
             },
-            new String[]{"cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "emi"}
+            new String[]{"cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore",
+                    "appflux", "appflux", "appflux",
+                    "emi"
+            }
     );
 
     /**

@@ -31,7 +31,7 @@
   "gui.tooltips.expandedae.modifyPatterns": "Modify Patterns",
   "gui.tooltips.expandedae.modifyPatternsHint": "Left click to multiply, right click to divide \nMultipliers: Shift 2x, Ctrl 8x",
 
-  "gui.buttons.pattern.div": "§c/%d§f",
+  "gui.buttons.pattern.div": "§c÷%d§f",
   "gui.buttons.pattern.mult": "§bx%d§f",
   "gui.buttons.tooltips.pattern.div": "Divides contents by §b%d§f",
   "gui.buttons.tooltips.pattern.mult": "Multiplies contents by §c%d§f",
