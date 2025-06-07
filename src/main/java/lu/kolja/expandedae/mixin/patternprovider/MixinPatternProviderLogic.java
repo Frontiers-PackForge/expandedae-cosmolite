@@ -215,8 +215,7 @@ public abstract class MixinPatternProviderLogic implements IUpgradeableObject, I
     @Inject(method = "<init>(Lappeng/api/networking/IManagedGridNode;Lappeng/helpers/patternprovider/PatternProviderLogicHost;I)V",
             at = @At("TAIL"),
             remap = false)
-    private void PatternProviderLogic(IManagedGridNode mainNode, PatternProviderLogicHost host,
-                                      int patternInventorySize, CallbackInfo ci) {
+    private void PatternProviderLogic(IManagedGridNode mainNode, PatternProviderLogicHost host, int patternInventorySize, CallbackInfo ci) {
         configManager.registerSetting(ExpSettings.BLOCKING_MODE, BlockingMode.DEFAULT);
     }
 

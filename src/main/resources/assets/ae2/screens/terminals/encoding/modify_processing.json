@@ -6,28 +6,28 @@
       "bottom": 163
     },
     "mult2": {
-      "left": 127,
-      "bottom": 152
+      "left": 81,
+      "bottom": 148
     },
     "mult3": {
-      "left": 127,
-      "bottom": 141
+      "left": 90,
+      "bottom": 148
     },
     "mult8": {
-      "left": 127,
-      "bottom": 130
+      "left": 99,
+      "bottom": 148
     },
     "div2": {
-      "left": 100,
-      "bottom": 152
+      "left": 81,
+      "bottom": 121
     },
     "div3": {
-      "left": 100,
-      "bottom": 141
+      "left": 90,
+      "bottom": 121
     },
     "div8": {
-      "left": 100,
-      "bottom": 130
+      "left": 99,
+      "bottom": 121
     }
   }
 }

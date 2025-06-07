@@ -1,10 +1,10 @@
 package lu.kolja.expandedae.mixin.compat.appflux;
 
 import appeng.client.gui.AEBaseScreen;
+import appeng.client.gui.implementations.PatternProviderScreen;
 import appeng.client.gui.style.ScreenStyle;
 import appeng.client.gui.widgets.ServerSettingToggleButton;
 import appeng.menu.implementations.PatternProviderMenu;
-import com.glodblock.github.appflux.mixins.MixinPatternProviderScreen;
 import lu.kolja.expandedae.client.gui.widgets.ExpActionButton;
 import lu.kolja.expandedae.client.gui.widgets.ExpActionItems;
 import lu.kolja.expandedae.definition.ExpSettings;
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = MixinPatternProviderScreen.class, remap = false)
+@Mixin(value = {PatternProviderScreen.class}, remap = false)
 public abstract class MixinPatternProviderScreenAppFlux<C extends PatternProviderMenu> extends AEBaseScreen<C> {
 
     @Unique
@@ -30,7 +30,7 @@ public abstract class MixinPatternProviderScreenAppFlux<C extends PatternProvide
     }
 
     @Inject(
-            method = "<init>",
+            method = "Lappeng/client/gui/implementations/PatternProviderScreen;<init>(Lappeng/menu/implementations/PatternProviderMenu;Lnet/minecraft/world/entity/player/Inventory;Lnet/minecraft/network/chat/Component;Lappeng/client/gui/style/ScreenStyle;)V",
             at = @At("TAIL"),
             remap = false
     )

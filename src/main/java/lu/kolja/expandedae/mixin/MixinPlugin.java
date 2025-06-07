@@ -2,6 +2,7 @@ package lu.kolja.expandedae.mixin;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import lombok.val;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.LoadingModList;
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
@@ -33,7 +34,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
     /**
      * If mod b is loaded, don't load class A
      */
-    public static final Object2ObjectMap<String, String> mixinMap = new Object2ObjectOpenHashMap<>(
+    public static final Object2ObjectMap<String, List<String>> mixinMap = new Object2ObjectOpenHashMap<>(
         new String[]{"lu.kolja.expandedae.mixin.terminal.MixinProcessingEncodingPanel",
                 "lu.kolja.expandedae.mixin.misc.MixinSettings",
                 "lu.kolja.expandedae.mixin.misc.MixinSettingToggleButton",
@@ -42,13 +43,18 @@ public class MixinPlugin implements IMixinConfigPlugin {
                 "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderScreen",
                 "lu.kolja.expandedae.mixin.terminal.MixinPatternEncodingTerminalMenu",
                 "lu.kolja.expandedae.mixin.misc.MixinStyleManager",
-                "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderLogic",
                 "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderLogicHost",
-                "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderMenu",
-                "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderScreen"
         },
-        new String[]{"cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore",
-                "appflux", "appflux", "appflux", "appflux",
+        new List[]{
+                List.of("cosmiccore"),
+                List.of("cosmiccore"),
+                List.of("cosmiccore"),
+                List.of("cosmiccore", "appflux"),
+                List.of("cosmiccore", "appflux"),
+                List.of("cosmiccore", "appflux"),
+                List.of("cosmiccore"),
+                List.of("cosmiccore"),
+                List.of("appflux")
         }
     );
 
@@ -78,7 +84,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
      * @param modId The mod ID to check
      * @return true if the mod is loaded or loading, false otherwise
      */
-    private static boolean isModLoaded(String modId) {
+    private boolean isModLoaded(String modId) {
         if (ModList.get() == null) {
             return LoadingModList.get().getMods().stream()
                     .map(ModInfo::getModId)
@@ -101,8 +107,16 @@ public class MixinPlugin implements IMixinConfigPlugin {
      */
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinMap.containsKey(mixinClassName)) return !isModLoaded(mixinMap.get(mixinClassName));
-        if (mixinMap2.containsKey(mixinClassName)) return isModLoaded(mixinMap2.get(mixinClassName));
+        val className = mixinClassName;
+
+        if (mixinMap.containsKey(mixinClassName)) {
+            boolean ret = !mixinMap.get(mixinClassName).stream().anyMatch(this::isModLoaded);
+            return ret;
+        }
+        if (mixinMap2.containsKey(mixinClassName)) {
+            boolean ret = isModLoaded(mixinMap2.get(mixinClassName));
+            return ret;
+        }
         return true;
     }
 

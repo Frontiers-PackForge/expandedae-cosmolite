@@ -10,18 +10,15 @@ import appeng.api.networking.security.IActionSource;
 import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
 import appeng.api.stacks.KeyCounter;
-import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
-import appeng.api.upgrades.UpgradeInventories;
 import appeng.client.gui.me.common.FinishedJobToast;
 import appeng.client.gui.me.common.MEStorageScreen;
 import appeng.core.AEConfig;
+import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.items.tools.powered.WirelessTerminalItem;
 import appeng.util.ConfigManager;
 import appeng.util.SearchInventoryEvent;
-import com.glodblock.github.appflux.mixins.MixinPatternProviderLogic;
-import com.llamalad7.mixinextras.injector.ModifyReceiver;
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import lu.kolja.expandedae.definition.ExpItems;
 import lu.kolja.expandedae.definition.ExpSettings;
@@ -49,13 +46,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Mixin(value = MixinPatternProviderLogic.class, remap = false)
+@Mixin(value = {PatternProviderLogic.class}, remap = false)
 public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableObject, IPatternProviderLogic {
 
     @Unique
     private PatternProviderTargetCache[] expandedae$targetCaches;
-    @Unique
-    private IUpgradeInventory af_$upgrades = UpgradeInventories.empty();
     @Final
     @Shadow
     private PatternProviderLogicHost host;
@@ -94,22 +89,13 @@ public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableOb
 
     @Shadow protected abstract void addToSendList(AEKey what, long amount);
 
-    @Shadow protected abstract void af_$onUpgradesChanged();
-
-    @Inject(method = "initUpgrade", at = @At("HEAD"))
-    private void initUpgrade(IManagedGridNode mainNode, PatternProviderLogicHost host, int patternInventorySize, CallbackInfo ci) {
+    @Inject(
+            method = "<init>(Lappeng/api/networking/IManagedGridNode;Lappeng/helpers/patternprovider/PatternProviderLogicHost;I)V",
+            at = @At("TAIL")
+    )
+    private void eae_$initUpgrade(IManagedGridNode mainNode, PatternProviderLogicHost host, int patternInventorySize, CallbackInfo ci) {
         this.expandedae$targetCaches = new PatternProviderTargetCache[6];
     }
-
-    // Switch logic
-    @ModifyReceiver(
-            method = "initUpgrade",
-            at = @At(value = "INVOKE", target = "Lappeng/api/upgrades/UpgradeInventories;forMachine(Lnet/minecraft/world/level/ItemLike;ILappeng/api/upgrades/MachineUpgradesChanged;)Lappeng/api/upgrades/IUpgradeInventory;")
-    )
-    private IUpgradeInventory initUpgrade() {
-        return UpgradeInventories.forMachine(host.getTerminalIcon().getItem(), 2, this::af_$onUpgradesChanged);
-    }
-    // End switch logic
 
     @Inject(
             method = "pushPattern",
@@ -117,7 +103,7 @@ public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableOb
     )
     private void eae_$checkUpgrades(IPatternDetails patternDetails, KeyCounter[] inputHolder, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue()) return;
-        if (this.af_$upgrades.isInstalled(ExpItems.AUTO_COMPLETE_CARD)) {
+        if (this.getUpgrades().isInstalled(ExpItems.AUTO_COMPLETE_CARD)) {
             List<ICraftingCPU> matchedCpus = eae_$getCraftingCpus().stream()
                     .filter(cpu -> cpu.getJobStatus() != null)
                     .filter(cpu -> eae_$getCraftingCpus().stream()
@@ -221,6 +207,7 @@ public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableOb
                         PatternProviderTarget adapter = target.target();
                         switch (expandedae$getBlockingMode()) {
                             case ALL -> {
+
                                 if ((!this.isBlocking() || adapter.getStorage().getAvailableStacks().isEmpty()) && this.expandedae$adapterAcceptsAll(adapter, inputHolder)) {
                                     patternDetails.pushInputsToExternalInventory(inputHolder, (what, amount) -> {
                                         long inserted = adapter.insert(what, amount, Actionable.MODULATE);

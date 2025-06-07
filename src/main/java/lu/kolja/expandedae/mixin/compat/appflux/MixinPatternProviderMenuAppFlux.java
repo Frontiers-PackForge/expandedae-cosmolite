@@ -7,9 +7,8 @@ import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
-import appeng.menu.ToolboxMenu;
 import appeng.menu.guisync.GuiSync;
-import com.glodblock.github.appflux.mixins.MixinPatternProviderMenu;
+import appeng.menu.implementations.PatternProviderMenu;
 import lu.kolja.expandedae.definition.ExpSettings;
 import lu.kolja.expandedae.enums.BlockingMode;
 import lu.kolja.expandedae.helper.base.IUpgradableMenu;
@@ -17,6 +16,7 @@ import lu.kolja.expandedae.helper.misc.KeybindUtil;
 import lu.kolja.expandedae.helper.patternprovider.IPatternProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -26,10 +26,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Arrays;
 
-@Mixin(value = MixinPatternProviderMenu.class, remap = false)
+@Mixin(value = {PatternProviderMenu.class}, remap = false)
 public abstract class MixinPatternProviderMenuAppFlux extends AEBaseMenu implements IUpgradableMenu, IPatternProvider {
-    @Shadow private ToolboxMenu af_$toolbox;
-    @Shadow protected PatternProviderLogic logic;
+    @Shadow @Final protected PatternProviderLogic logic;
     @Unique
     private static final int BASE_FACTOR = 2;
 

@@ -6,6 +6,8 @@
   "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
+    "compat.appflux.MixinPatternProviderLogicAppFlux",
+    "compat.appflux.MixinPatternProviderMenuAppFlux",
     "compat.cosmic.MixinPatternEncodingTerminalMenuCosm",
     "compat.cosmic.MixinPatternProviderLogicCosm",
     "compat.cosmic.MixinPatternProviderMenuCosm",
@@ -20,6 +22,7 @@
     "terminal.MixinProcessingEncodingPanel"
   ],
   "client": [
+    "compat.appflux.MixinPatternProviderScreenAppFlux",
     "compat.cosmic.MixinPatternProviderScreenCosm",
     "misc.MixinSettingToggleButton",
     "patternprovider.MixinPatternProviderScreen"
