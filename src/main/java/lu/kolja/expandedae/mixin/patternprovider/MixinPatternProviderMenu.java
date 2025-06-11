@@ -121,19 +121,17 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
             }
         }
     }
-    @SuppressWarnings("AddedMixinMembersNamePattern")
+
     @Override
     public ToolboxMenu getToolbox() {
         return this.eae_$toolbox;
     }
 
-    @SuppressWarnings("AddedMixinMembersNamePattern")
     @Override
     public IUpgradeInventory getUpgrades() {
         return ((IUpgradeableObject) this.logic).getUpgrades();
     }
 
-    @SuppressWarnings("AddedMixinMembersNamePattern")
     @Override
     public boolean hasUpgrade(ItemLike upgradeCard) {
         return getUpgrades().isInstalled(upgradeCard);
@@ -152,7 +150,9 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
     @Inject(method = "broadcastChanges",
             at = @At(value = "INVOKE",
                     target = "Lappeng/helpers/patternprovider/PatternProviderLogic;getUnlockStack()Lappeng/api/stacks/GenericStack;",
-                    remap = false))
+                    remap = true
+            )
+    )
     private void broadcastChanges(CallbackInfo ci) {
         eae$blockingMode = logic.getConfigManager().getSetting(ExpSettings.BLOCKING_MODE);
     }

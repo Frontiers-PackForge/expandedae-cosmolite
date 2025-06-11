@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Mixin(value = {PatternProviderLogic.class}, remap = false)
+@Mixin(value = PatternProviderLogic.class, remap = false)
 public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableObject, IPatternProviderLogic {
 
     @Unique
@@ -271,10 +271,9 @@ public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableOb
 
     @Unique
     private boolean expandedae$adapterAcceptsAll(PatternProviderTarget target, KeyCounter[] inputHolder) {
-        int var4 = inputHolder.length;
-        for (int var5 = 0; var5 < var4; ++var5) {
-            for (Object2LongMap.Entry<AEKey> input : inputHolder[var5]) {
-                long inserted = target.insert((AEKey)input.getKey(), input.getLongValue(), Actionable.SIMULATE);
+        for (KeyCounter entries : inputHolder) {
+            for (Object2LongMap.Entry<AEKey> input : entries) {
+                long inserted = target.insert(input.getKey(), input.getLongValue(), Actionable.SIMULATE);
                 if (inserted == 0L) {
                     return false;
                 }

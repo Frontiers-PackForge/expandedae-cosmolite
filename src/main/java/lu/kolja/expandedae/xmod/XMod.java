@@ -15,12 +15,13 @@ public class XMod {
 
         private final String mod;
         Mods(String mod) { this.mod = mod; }
+        boolean isLoaded() { return ModList.get().isLoaded(mod); }
     }
 
 
     public XMod() {
         for (var mod : Mods.values()) {
-            if (!ModList.get().isLoaded(mod.mod)) continue;
+            if (!mod.isLoaded()) continue;
             switch (mod) {
                 case EXT -> new ExtendedAE();
                 case MEGA -> new MegaCells();

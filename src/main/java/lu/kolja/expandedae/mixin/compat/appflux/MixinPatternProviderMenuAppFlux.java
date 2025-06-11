@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Arrays;
 
-@Mixin(value = {PatternProviderMenu.class}, remap = false)
+@Mixin(value = PatternProviderMenu.class, remap = false)
 public abstract class MixinPatternProviderMenuAppFlux extends AEBaseMenu implements IUpgradableMenu, IPatternProvider {
     @Shadow @Final protected PatternProviderLogic logic;
     @Unique
@@ -42,8 +42,7 @@ public abstract class MixinPatternProviderMenuAppFlux extends AEBaseMenu impleme
 
     @Inject(
             method = "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/patternprovider/PatternProviderLogicHost;)V",
-            at = @At("TAIL"),
-            remap = true
+            at = @At("TAIL")
     )
     private void initToolbox(MenuType<?> menuType, int id, Inventory playerInventory, PatternProviderLogicHost host, CallbackInfo ci) {
         this.registerClientAction("modifyPatterns", Boolean.class, this::expandedae$modifyPatterns);
@@ -112,8 +111,9 @@ public abstract class MixinPatternProviderMenuAppFlux extends AEBaseMenu impleme
 
     @Inject(method = "broadcastChanges",
             at = @At(value = "INVOKE",
-                    target = "Lappeng/helpers/patternprovider/PatternProviderLogic;getUnlockStack()Lappeng/api/stacks/GenericStack;",
-                    remap = false))
+                    target = "Lappeng/helpers/patternprovider/PatternProviderLogic;getUnlockStack()Lappeng/api/stacks/GenericStack;"
+            )
+    )
     private void broadcastChanges(CallbackInfo ci) {
         eae$blockingMode = logic.getConfigManager().getSetting(ExpSettings.BLOCKING_MODE);
     }
