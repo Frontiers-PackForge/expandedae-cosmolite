@@ -1,9 +1,6 @@
 package lu.kolja.expandedae.block.entity;
 
 import appeng.api.stacks.AEItemKey;
-import appeng.api.upgrades.IUpgradeInventory;
-import appeng.api.upgrades.IUpgradeableObject;
-import appeng.api.upgrades.UpgradeInventories;
 import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.menu.ISubMenu;

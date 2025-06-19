@@ -13,10 +13,11 @@ public class NumberUtil {
 
     private static final Style NUMBER = Style.EMPTY.withColor(0x886EFF);
     private static final Style UNIT = Style.EMPTY.withColor(0xEE82EE);
+    private static final DecimalFormat DF = new DecimalFormat("#.##");
 
-    public static String formatBigInteger(BigInteger number) {
+    public static String formatBigInt(BigInteger number) {
         if (number.compareTo(BigInteger.ZERO) < 0) {
-            return "-" + formatBigInteger(number.negate());
+            return "-" + formatBigInt(number.negate());
         }
 
         int unitIndex = 0;
@@ -26,8 +27,7 @@ public class NumberUtil {
             unitIndex++;
         }
 
-        DecimalFormat df = new DecimalFormat("#.##");
-        String formattedNumber = df.format(temp.doubleValue());
+        String formattedNumber = DF.format(temp.doubleValue());
 
 //        if (formattedNumber.endsWith(".00")) {
 //            formattedNumber = formattedNumber.substring(0, formattedNumber.length() - 3);
@@ -40,8 +40,14 @@ public class NumberUtil {
         return formattedNumber + UNITS[unitIndex];
     }
 
+    public static String formatDouble(double number) {
+        if (number < 1000) return DF.format(number);
+        int unit = Math.min((int) (Math.log10(number) / 3), UNITS.length - 1);
+        return DF.format(number / Math.pow(1000, unit)) + UNITS[unit];
+    }
+
     public static Component numberText(BigInteger number) {
-        String text = formatBigInteger(number);
+        String text = formatBigInt(number);
         if (text.matches(".*[a-zA-Z]$")) {
             return Component.literal(text.substring(0, text.length() - 1)).withStyle(NUMBER)
                 .append(Component.literal(text.substring(text.length() - 1)).withStyle(UNIT));

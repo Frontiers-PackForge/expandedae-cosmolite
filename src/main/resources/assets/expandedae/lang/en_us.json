@@ -15,6 +15,13 @@
   "item.expandedae.sticky_card": "Sticky Card",
   "item.expandedae.filter_terminal": "Filter Terminal",
 
+  "item.expandedae.artificial_universe_item_cell": "Artificial Universe Item Cell",
+  "item.expandedae.artificial_universe_fluid_cell": "Artificial Universe Fluid Cell",
+  "item.expandedae.artificial_universe_chemical_cell": "Artificial Universe Chemical Cell",
+  "item.expandedae.artificial_universe_fe_cell": "Artificial Universe FE Cell",
+  "item.expandedae.artificial_universe_source_cell": "Artificial Universe Source Cell",
+  "item.expandedae.artificial_universe_mana_cell": "Artificial Universe Mana Cell",
+
   "item.expandedae.advanced_blocking_card.tooltip.1": "Exposes the entire networks contents when placed in an interface",
   "item.expandedae.auto_complete_card.tooltip.1": "Automatically completes the crafting job",
   "item.expandedae.auto_complete_card.tooltip.2": "Note: This only works for single requests",

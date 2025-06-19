@@ -108,6 +108,7 @@ repositories {
         content {
             includeGroup "appeng"
             includeGroup "de.mari_023"
+            includeGroup "mekanism"
         }
     }
     maven { // Registrate
@@ -142,18 +143,22 @@ dependencies {
     //runtimeOnly fg.deobf("curse.maven:modern-ae2-additions-1028068:6342203")
 
     implementation fg.deobf("curse.maven:applied-energistics-2-wireless-terminals-459929:5217955")
-    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
-    implementation fg.deobf("curse.maven:curios-309927:6418456")
+    runtimeOnly fg.deobf("curse.maven:architectury-api-419699:5137938")
+    runtimeOnly fg.deobf("curse.maven:curios-309927:6418456")
 
-    implementation fg.deobf("curse.maven:geckolib-388172:6027567")
+    runtimeOnly fg.deobf("curse.maven:geckolib-388172:6027567")
     implementation fg.deobf("curse.maven:mega-cells-622112:6175008")
-    implementation fg.deobf("curse.maven:cloth-config-348521:5729105")
+    runtimeOnly fg.deobf("curse.maven:cloth-config-348521:5729105")
 
     implementation fg.deobf("curse.maven:advancedae-1084104:6205290")
 
     compileOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
     runtimeOnly fg.deobf("curse.maven:jade-324717:6271651")
+    runtimeOnly fg.deobf("curse.maven:observable-509575:5643037")
+    runtimeOnly fg.deobf("curse.maven:architectury-api-419699:5137938")
+    runtimeOnly fg.deobf("curse.maven:kotlin-for-forge-351264:5402061")
+    runtimeOnly fg.deobf("curse.maven:infinite-storage-cell-1173691:6155997")
 
     implementation 'org.spongepowered:mixin:0.8.5'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
@@ -161,6 +166,17 @@ dependencies {
     implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {
         jarJar.ranged(it, "[0.4.1,)")
     }
+
+    //ADDONS
+    implementation fg.deobf("curse.maven:applied-mekanistics-574300:4842281")
+    runtimeOnly fg.deobf("curse.maven:mekanism-268560:6552911")
+
+    implementation fg.deobf("curse.maven:applied-botanics-addon-610632:4904185")
+    runtimeOnly fg.deobf("curse.maven:botania-225643:6366547")
+    runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
+
+    implementation fg.deobf("curse.maven:ars-energistique-905641:5504444")
+    runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:5894609")
 }
 
 

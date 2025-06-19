@@ -10,7 +10,6 @@ import appeng.client.gui.widgets.ServerSettingToggleButton;
 import appeng.client.gui.widgets.SettingToggleButton;
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
-import appeng.menu.implementations.IOPortMenu;
 import lu.kolja.expandedae.menu.ExpIOPortMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
