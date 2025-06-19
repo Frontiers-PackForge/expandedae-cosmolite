@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "expandedae:block/exp_io_port_bottom",
+    "side": "expandedae:block/exp_io_port_side",
+    "top": "expandedae:block/exp_io_port_top"
+  }
+}

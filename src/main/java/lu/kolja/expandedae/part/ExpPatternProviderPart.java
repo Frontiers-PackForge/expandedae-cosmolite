@@ -11,7 +11,7 @@ import appeng.menu.locator.MenuLocator;
 import appeng.parts.PartModel;
 import appeng.parts.crafting.PatternProviderPart;
 import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.block.ExpPatternProviderBlock;
+import lu.kolja.expandedae.block.block.ExpPatternProviderBlock;
 import lu.kolja.expandedae.definition.ExpItems;
 import lu.kolja.expandedae.definition.ExpMenus;
 import net.minecraft.resources.ResourceLocation;

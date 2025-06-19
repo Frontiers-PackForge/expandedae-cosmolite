@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.block;
+package lu.kolja.expandedae.block.block;
 
 import appeng.api.networking.IManagedGridNode;
 import appeng.api.upgrades.IUpgradeableObject;

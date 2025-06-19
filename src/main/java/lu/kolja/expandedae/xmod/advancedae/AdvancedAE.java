@@ -4,7 +4,7 @@ import appeng.api.upgrades.Upgrades;
 import net.pedroksl.advanced_ae.common.definitions.AAEBlocks;
 import net.pedroksl.advanced_ae.common.definitions.AAEItems;
 
-import static lu.kolja.expandedae.definition.ExpItems.*;
+import static lu.kolja.expandedae.definition.ExpItems.AUTO_COMPLETE_CARD;
 
 public class AdvancedAE {
     public AdvancedAE() {

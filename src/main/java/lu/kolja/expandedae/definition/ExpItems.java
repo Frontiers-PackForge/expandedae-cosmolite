@@ -39,7 +39,6 @@ public class ExpItems {
         return item("Expanded Pattern Provider", "exp_pattern_provider_part", ExpPatternProviderPartItem::new);
     });
 
-
     public static final ItemDefinition<ExpPatternProviderUpgradeItem> EXP_PATTERN_PROVIDER_UPGRADE = item(
             "Expanded Pattern Provider Upgrade",
             "exp_pattern_provider_upgrade",

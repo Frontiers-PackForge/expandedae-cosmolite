@@ -4,6 +4,7 @@ import appeng.block.AEBaseEntityBlock;
 import appeng.blockentity.AEBaseBlockEntity;
 import appeng.core.definitions.BlockDefinition;
 import lu.kolja.expandedae.Expandedae;
+import lu.kolja.expandedae.block.entity.ExpIOPortBlockEntity;
 import lu.kolja.expandedae.block.entity.ExpPatternProviderBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +23,14 @@ public class ExpBlockEntities {
             "exp_pattern_provider",
             ExpPatternProviderBlockEntity.class,
             ExpPatternProviderBlockEntity::new,
-            ExpBlocks.EXP_PATTERN_PROVIDER);
+            ExpBlocks.EXP_PATTERN_PROVIDER
+    );
+    public static final BlockEntityType<ExpIOPortBlockEntity> EXP_IO_PORT = create(
+            "exp_io_port",
+            ExpIOPortBlockEntity.class,
+            ExpIOPortBlockEntity::new,
+            ExpBlocks.EXP_IO_PORT
+    );
 
     public static Map<ResourceLocation, BlockEntityType<?>> getBlockEntityTypes() {
         return Collections.unmodifiableMap(BLOCK_ENTITY_TYPES);

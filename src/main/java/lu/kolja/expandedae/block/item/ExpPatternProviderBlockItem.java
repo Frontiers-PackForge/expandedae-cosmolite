@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.block;
+package lu.kolja.expandedae.block.item;
 
 import appeng.block.AEBaseBlockItem;
 import net.minecraft.world.level.block.Block;

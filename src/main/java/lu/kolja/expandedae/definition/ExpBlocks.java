@@ -2,8 +2,10 @@ package lu.kolja.expandedae.definition;
 
 import appeng.core.definitions.BlockDefinition;
 import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.block.ExpPatternProviderBlock;
-import lu.kolja.expandedae.block.ExpPatternProviderBlockItem;
+import lu.kolja.expandedae.block.block.ExpIOPortBlock;
+import lu.kolja.expandedae.block.block.ExpPatternProviderBlock;
+import lu.kolja.expandedae.block.item.ExpIOPortBlockItem;
+import lu.kolja.expandedae.block.item.ExpPatternProviderBlockItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -22,6 +24,12 @@ public class ExpBlocks {
             "exp_pattern_provider",
             ExpPatternProviderBlock::new,
             ExpPatternProviderBlockItem::new
+    );
+    public static final BlockDefinition<ExpIOPortBlock> EXP_IO_PORT = block(
+            "Expanded IO Port",
+            "exp_io_port",
+            ExpIOPortBlock::new,
+            ExpIOPortBlockItem::new
     );
 
     public static void init() {

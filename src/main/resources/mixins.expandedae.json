@@ -6,6 +6,7 @@
   "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
+    "accesor.MixinIOPortBlockEntity",
     "compat.appflux.MixinPatternProviderLogicAppFlux",
     "compat.appflux.MixinPatternProviderMenuAppFlux",
     "compat.cosmic.MixinPatternEncodingTerminalMenuCosm",

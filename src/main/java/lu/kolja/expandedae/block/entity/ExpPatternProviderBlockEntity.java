@@ -9,7 +9,7 @@ import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.menu.ISubMenu;
 import appeng.menu.MenuOpener;
 import appeng.menu.locator.MenuLocator;
-import lu.kolja.expandedae.block.ExpPatternProviderBlock;
+import lu.kolja.expandedae.block.block.ExpPatternProviderBlock;
 import lu.kolja.expandedae.definition.ExpBlocks;
 import lu.kolja.expandedae.definition.ExpMenus;
 import net.minecraft.core.BlockPos;
@@ -18,13 +18,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ExpPatternProviderBlockEntity extends PatternProviderBlockEntity implements IUpgradeableObject {
-
-    private IUpgradeInventory inv;
-
+public class ExpPatternProviderBlockEntity extends PatternProviderBlockEntity {
     public ExpPatternProviderBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType, pos, blockState);
-        inv = UpgradeInventories.forMachine(ExpBlocks.EXP_PATTERN_PROVIDER, 4, this::saveChanges);
     }
 
     @Override

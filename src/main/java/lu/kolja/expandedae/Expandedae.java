@@ -5,6 +5,7 @@ import appeng.init.client.InitScreens;
 import com.mojang.logging.LogUtils;
 import lu.kolja.expandedae.definition.*;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
+import lu.kolja.expandedae.screen.ExpIOPortScreen;
 import lu.kolja.expandedae.xmod.XMod;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -32,7 +33,6 @@ public class Expandedae {
     public Expandedae() {
         registerMenus();
         initResources();
-
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::clientSetup);
         modEventBus.addListener(this::commonSetup);
@@ -80,6 +80,11 @@ public class Expandedae {
                 ExpMenus.EXP_PATTERN_PROVIDER,
                 PatternProviderScreen<ExpPatternProviderMenu>::new,
                 "/screens/exp_pattern_provider.json"
+        );
+        InitScreens.register(
+                ExpMenus.EXP_IO_PORT,
+                ExpIOPortScreen::new,
+                "/screens/exp_io_port.json"
         );
     }
 }

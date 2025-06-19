@@ -78,9 +78,18 @@ minecraft {
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
+    mixin {
+        add sourceSets.main, "mixins.${mod_id}.json"
+        defaultObfuscationEnv 'searge'
+    }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets {
+    main {
+        ext.refMap = "mixins.${mod_id}.refmap.json"
+    }
+}
 
 repositories {
     mavenLocal()
