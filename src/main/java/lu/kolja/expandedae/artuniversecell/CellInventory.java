@@ -222,7 +222,7 @@ public class CellInventory implements StorageCell {
         for (long storedAmount : getCellStoredMap().values()) {
             itemCount += storedAmount;
         }
-        return NumberUtil.formatDouble(itemCount);
+        return NumberUtil.formatNum(itemCount);
     }
 
     public String getMaxTypes() {

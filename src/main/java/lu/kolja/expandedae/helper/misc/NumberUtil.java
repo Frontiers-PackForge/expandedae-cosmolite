@@ -40,7 +40,7 @@ public class NumberUtil {
         return formattedNumber + UNITS[unitIndex];
     }
 
-    public static String formatDouble(double number) {
+    public static String formatNum(double number) {
         if (number < 1000) return DF.format(number);
         int unit = Math.min((int) (Math.log10(number) / 3), UNITS.length - 1);
         return DF.format(number / Math.pow(1000, unit)) + UNITS[unit];

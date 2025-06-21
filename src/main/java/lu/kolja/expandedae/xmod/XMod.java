@@ -18,8 +18,10 @@ public class XMod {
         ARSENG("arseng"),
         APPBOT("appbot");
 
-        private final String mod;
-        Mods(String mod) { this.mod = mod; }
+        public final String mod;
+        Mods(String mod) {
+            this.mod = mod;
+        }
         public boolean isLoaded() { return ModList.get().isLoaded(mod); }
         public Component getUnavailableTooltip() {
             return Component.literal("Mod " + mod + " not installed!").withStyle(ChatFormatting.DARK_RED);

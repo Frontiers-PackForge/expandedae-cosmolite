@@ -29,4 +29,8 @@ public class Maths {
     public static int clamp_int(int num, int min, int max) {
         return num < min ? min : (Math.min(num, max));
     }
+
+    public static int pow(int base, int exp) {
+        return (int) Math.pow(base, exp);
+    }
 }

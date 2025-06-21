@@ -84,7 +84,9 @@ minecraft {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
 sourceSets {
     main {
         ext.refMap = "mixins.${mod_id}.refmap.json"
@@ -226,3 +228,7 @@ reobf {
 }
 
 tasks.jarJar.finalizedBy('reobfJarJar')
+
+tasks.withType(Copy).configureEach {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}

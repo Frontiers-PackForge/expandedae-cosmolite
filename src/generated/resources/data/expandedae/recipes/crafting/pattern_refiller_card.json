@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "ae2:advanced_card"
+    },
+    "B": {
+      "item": "ae2:blank_pattern"
+    },
+    "E": {
+      "item": "ae2:engineering_processor"
+    }
+  },
+  "pattern": [
+    "AB",
+    "BE"
+  ],
+  "result": {
+    "item": "expandedae:pattern_refiller_card"
+  },
+  "show_notification": true
+}

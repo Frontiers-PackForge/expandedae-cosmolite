@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_capacity_card": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ae2:capacity_card"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_engineering_processor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ae2:engineering_processor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "expandedae:crafting/exp_pattern_provider_upgrade"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_engineering_processor",
+      "has_capacity_card",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "expandedae:crafting/exp_pattern_provider_upgrade"
+    ]
+  },
+  "sends_telemetry_event": false
+}

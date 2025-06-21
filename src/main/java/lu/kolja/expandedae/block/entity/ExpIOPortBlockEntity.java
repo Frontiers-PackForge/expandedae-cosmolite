@@ -9,7 +9,7 @@ import appeng.core.definitions.AEItems;
 import appeng.util.inv.AppEngInternalInventory;
 import com.glodblock.github.extendedae.util.Ae2Reflect;
 import lu.kolja.expandedae.definition.ExpBlocks;
-import lu.kolja.expandedae.mixin.accesor.MixinIOPortBlockEntity;
+import lu.kolja.expandedae.mixin.accessor.AccessorIOPortBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,7 +20,7 @@ public class ExpIOPortBlockEntity extends IOPortBlockEntity {
 
     public ExpIOPortBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType, pos, blockState);
-        this.inputCells = ((MixinIOPortBlockEntity) this).getInputCells();
+        this.inputCells = ((AccessorIOPortBlockEntity) this).getInputCells();
         Ae2Reflect.setIOPortUpgrade(this, UpgradeInventories.forMachine(ExpBlocks.EXP_IO_PORT, 5, this::saveChanges));
     }
 
@@ -51,12 +51,12 @@ public class ExpIOPortBlockEntity extends IOPortBlockEntity {
             var cellInv = StorageCells.getCellInventory(cell, null);
 
             if (cellInv == null) {
-                ((MixinIOPortBlockEntity) this).invokeMoveSlot(x);
+                ((AccessorIOPortBlockEntity) this).invokeMoveSlot(x);
                 continue;
             }
 
             if (itemsToMove > 0) {
-                itemsToMove = ((MixinIOPortBlockEntity) this).invokeTransferContents(grid, cellInv, itemsToMove);
+                itemsToMove = ((AccessorIOPortBlockEntity) this).invokeTransferContents(grid, cellInv, itemsToMove);
 
                 if (itemsToMove > 0) {
                     ret = TickRateModulation.IDLE;
@@ -65,7 +65,7 @@ public class ExpIOPortBlockEntity extends IOPortBlockEntity {
                 }
             }
 
-            if (itemsToMove > 0 && matchesFullnessMode(cellInv) && ((MixinIOPortBlockEntity) this).invokeMoveSlot(x)) {
+            if (itemsToMove > 0 && matchesFullnessMode(cellInv) && ((AccessorIOPortBlockEntity) this).invokeMoveSlot(x)) {
                 ret = TickRateModulation.URGENT;
             }
         }

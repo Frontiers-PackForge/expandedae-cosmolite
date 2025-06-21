@@ -14,8 +14,8 @@ import gripe._90.arseng.me.key.SourceKeyType;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
 import lu.kolja.expandedae.item.cards.ItemPatternRefillerCard;
+import lu.kolja.expandedae.item.dummy.DummyItem;
 import lu.kolja.expandedae.item.misc.ArtUniverseCellItem;
-import lu.kolja.expandedae.item.misc.DummyItem;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import lu.kolja.expandedae.part.ExpPatternProviderPart;
@@ -41,6 +41,8 @@ public class ExpItems {
     }
 
     private static final List<ItemDefinition<?>> ITEMS = new ArrayList<>();
+    private static final List<ItemDefinition<?>> CELLS = new ArrayList<>();
+    private static final List<ItemDefinition<?>> CPUS = new ArrayList<>();
 
     public static final ItemDefinition<ExpPatternProviderPartItem> EXP_PATTERN_PROVIDER_PART = Util.make(() -> {
         PartModels.registerModels(PartModelsHelper.createModels(ExpPatternProviderPart.class));
@@ -93,24 +95,30 @@ public class ExpItems {
             XMod.Mods.APPBOT
     );
 
-
     public static List<ItemDefinition<?>> getItems() {
         return Collections.unmodifiableList(ITEMS);
+    }
+    public static List<ItemDefinition<?>> getCells() {
+        return Collections.unmodifiableList(CELLS);
     }
 
     public static ItemDefinition<ArtUniverseCellItem> cell(
             String englishName, AEKeyType keyType
     ) {
-        return item(englishName, englishName.toLowerCase().replace(" ", "_"),
+        var def = item(englishName, englishName.toLowerCase().replace(" ", "_"),
                 p -> new ArtUniverseCellItem(keyType)
         );
+        CELLS.add(def);
+        return def;
     }
     public static ItemDefinition<Item> addonCell(
             String englishName, AEKeyType keyType, XMod.Mods mod
     ) {
-        return item(englishName, englishName.toLowerCase().replace(" ", "_"),
+        var def = item(englishName, englishName.toLowerCase().replace(" ", "_"),
                 p -> mod.isLoaded() ? new ArtUniverseCellItem(keyType) : new DummyItem(p, mod)
         );
+        CELLS.add(def);
+        return def;
     }
 
     public static <T extends IPart> ItemDefinition<PartItem<T>> part(
