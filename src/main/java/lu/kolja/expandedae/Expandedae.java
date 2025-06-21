@@ -32,15 +32,6 @@ public class Expandedae {
                 () -> Proxy.Client::new,
                 () -> Proxy.Server::new
         ).init(modEventBus);
-        var rarity = Rarity.UNCOMMON;
-
-        switch (rarity) {
-            case COMMON -> System.out.println("common");
-            case UNCOMMON -> System.out.println("uncommon");
-            case RARE -> System.out.println("rare");
-            case EPIC -> System.out.println("epic");
-            default -> throw new IllegalStateException("Unknown rarity");
-        }
     }
 
     @Contract("_ -> new")
