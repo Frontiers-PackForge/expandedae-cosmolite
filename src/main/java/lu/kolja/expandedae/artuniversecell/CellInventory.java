@@ -37,7 +37,7 @@ public class CellInventory implements StorageCell {
     @Getter
     private IncludeExclude partitionListMode;
 
-    private CellInventory(AEKeyType keyType, ItemStack stack, ISaveProvider saveProvider, ArtUniverseCellItem cellType,int maxTypes) {
+    private CellInventory(AEKeyType keyType, ItemStack stack, ISaveProvider saveProvider, ArtUniverseCellItem cellType, int maxTypes) {
         this.stack = stack;
         container = saveProvider;
         this.keyType = keyType;
@@ -181,6 +181,7 @@ public class CellInventory implements StorageCell {
             loadCellStoredMap();
         }
         long currentAmount = getCellStoredMap().getLong(what);
+        if (currentAmount == Long.MAX_VALUE) return 0;
         if (mode == Actionable.MODULATE) {
             getCellStoredMap().put(what, currentAmount + amount);
             saveChanges();
