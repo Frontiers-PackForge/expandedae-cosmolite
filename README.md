@@ -59,3 +59,6 @@ Basically, if you had Storage Bus A and B, and one had a sticky card with the fi
 
 - [ ] Middle mouse click on a stack in emi allows to order it directly
 - [ ] Shift click patterns into pattern access terminal(?)
+
+---
+_Note: The Files [IDEAS.md](<https://github.com/ko-lja/expandedae/blob/cosmic-frontiers/IDEAS.md>) and [TODO.md](<https://github.com/ko-lja/expandedae/blob/cosmic-frontiers/TODO.md>) are licensed under All Rights Reserved_
