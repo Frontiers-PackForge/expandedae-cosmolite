@@ -3,7 +3,7 @@ package lu.kolja.expandedae.datagen;
 import appeng.block.crafting.AbstractCraftingUnitBlock;
 import appeng.datagen.providers.models.AE2BlockStateProvider;
 import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.enums.ExpCraftingCPU;
+import lu.kolja.expandedae.enums.ExpTiers;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -25,13 +25,10 @@ public class ExpModelProvider extends AE2BlockStateProvider {
         // CARDS
         basicItem(AUTO_COMPLETE_CARD);
         basicItem(PATTERN_REFILLER_CARD);
-
-        // CELLS
-        getCells().forEach(this::basicItem); //TODO: Add drive model generation
         // CPU
-        for (var cpu : ExpCraftingCPU.values()) {
+        for (var cpu : ExpTiers.values()) {
             var block = cpu.getDefinition().block();
-            var name = cpu.getAffix();
+            var name = cpu.isCPU() ? cpu.getCpuAffix() : cpu.getAffix();
             var model = models().cubeAll("block/crafting/" + name, Expandedae.makeId("block/crafting/" + name));
             getVariantBuilder(block)
                     .partialState()

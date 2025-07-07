@@ -22,11 +22,8 @@ public class Expandedae {
 
     //getActionableNode().getGrid().getStorageService().getInventory().insert() TODO IMPLEMENT TO STICKY CARD
 
-    public Expandedae() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        modEventBus.register(ExpConfig.class);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ExpConfig.SPEC);
+    public Expandedae(FMLJavaModLoadingContext ctx) {
+        IEventBus modEventBus = ctx.getModEventBus();
 
         DistExecutor.safeRunForDist(
                 () -> Proxy.Client::new,
@@ -36,6 +33,6 @@ public class Expandedae {
 
     @Contract("_ -> new")
     public static @NotNull ResourceLocation makeId(String path) {
-        return new ResourceLocation(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }

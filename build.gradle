@@ -131,6 +131,10 @@ repositories {
         name "firstdarkdev"
         url "https://maven.firstdarkdev.xyz/snapshots"
     }
+    maven {
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
 }
 
 dependencies {
@@ -154,8 +158,6 @@ dependencies {
 
     implementation fg.deobf("curse.maven:advancedae-1084104:6205290")
 
-    compileOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
-    runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
     runtimeOnly fg.deobf("curse.maven:jade-324717:6271651")
     runtimeOnly fg.deobf("curse.maven:observable-509575:5643037")
     runtimeOnly fg.deobf("curse.maven:architectury-api-419699:5137938")
@@ -179,6 +181,14 @@ dependencies {
 
     implementation fg.deobf("curse.maven:ars-energistique-905641:5504444")
     runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:5894609")
+
+    implementation fg.deobf("dev.emi:emi-forge:${emi_version}")
+    /*
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
+    compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
+    // at runtime, use the full JEI jar for Forge
+    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
+    */
 }
 
 
@@ -228,7 +238,3 @@ reobf {
 }
 
 tasks.jarJar.finalizedBy('reobfJarJar')
-
-tasks.withType(Copy).configureEach {
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-}

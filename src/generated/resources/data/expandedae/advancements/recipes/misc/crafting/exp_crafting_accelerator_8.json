@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_4": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "expandedae:exp_crafting_accelerator_4"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "expandedae:crafting/exp_crafting_accelerator_8"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_4",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "expandedae:crafting/exp_crafting_accelerator_8"
+    ]
+  },
+  "sends_telemetry_event": false
+}

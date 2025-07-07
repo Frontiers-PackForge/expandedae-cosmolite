@@ -1,0 +1,34 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "expatternprovider"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "A": {
+            "item": "ae2:speed_card"
+          },
+          "I": {
+            "item": "expatternprovider:ex_io_port"
+          }
+        },
+        "pattern": [
+          "AAA",
+          "AIA",
+          "AAA"
+        ],
+        "result": {
+          "item": "expandedae:exp_io_port"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

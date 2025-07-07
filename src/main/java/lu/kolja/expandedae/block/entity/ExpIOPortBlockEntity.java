@@ -7,8 +7,8 @@ import appeng.api.upgrades.UpgradeInventories;
 import appeng.blockentity.storage.IOPortBlockEntity;
 import appeng.core.definitions.AEItems;
 import appeng.util.inv.AppEngInternalInventory;
-import com.glodblock.github.extendedae.util.Ae2Reflect;
 import lu.kolja.expandedae.definition.ExpBlocks;
+import lu.kolja.expandedae.helper.misc.ExpReflection;
 import lu.kolja.expandedae.mixin.accessor.AccessorIOPortBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -21,7 +21,9 @@ public class ExpIOPortBlockEntity extends IOPortBlockEntity {
     public ExpIOPortBlockEntity(BlockEntityType<?> blockEntityType, BlockPos pos, BlockState blockState) {
         super(blockEntityType, pos, blockState);
         this.inputCells = ((AccessorIOPortBlockEntity) this).getInputCells();
-        Ae2Reflect.setIOPortUpgrade(this, UpgradeInventories.forMachine(ExpBlocks.EXP_IO_PORT, 5, this::saveChanges));
+
+        var field = ExpReflection.getField(IOPortBlockEntity.class, "upgrades");
+        ExpReflection.setField(this, field, UpgradeInventories.forMachine(ExpBlocks.EXP_IO_PORT, 5, this::saveChanges));
     }
 
     @Override
@@ -31,7 +33,7 @@ public class ExpIOPortBlockEntity extends IOPortBlockEntity {
         }
 
         var ret = TickRateModulation.SLEEP;
-        long itemsToMove = Integer.MAX_VALUE; // 2^22
+        long itemsToMove = Integer.MAX_VALUE / 512;
 
         switch (this.getUpgrades().getInstalledUpgrades(AEItems.SPEED_CARD)) {
             case 1 -> itemsToMove *= 2;

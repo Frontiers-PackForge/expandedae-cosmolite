@@ -45,7 +45,7 @@ public abstract class MixinPatternProviderMenuCosm extends AEBaseMenu implements
     @Inject(
             method = "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/patternprovider/PatternProviderLogicHost;)V",
             at = @At("TAIL"),
-            remap = true
+            remap = false
     )
     private void initToolbox(MenuType<?> menuType, int id, Inventory playerInventory, PatternProviderLogicHost host, CallbackInfo ci) {
         this.eae_$toolbox = new ToolboxMenu(this);

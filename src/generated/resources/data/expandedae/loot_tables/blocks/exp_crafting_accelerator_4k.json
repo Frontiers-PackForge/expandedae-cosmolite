@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "expandedae:exp_crafting_accelerator_4k"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "expandedae:blocks/exp_crafting_accelerator_4k"
+}

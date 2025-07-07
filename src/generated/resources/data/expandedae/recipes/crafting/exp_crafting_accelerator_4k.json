@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "expandedae:exp_crafting_accelerator_2k"
+    },
+    {
+      "item": "expandedae:exp_crafting_accelerator_2k"
+    }
+  ],
+  "result": {
+    "item": "expandedae:exp_crafting_accelerator_4k"
+  }
+}

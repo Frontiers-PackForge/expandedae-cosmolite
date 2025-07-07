@@ -53,7 +53,7 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
     @Inject(
             method = "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/patternprovider/PatternProviderLogicHost;)V",
             at = @At("TAIL"),
-            remap = true
+            remap = false
     )
     private void initToolbox(MenuType<?> menuType, int id, Inventory playerInventory, PatternProviderLogicHost host, CallbackInfo ci) {
         this.eae_$toolbox = new ToolboxMenu(this);
@@ -150,7 +150,7 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
     @Inject(method = "broadcastChanges",
             at = @At(value = "INVOKE",
                     target = "Lappeng/helpers/patternprovider/PatternProviderLogic;getUnlockStack()Lappeng/api/stacks/GenericStack;",
-                    remap = true
+                    remap = false
             )
     )
     private void broadcastChanges(CallbackInfo ci) {

@@ -37,12 +37,5 @@ public class ExpCreativeTab {
                 output.accept(itemDef);
             }
         }
-        var cpus = ExpBlocks.getCPUs();
-        for (var cpu : cpus.keySet()) {
-            var item = cpus.get(cpu).block();
-            if (cpu.isEnabled()) {
-                item.addToMainCreativeTab(output);
-            }
-        }
     }
 }

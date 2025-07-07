@@ -1,0 +1,40 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "expandedae:mod_not_loaded",
+          "modid": "megacells"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "C": {
+            "item": "ae2:fluix_smart_dense_cable"
+          },
+          "L": {
+            "item": "ae2:logic_processor"
+          },
+          "P": {
+            "item": "ae2:engineering_processor"
+          },
+          "U": {
+            "item": "ae2:crafting_unit"
+          }
+        },
+        "pattern": [
+          "UPU",
+          "CLC",
+          "UPU"
+        ],
+        "result": {
+          "item": "expandedae:exp_crafting_unit"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

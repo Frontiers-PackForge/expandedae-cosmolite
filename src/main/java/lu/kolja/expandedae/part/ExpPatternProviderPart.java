@@ -23,10 +23,10 @@ import java.util.List;
 
 public class ExpPatternProviderPart extends PatternProviderPart {
     public static List<ResourceLocation> MODELS = Arrays.asList(
-            new ResourceLocation(Expandedae.MODID, "part/exp_pattern_provider_base"),
-            new ResourceLocation(AppEngBase.MOD_ID, "part/interface_on"),
-            new ResourceLocation(AppEngBase.MOD_ID, "part/interface_off"),
-            new ResourceLocation(AppEngBase.MOD_ID, "part/interface_has_channel")
+            Expandedae.makeId("part/exp_pattern_provider_base"),
+            ResourceLocation.fromNamespaceAndPath(AppEngBase.MOD_ID, "part/interface_on"),
+            ResourceLocation.fromNamespaceAndPath(AppEngBase.MOD_ID, "part/interface_off"),
+            ResourceLocation.fromNamespaceAndPath(AppEngBase.MOD_ID, "part/interface_has_channel")
     );
     @PartModels
     public static final PartModel MODELS_OFF = new PartModel(MODELS.get(0), MODELS.get(2));

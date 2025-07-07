@@ -1,26 +1,18 @@
 package lu.kolja.expandedae.definition;
 
-import appbot.ae2.ManaKeyType;
 import appeng.api.ids.AECreativeTabIds;
 import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.PartModels;
-import appeng.api.stacks.AEKeyType;
 import appeng.core.definitions.ItemDefinition;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
-import com.glodblock.github.appflux.common.me.key.type.FluxKeyType;
-import gripe._90.arseng.me.key.SourceKeyType;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
 import lu.kolja.expandedae.item.cards.ItemPatternRefillerCard;
-import lu.kolja.expandedae.item.dummy.DummyItem;
-import lu.kolja.expandedae.item.misc.ArtUniverseCellItem;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import lu.kolja.expandedae.part.ExpPatternProviderPart;
-import lu.kolja.expandedae.xmod.XMod;
-import me.ramidzkh.mekae2.ae2.MekanismKeyType;
 import net.minecraft.Util;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -66,59 +58,8 @@ public class ExpItems {
             ItemPatternRefillerCard::new
     );
 
-    public static final ItemDefinition<ArtUniverseCellItem> ART_ITEM = cell(
-            "Artificial Universe Item Cell",
-            AEKeyType.items()
-    );
-    public static final ItemDefinition<ArtUniverseCellItem> ART_FLUID = cell(
-            "Artificial Universe Fluid Cell",
-            AEKeyType.fluids()
-    );
-    public static final ItemDefinition<Item> ART_CHEMICAL = addonCell(
-            "Artificial Universe Chemical Cell",
-            MekanismKeyType.TYPE,
-            XMod.Mods.APPMEK
-    );
-    public static final ItemDefinition<Item> ART_FE = addonCell(
-            "Artificial Universe FE Cell",
-            FluxKeyType.TYPE,
-            XMod.Mods.APPFLUX
-    );
-    public static final ItemDefinition<Item> ART_SOURCE = addonCell(
-            "Artificial Universe Source Cell",
-            SourceKeyType.TYPE,
-            XMod.Mods.ARSENG
-    );
-    public static final ItemDefinition<Item> ART_MANA = addonCell(
-            "Artificial Universe Mana Cell",
-            ManaKeyType.TYPE,
-            XMod.Mods.APPBOT
-    );
-
     public static List<ItemDefinition<?>> getItems() {
         return Collections.unmodifiableList(ITEMS);
-    }
-    public static List<ItemDefinition<?>> getCells() {
-        return Collections.unmodifiableList(CELLS);
-    }
-
-    public static ItemDefinition<ArtUniverseCellItem> cell(
-            String englishName, AEKeyType keyType
-    ) {
-        var def = item(englishName, englishName.toLowerCase().replace(" ", "_"),
-                p -> new ArtUniverseCellItem(keyType)
-        );
-        CELLS.add(def);
-        return def;
-    }
-    public static ItemDefinition<Item> addonCell(
-            String englishName, AEKeyType keyType, XMod.Mods mod
-    ) {
-        var def = item(englishName, englishName.toLowerCase().replace(" ", "_"),
-                p -> mod.isLoaded() ? new ArtUniverseCellItem(keyType) : new DummyItem(p, mod)
-        );
-        CELLS.add(def);
-        return def;
     }
 
     public static <T extends IPart> ItemDefinition<PartItem<T>> part(
