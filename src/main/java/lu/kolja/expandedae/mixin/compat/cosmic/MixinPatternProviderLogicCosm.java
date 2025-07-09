@@ -7,16 +7,9 @@ import appeng.api.stacks.KeyCounter;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableObject;
 import appeng.api.upgrades.UpgradeInventories;
-import appeng.client.gui.me.common.FinishedJobToast;
-import appeng.client.gui.me.common.MEStorageScreen;
-import appeng.core.AEConfig;
 import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
-import appeng.items.tools.powered.WirelessTerminalItem;
-import appeng.util.SearchInventoryEvent;
 import lu.kolja.expandedae.definition.ExpItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
@@ -124,31 +117,10 @@ public abstract class MixinPatternProviderLogicCosm implements IUpgradeableObjec
                     var outputWhatId = outputs.what().getId();
                     if (whatId == outputWhatId) {
                         x.cancelJob();
-                        var minecraft = Minecraft.getInstance();
-                        if (AEConfig.instance().isNotifyForFinishedCraftingJobs()
-                            && !(minecraft.screen instanceof MEStorageScreen<?>)
-                            && minecraft.player != null && expandedae$hasNotificationEnablingItem(minecraft.player)) {
-                            minecraft.getToasts().addToast(new FinishedJobToast(what, 1)); //set to 1 since the card doesn't support more
-                        }
-                        return;
                     }
                 }
             });
         }
-    }
-    @Unique
-    private static boolean expandedae$hasNotificationEnablingItem(LocalPlayer player) {
-        for (ItemStack stack : SearchInventoryEvent.getItems(player)) {
-            if (!stack.isEmpty()
-                    && stack.getItem() instanceof WirelessTerminalItem wirelessTerminal
-                    // Should have some power
-                    && wirelessTerminal.getAECurrentPower(stack) > 0
-                    // Should be linked (we don't know if it's linked to the grid for which we get notifications)
-                    && wirelessTerminal.getLinkedPosition(stack) != null) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Unique

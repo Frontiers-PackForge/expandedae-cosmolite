@@ -142,7 +142,6 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
             at = @At("TAIL"),
             remap = true
     )
-    @Unique
     public void tickToolbox(CallbackInfo ci) {
         this.eae_$toolbox.tick();
     }

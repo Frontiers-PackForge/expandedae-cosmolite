@@ -1,8 +1,8 @@
 package lu.kolja.expandedae.xmod.emi.converters;
 
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
+
+import java.util.List;
 
 /**
  * Register your {@link EmiStackConverter} instances for JEI here.

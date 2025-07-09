@@ -1,16 +1,13 @@
 package lu.kolja.expandedae.xmod.emi.converters;
 
-import dev.emi.emi.api.forge.ForgeEmiStack;
-import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
-
-import dev.emi.emi.api.stack.EmiStack;
-
 import appeng.api.stacks.AEFluidKey;
 import appeng.api.stacks.GenericStack;
+import dev.emi.emi.api.forge.ForgeEmiStack;
+import dev.emi.emi.api.stack.EmiStack;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.Nullable;
 
 public class EmiFluidStackConverter implements EmiStackConverter {
     @Override

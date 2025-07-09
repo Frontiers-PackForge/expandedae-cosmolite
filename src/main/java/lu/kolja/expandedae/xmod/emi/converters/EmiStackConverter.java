@@ -1,10 +1,8 @@
 package lu.kolja.expandedae.xmod.emi.converters;
 
-import org.jetbrains.annotations.Nullable;
-
-import dev.emi.emi.api.stack.EmiStack;
-
 import appeng.api.stacks.GenericStack;
+import dev.emi.emi.api.stack.EmiStack;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Implement this interface to provide AE2s EMI integration with a new way to convert between AE2 {@link GenericStack}

@@ -32,7 +32,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
     );*/
 
     /**
-     * If mod b is loaded, don't load class A
+     * If mod(s) b is loaded, don't load class A
      */
     public static final Object2ObjectMap<String, List<String>> mixinMap = new Object2ObjectOpenHashMap<>(
         new String[]{"lu.kolja.expandedae.mixin.terminal.MixinProcessingEncodingPanel",

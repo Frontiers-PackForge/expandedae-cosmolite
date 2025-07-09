@@ -28,7 +28,7 @@ import java.util.Arrays;
 
 @Mixin(value = PatternProviderMenu.class, remap = false)
 public abstract class MixinPatternProviderMenuAppFlux extends AEBaseMenu implements IUpgradableMenu, IPatternProvider {
-    @Shadow @Final protected PatternProviderLogic logic;
+    @Shadow(remap = false) @Final protected PatternProviderLogic logic;
     @Unique
     private static final int BASE_FACTOR = 2;
 
@@ -109,10 +109,9 @@ public abstract class MixinPatternProviderMenuAppFlux extends AEBaseMenu impleme
         }
     }
 
-    @Inject(method = "broadcastChanges",
-            at = @At(value = "INVOKE",
-                    target = "Lappeng/helpers/patternprovider/PatternProviderLogic;getUnlockStack()Lappeng/api/stacks/GenericStack;"
-            )
+    @Inject(
+            method = "broadcastChanges",
+            at = @At("TAIL")
     )
     private void broadcastChanges(CallbackInfo ci) {
         eae$blockingMode = logic.getConfigManager().getSetting(ExpSettings.BLOCKING_MODE);

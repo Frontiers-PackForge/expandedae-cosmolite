@@ -1,14 +1,11 @@
 package lu.kolja.expandedae.xmod.emi.converters;
 
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-
-import dev.emi.emi.api.stack.EmiStack;
-
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.GenericStack;
+import dev.emi.emi.api.stack.EmiStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import org.jetbrains.annotations.Nullable;
 
 public class EmiItemStackConverter implements EmiStackConverter {
     @Override

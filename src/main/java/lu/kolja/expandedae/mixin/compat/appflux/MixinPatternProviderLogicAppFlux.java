@@ -11,14 +11,9 @@ import appeng.api.stacks.AEKey;
 import appeng.api.stacks.GenericStack;
 import appeng.api.stacks.KeyCounter;
 import appeng.api.upgrades.IUpgradeableObject;
-import appeng.client.gui.me.common.FinishedJobToast;
-import appeng.client.gui.me.common.MEStorageScreen;
-import appeng.core.AEConfig;
 import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
-import appeng.items.tools.powered.WirelessTerminalItem;
 import appeng.util.ConfigManager;
-import appeng.util.SearchInventoryEvent;
 import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import lu.kolja.expandedae.definition.ExpItems;
 import lu.kolja.expandedae.definition.ExpSettings;
@@ -26,12 +21,9 @@ import lu.kolja.expandedae.enums.BlockingMode;
 import lu.kolja.expandedae.helper.patternprovider.IPatternProviderLogic;
 import lu.kolja.expandedae.helper.patternprovider.PatternProviderTarget;
 import lu.kolja.expandedae.helper.patternprovider.PatternProviderTargetCache;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.Nullable;
@@ -122,31 +114,10 @@ public abstract class MixinPatternProviderLogicAppFlux implements IUpgradeableOb
                     var outputWhatId = outputs.what().getId();
                     if (whatId == outputWhatId) {
                         x.cancelJob();
-                        var minecraft = Minecraft.getInstance();
-                        if (AEConfig.instance().isNotifyForFinishedCraftingJobs()
-                                && !(minecraft.screen instanceof MEStorageScreen<?>)
-                                && minecraft.player != null && expandedae$hasNotificationEnablingItem(minecraft.player)) {
-                            minecraft.getToasts().addToast(new FinishedJobToast(what, 1)); //set to 1 since the card doesn't support more
-                        }
-                        return;
                     }
                 }
             });
         }
-    }
-    @Unique
-    private static boolean expandedae$hasNotificationEnablingItem(LocalPlayer player) {
-        for (ItemStack stack : SearchInventoryEvent.getItems(player)) {
-            if (!stack.isEmpty()
-                    && stack.getItem() instanceof WirelessTerminalItem wirelessTerminal
-                    // Should have some power
-                    && wirelessTerminal.getAECurrentPower(stack) > 0
-                    // Should be linked (we don't know if it's linked to the grid for which we get notifications)
-                    && wirelessTerminal.getLinkedPosition(stack) != null) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Unique

@@ -2,7 +2,6 @@ package lu.kolja.expandedae.datagen;
 
 import appeng.api.util.AEColor;
 import appeng.core.definitions.AEBlocks;
-import appeng.core.definitions.AEItems;
 import appeng.core.definitions.AEParts;
 import com.glodblock.github.extendedae.common.EPPItemAndBlock;
 import gripe._90.megacells.definition.MEGABlocks;
@@ -13,11 +12,9 @@ import lu.kolja.expandedae.enums.ExpTiers;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
-import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
@@ -26,9 +23,10 @@ import static appeng.core.definitions.AEItems.*;
 import static appeng.core.definitions.AEParts.PATTERN_PROVIDER;
 import static lu.kolja.expandedae.definition.ExpBlocks.*;
 import static lu.kolja.expandedae.definition.ExpItems.*;
+import static lu.kolja.expandedae.enums.Addons.EXT;
+import static lu.kolja.expandedae.enums.Addons.MEGA;
 import static lu.kolja.expandedae.enums.ExpTiers.*;
 import static net.minecraft.data.recipes.RecipeCategory.MISC;
-import static lu.kolja.expandedae.enums.Addons.*;
 
 public class ExpRecipeProvider extends RecipeProvider {
     public ExpRecipeProvider(PackOutput output) {
