@@ -11,11 +11,9 @@ import appeng.helpers.IMenuCraftingPacket;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.menu.slot.RestrictedInputSlot;
-import de.mari_023.ae2wtlib.wet.WETScreen;
 import de.mari_023.ae2wtlib.wut.WUTHandler;
 import lu.kolja.expandedae.definition.ExpItems;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
+import lu.kolja.expandedae.helper.misc.KeybindUtil;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
@@ -50,15 +48,14 @@ public abstract class MixinPatternEncodingTerminalMenuCosm extends MEStorageMenu
         AtomicReference<Player> player = new AtomicReference<>();
         this.getActionSource().player().ifPresent(player::set);
         if (encodedPatternSlot.getItem() != ItemStack.EMPTY) {
-            if (ContainerScreen.hasShiftDown()) {
-                //if (player.get().getInventory().items.stream().filter(i -> !i.equals(ItemStack.EMPTY)).toList().size() >= 36)
-                player.get().getInventory().add(encodedPatternSlot.getItem());
-                encodedPatternSlot.set(ItemStack.EMPTY);
-                encodedPatternSlot.setChanged();
+            if (KeybindUtil.isShiftDown()) {
+                if (player.get().getInventory().getFreeSlot() > 0) {
+                    player.get().addItem(encodedPatternSlot.getItem());
+                    encodedPatternSlot.set(ItemStack.EMPTY);
+                    encodedPatternSlot.setChanged();
+                }
             }
-        }
 
-        if (Minecraft.getInstance().screen instanceof WETScreen) {
             var terminalItem = expandedae$getTerminalItem(player.get());
             if (terminalItem == null) return;
             if (terminalItem.getItem() instanceof IUpgradeableItem item) {
@@ -78,6 +75,7 @@ public abstract class MixinPatternEncodingTerminalMenuCosm extends MEStorageMenu
             blankPatternSlot.setChanged();
         }
     }
+
     @Unique
     @Nullable
     private ItemStack expandedae$getTerminalItem(Player player) {

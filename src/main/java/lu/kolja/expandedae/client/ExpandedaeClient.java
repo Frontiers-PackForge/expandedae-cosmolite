@@ -25,14 +25,14 @@ public class ExpandedaeClient {
     public static final ExpandedaeClient INSTANCE = new ExpandedaeClient();
 
     @SubscribeEvent
-    private void registerEvent(RegisterEvent event) {
+    public void registerEvent(RegisterEvent event) {
         if (event.getRegistryKey().equals(Registries.CREATIVE_MODE_TAB)) {
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, ExpCreativeTab.ID, ExpCreativeTab.TAB);
         }
     }
 
     @SubscribeEvent
-    private void clientSetup(FMLClientSetupEvent event) {
+    public void clientSetup(FMLClientSetupEvent event) {
         initCraftingUnitModels();
         InitScreens.register(
                 ExpMenus.EXP_PATTERN_PROVIDER,
