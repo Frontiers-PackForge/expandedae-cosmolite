@@ -5,19 +5,24 @@ import appeng.api.parts.IPart;
 import appeng.api.parts.IPartItem;
 import appeng.api.parts.PartModels;
 import appeng.core.definitions.ItemDefinition;
+import appeng.items.materials.UpgradeCardItem;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
 import lu.kolja.expandedae.Expandedae;
-import lu.kolja.expandedae.item.cards.ItemAutoCompleteCard;
-import lu.kolja.expandedae.item.cards.ItemPatternRefillerCard;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
 import lu.kolja.expandedae.part.ExpPatternProviderPart;
+import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,15 +52,40 @@ public class ExpItems {
             ExpPatternProviderUpgradeItem::new
     );
 
-    public static final ItemDefinition<ItemAutoCompleteCard> AUTO_COMPLETE_CARD = item(
+    public static final ItemDefinition<UpgradeCardItem> AUTO_COMPLETE_CARD = item(
             "Auto Complete Card",
             "auto_complete_card",
-            ItemAutoCompleteCard::new
+            p -> new UpgradeCardItem(p) {
+                @Override
+                public void appendHoverText(@NotNull ItemStack stack, Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag advancedTooltips) {
+                    tooltip.add(Component.translatable("item.expandedae.auto_complete_card.tooltip.1").withStyle(ChatFormatting.GRAY));
+                    tooltip.add(Component.translatable("item.expandedae.auto_complete_card.tooltip.2").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
+                    super.appendHoverText(stack, level, tooltip, advancedTooltips);
+                }
+            }
     );
-    public static final ItemDefinition<ItemPatternRefillerCard> PATTERN_REFILLER_CARD = item(
+    public static final ItemDefinition<UpgradeCardItem> PATTERN_REFILLER_CARD = item(
             "Pattern Refiller Card",
             "pattern_refiller_card",
-            ItemPatternRefillerCard::new
+            p -> new UpgradeCardItem(p) {
+                @Override
+                public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag advancedTooltips) {
+                    tooltip.add(Component.translatable("item.expandedae.pattern_refiller_card.tooltip.1").withStyle(ChatFormatting.GRAY));
+                    super.appendHoverText(stack, level, tooltip, advancedTooltips);
+                }
+            }
+    );
+    public static final ItemDefinition<UpgradeCardItem> GREATER_ACCEL_CARD = item(
+            "Greater Acceleration Card",
+            "greater_accel_card",
+            p -> new UpgradeCardItem(p) {
+                @Override
+                public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag advancedTooltips) {
+                    tooltip.add(Component.translatable("item.expandedae.greater_accel_card.tooltip.1").withStyle(ChatFormatting.GRAY));
+                    tooltip.add(Component.translatable("item.expandedae.greater_accel_card.tooltip.2").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
+                    super.appendHoverText(stack, level, tooltip, advancedTooltips);
+                }
+            }
     );
 
     public static List<ItemDefinition<?>> getItems() {

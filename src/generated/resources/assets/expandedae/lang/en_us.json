@@ -56,10 +56,11 @@
   "item.expandedae.auto_complete_card.tooltip.2": "Note: This only works for single requests",
   "item.expandedae.exp_pattern_provider_part": "Expanded Pattern Provider",
   "item.expandedae.exp_pattern_provider_upgrade": "Expanded Pattern Provider Upgrade",
+  "item.expandedae.greater_accel_card": "Greater Acceleration Card",
+  "item.expandedae.greater_accel_card.tooltip.1": "Even greater acceleration",
+  "item.expandedae.greater_accel_card.tooltip.2": "Note: Very power hungry!",
   "item.expandedae.pattern_refiller_card": "Pattern Refiller Card",
   "item.expandedae.pattern_refiller_card.tooltip.1": "Automatically refills the blank patterns",
-  "item.expandedae.smart_blocking_card.tooltip": "Adds blocking mode options",
-  "item.expandedae.sticky_card.tooltip.1": "Filtered stacks will only enter the network on this storage bus",
   "item.expandedae.upgrade.tooltip": "Upgrade %s",
   "itemGroup.eae": "Expanded AE"
 }

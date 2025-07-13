@@ -20,6 +20,7 @@ public class ExpUpgrades {
             add(AUTO_COMPLETE_CARD, AEParts.PATTERN_PROVIDER, 1, "group.pattern_provider.name");
             add(AEItems.SPEED_CARD, ExpBlocks.EXP_IO_PORT, 5, "group.exp_io_port.name");
             add(AEItems.REDSTONE_CARD, ExpBlocks.EXP_IO_PORT, 1, "group.exp_io_port.name");
+            add(ExpItems.GREATER_ACCEL_CARD, ExpBlocks.EXP_IO_PORT, 5, "group.exp_io_port.name");
             /*
             Upgrades.add(SMART_BLOCKING_CARD, ExpBlocks.EXP_PATTERN_PROVIDER, 1, "group.exp_pattern_provider.name");
             Upgrades.add(SMART_BLOCKING_CARD, ExpItems.EXP_PATTERN_PROVIDER_PART, 1, "group.exp_pattern_provider.name");

@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_calculation_processor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ae2:calculation_processor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_speed_card": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ae2:speed_card"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "expandedae:crafting/greater_accel_card"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_speed_card",
+      "has_calculation_processor",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "expandedae:crafting/greater_accel_card"
+    ]
+  },
+  "sends_telemetry_event": false
+}

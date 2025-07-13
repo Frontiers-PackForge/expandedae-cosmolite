@@ -11,8 +11,8 @@ public enum ExpLang implements LocalizationEnum {
     ITEM_AUTO_COMPLETE_CARD_TOOLTIP_1("item.expandedae.auto_complete_card.tooltip.1", "Automatically completes the crafting job"),
     ITEM_AUTO_COMPLETE_CARD_TOOLTIP_2("item.expandedae.auto_complete_card.tooltip.2", "Note: This only works for single requests"),
     ITEM_PATTERN_REFILLER_CARD_TOOLTIP_1("item.expandedae.pattern_refiller_card.tooltip.1", "Automatically refills the blank patterns"),
-    ITEM_SMART_BLOCKING_CARD_TOOLTIP("item.expandedae.smart_blocking_card.tooltip", "Adds blocking mode options"),
-    ITEM_STICKY_CARD_TOOLTIP_1("item.expandedae.sticky_card.tooltip.1", "Filtered stacks will only enter the network on this storage bus"),
+    TOOLTIP_GREATER_ACCEL_CARD_1("item.expandedae.greater_accel_card.tooltip.1", "Even greater acceleration"),
+    TOOLTIP_GREATER_ACCEL_CARD_2("item.expandedae.greater_accel_card.tooltip.2", "Note: Very power hungry!"),
     ITEM_UPGRADE_TOOLTIP("item.expandedae.upgrade.tooltip", "Upgrade %s"),
 
     GUI_EXP_PATTERN_PROVIDER("gui.expandedae.exp_pattern_provider", "Expanded Pattern Provider"),

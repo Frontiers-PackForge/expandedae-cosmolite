@@ -21,10 +21,10 @@ public class ExpModelProvider extends AE2BlockStateProvider {
     protected void registerStatesAndModels() {
         // General
         basicItem(EXP_PATTERN_PROVIDER_UPGRADE);
-
         // CARDS
         basicItem(AUTO_COMPLETE_CARD);
         basicItem(PATTERN_REFILLER_CARD);
+        basicItem(GREATER_ACCEL_CARD);
         // CPU
         for (var cpu : ExpTiers.values()) {
             var block = cpu.getDefinition().block();

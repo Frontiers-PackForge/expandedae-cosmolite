@@ -81,8 +81,17 @@ public class ExpRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_engineering_processor", has(ENGINEERING_PROCESSOR))
                 .save(out, craftingId("pattern_refiller_card"));
 
+        ShapedRecipeBuilder.shaped(MISC, GREATER_ACCEL_CARD)
+                .pattern("AA")
+                .pattern("AC")
+                .define('A', SPEED_CARD)
+                .define('C', CALCULATION_PROCESSOR)
+                .unlockedBy("has_speed_card", has(SPEED_CARD))
+                .unlockedBy("has_calculation_processor", has(CALCULATION_PROCESSOR))
+                .save(out, craftingId("greater_accel_card"));
+
         ConditionalRecipe.builder()
-                .addCondition(new ModNotLoadedCondition(MEGA.mod))
+                .addCondition(notLoaded(MEGA.mod))
                 .addRecipe(ShapedRecipeBuilder.shaped(MISC, EXP_CRAFTING_UNIT)
                         .pattern("UPU")
                         .pattern("CLC")
@@ -96,7 +105,7 @@ public class ExpRecipeProvider extends RecipeProvider {
                 .build(out, craftingId("exp_crafting_unit_ae"));
 
         ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(MEGA.mod))
+                .addCondition(loaded(MEGA.mod))
                 .addRecipe(ShapedRecipeBuilder.shaped(MISC, EXP_CRAFTING_UNIT)
                         .pattern("UPU")
                         .pattern("CLC")
@@ -110,7 +119,7 @@ public class ExpRecipeProvider extends RecipeProvider {
                 .build(out, craftingId("exp_crafting_unit_mega"));
 
         ConditionalRecipe.builder()
-                .addCondition(new ModNotLoadedCondition(EXT.mod))
+                .addCondition(notLoaded(EXT.mod))
                 .addRecipe(ShapedRecipeBuilder.shaped(MISC, EXP_IO_PORT)
                         .pattern("AAA")
                         .pattern("AIA")
@@ -121,7 +130,7 @@ public class ExpRecipeProvider extends RecipeProvider {
                 .build(out, craftingId("exp_io_port_ae"));
 
         ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(EXT.mod))
+                .addCondition(loaded(EXT.mod))
                 .addRecipe(ShapedRecipeBuilder.shaped(MISC, EXP_IO_PORT)
                         .pattern("AAA")
                         .pattern("AIA")
@@ -166,13 +175,12 @@ public class ExpRecipeProvider extends RecipeProvider {
     }
 
     private static void conditional(RecipeBuilder recipe, Consumer<FinishedRecipe> out, ICondition condition, ResourceLocation id) {
-        recipe.save(finished -> {
-            ConditionalRecipe
-                    .builder()
-                    .addRecipe(finished)
-                    .addCondition(condition)
-                    .build(out, id);
-        });
+        recipe.save(finished ->
+                ConditionalRecipe
+                        .builder()
+                        .addRecipe(finished)
+                        .addCondition(condition)
+                        .build(out, id));
     }
 
 

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "ae2:speed_card"
+    },
+    "C": {
+      "item": "ae2:calculation_processor"
+    }
+  },
+  "pattern": [
+    "AA",
+    "AC"
+  ],
+  "result": {
+    "item": "expandedae:greater_accel_card"
+  },
+  "show_notification": true
+}

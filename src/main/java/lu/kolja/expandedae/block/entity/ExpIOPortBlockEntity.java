@@ -8,6 +8,7 @@ import appeng.blockentity.storage.IOPortBlockEntity;
 import appeng.core.definitions.AEItems;
 import appeng.util.inv.AppEngInternalInventory;
 import lu.kolja.expandedae.definition.ExpBlocks;
+import lu.kolja.expandedae.definition.ExpItems;
 import lu.kolja.expandedae.helper.misc.ExpReflection;
 import lu.kolja.expandedae.mixin.accessor.AccessorIOPortBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -34,14 +35,11 @@ public class ExpIOPortBlockEntity extends IOPortBlockEntity {
 
         var ret = TickRateModulation.SLEEP;
         long itemsToMove = Integer.MAX_VALUE / 512;
+        var speed = this.getUpgrades().getInstalledUpgrades(AEItems.SPEED_CARD);
+        var greater = this.getUpgrades().getInstalledUpgrades(ExpItems.GREATER_ACCEL_CARD);
 
-        switch (this.getUpgrades().getInstalledUpgrades(AEItems.SPEED_CARD)) {
-            case 1 -> itemsToMove *= 2;
-            case 2 -> itemsToMove *= 8;
-            case 3 -> itemsToMove *= 32;
-            case 4 -> itemsToMove *= 128;
-            case 5 -> itemsToMove *= 512;
-        }
+        itemsToMove *= speed > 0 ? (long) Math.pow(2, (speed * 2) - 1) : 1;
+        itemsToMove *= greater > 0 ? (long) Math.pow(2, (greater * 3) - 1) : 1;
 
         var grid = getMainNode().getGrid();
         if (grid == null) {
