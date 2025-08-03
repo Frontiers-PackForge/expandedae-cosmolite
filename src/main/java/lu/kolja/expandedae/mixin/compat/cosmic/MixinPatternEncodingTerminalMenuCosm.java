@@ -48,14 +48,6 @@ public abstract class MixinPatternEncodingTerminalMenuCosm extends MEStorageMenu
         AtomicReference<Player> player = new AtomicReference<>();
         this.getActionSource().player().ifPresent(player::set);
         if (encodedPatternSlot.getItem() != ItemStack.EMPTY) {
-            if (KeybindUtil.isShiftDown()) {
-                if (player.get().getInventory().getFreeSlot() > 0) {
-                    player.get().addItem(encodedPatternSlot.getItem());
-                    encodedPatternSlot.set(ItemStack.EMPTY);
-                    encodedPatternSlot.setChanged();
-                }
-            }
-
             var terminalItem = expandedae$getTerminalItem(player.get());
             if (terminalItem == null) return;
             if (terminalItem.getItem() instanceof IUpgradeableItem item) {

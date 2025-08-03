@@ -16,22 +16,6 @@ import java.util.Set;
 public class MixinPlugin implements IMixinConfigPlugin {
 
     /**
-     * Basically if mod B is loaded, load AA, else load AB
-     * @A Tuple<@AA Mixin Class 1, @AB Mixin Class 2>
-     * @B modId
-     */
-    /*
-    public static final Object2ObjectMap<Tuple<String, String>, String> mixinMap = new Object2ObjectOpenHashMap<>( //TODO Refactor, probably
-            Tuple.arrayOf(
-                    Tuple.of(, ),
-                    Tuple.of(, ),
-                    Tuple.of(,),
-                    Tuple.of(,)
-            ),
-            new String[]{"cosmiccore", "cosmiccore", "cosmiccore", "cosmiccore"}
-    );*/
-
-    /**
      * If mod(s) b is loaded, don't load class A
      */
     public static final Object2ObjectMap<String, List<String>> mixinMap = new Object2ObjectOpenHashMap<>(
@@ -43,7 +27,10 @@ public class MixinPlugin implements IMixinConfigPlugin {
                 "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderScreen",
                 "lu.kolja.expandedae.mixin.terminal.MixinPatternEncodingTerminalMenu",
                 "lu.kolja.expandedae.mixin.misc.MixinStyleManager",
+                "lu.kolja.expandedae.mixin.misc.MixinMathExpressionParser",
                 "lu.kolja.expandedae.mixin.patternprovider.MixinPatternProviderLogicHost",
+                "lu.kolja.expandedae.mixin.cpu.MixinCPUSelectionList",
+                "lu.kolja.expandedae.mixin.cpu.MixinCraftConfirmScreen",
         },
         new List[]{
                 List.of("cosmiccore"),
@@ -54,7 +41,10 @@ public class MixinPlugin implements IMixinConfigPlugin {
                 List.of("cosmiccore", "appflux"),
                 List.of("cosmiccore"),
                 List.of("cosmiccore"),
-                List.of("appflux")
+                List.of("cosmiccore"),
+                List.of("appflux"),
+                List.of("cosmiccore"),
+                List.of("cosmiccore"),
         }
     );
 

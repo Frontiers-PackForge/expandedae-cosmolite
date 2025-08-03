@@ -1,5 +1,7 @@
 package lu.kolja.expandedae.mixin.emi;
 
+import appeng.client.gui.AEBaseScreen;
+import appeng.menu.AEBaseMenu;
 import appeng.menu.me.crafting.CraftConfirmMenu;
 import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.mixin.accessor.HandledScreenAccessor;
@@ -31,9 +33,9 @@ public abstract class MixinEmiScreenBase {
     @Overwrite(remap = false)
     public static EmiScreenBase of(Screen screen) {
         if (screen instanceof AbstractContainerScreen hs) {
-            HandledScreenAccessor hsa = (HandledScreenAccessor)hs;
+            HandledScreenAccessor hsa = (HandledScreenAccessor) hs;
             AbstractContainerMenu sh = hs.getMenu();
-            if (!sh.slots.isEmpty() || sh instanceof CraftConfirmMenu) {
+            if (!sh.slots.isEmpty() || sh instanceof AEBaseMenu) {
                 int extra = 0;
                 if (hs instanceof RecipeUpdateListener provider) {
                     if (provider.getRecipeBookComponent().isVisible()) {
