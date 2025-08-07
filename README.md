@@ -1,6 +1,20 @@
-Expanded AE currently only adds a few new features.  
-This mod is community-driven, so suggest any ideas you might have and they might get added.
 
+# Expanded AE2 Fork for Cosmic Frontiers Graciously Provided by Kolja
+Fixes many of the cross-mod issues between the two mods
+
+
+
+> [!NOTE]
+> The Entire Cosmolite Suite is used for Cosmic Frontiers, however may work with other packs if they adopt all the same mods.
+> Feel free to suggest content at : [AE2:Cosmolite](https://github.com/Frontiers-PackForge/Applied-Energistics-2-cosmolite)
+> 
+> Please Report Issues to : [The Cosmic Frontiers Issue Tracker](https://github.com/Frontiers-PackForge/CosmicFrontiers/issues) firstly so we can verify this is an error of our own creation!
+
+
+
+# Credits and Original Description 
+
+Expanded AE currently only adds a few new features.
 ## At first this mod was made to only add a bigger pattern provider, now it has turned into a full on project to port all of those feature you miss from old ae2 and its addons. I'm always open to further suggestions.
 Currently porting features from:
 - [GT New Horizons AE2](https://github.com/GTNewHorizons/Applied-Energistics-2-Unofficial)
