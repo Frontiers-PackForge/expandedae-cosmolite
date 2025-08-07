@@ -10,6 +10,8 @@ import appeng.menu.MenuOpener;
 import appeng.menu.locator.MenuLocator;
 import appeng.parts.PartModel;
 import appeng.parts.crafting.PatternProviderPart;
+import java.util.Arrays;
+import java.util.List;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.block.block.ExpPatternProviderBlock;
 import lu.kolja.expandedae.definition.ExpItems;
@@ -17,9 +19,6 @@ import lu.kolja.expandedae.definition.ExpMenus;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class ExpPatternProviderPart extends PatternProviderPart {
     public static List<ResourceLocation> MODELS = Arrays.asList(

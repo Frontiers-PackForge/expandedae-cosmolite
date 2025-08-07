@@ -1,7 +1,6 @@
 package lu.kolja.expandedae.xmod.emi.converters;
 
 import com.google.common.collect.ImmutableList;
-
 import java.util.List;
 
 /**

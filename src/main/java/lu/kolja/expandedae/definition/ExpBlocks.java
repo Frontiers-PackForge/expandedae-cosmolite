@@ -3,6 +3,11 @@ package lu.kolja.expandedae.definition;
 import appeng.block.AEBaseBlockItem;
 import appeng.block.crafting.CraftingUnitBlock;
 import appeng.core.definitions.BlockDefinition;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Supplier;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.block.block.ExpIOPortBlock;
 import lu.kolja.expandedae.block.block.ExpPatternProviderBlock;
@@ -14,12 +19,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Supplier;
 
 public class ExpBlocks {
 

@@ -1,6 +1,7 @@
 package lu.kolja.expandedae.xmod.extendedae;
 
 import appeng.api.upgrades.Upgrades;
+import appeng.core.definitions.AEItems;
 import com.glodblock.github.extendedae.common.EPPItemAndBlock;
 import com.glodblock.github.extendedae.common.items.ItemMEPackingTape;
 import lu.kolja.expandedae.definition.ExpBlocks;
@@ -12,8 +13,8 @@ public class ExtendedAE {
         ItemMEPackingTape.registerPackableDevice(ExpItems.EXP_PATTERN_PROVIDER_PART.id());
         ItemMEPackingTape.registerPackableDevice(ExpBlocks.EXP_IO_PORT.id());
 
-        Upgrades.add(ExpItems.AUTO_COMPLETE_CARD, EPPItemAndBlock.EX_PATTERN_PROVIDER, 1, "group.ex_pattern_provider.name");
-        Upgrades.add(ExpItems.AUTO_COMPLETE_CARD, EPPItemAndBlock.EX_PATTERN_PROVIDER_PART, 1, "group.ex_pattern_provider.name");
+        Upgrades.add(AEItems.AUTO_COMPLETE_CARD, EPPItemAndBlock.EX_PATTERN_PROVIDER, 1, "group.ex_pattern_provider.name");
+        Upgrades.add(AEItems.AUTO_COMPLETE_CARD, EPPItemAndBlock.EX_PATTERN_PROVIDER_PART, 1, "group.ex_pattern_provider.name");
         /*
         Upgrades.add(ExpItems.ADVANCED_BLOCKING_CARD, EPPItemAndBlock.EX_INTERFACE,1, "group.ex_interface.name");
         Upgrades.add(ExpItems.ADVANCED_BLOCKING_CARD, EPPItemAndBlock.EX_INTERFACE_PART,1, "group.ex_interface.name");
