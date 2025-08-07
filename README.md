@@ -6,9 +6,8 @@ Fixes many of the cross-mod issues between the two mods
 
 > [!NOTE]
 > The Entire Cosmolite Suite is used for Cosmic Frontiers, however may work with other packs if they adopt all the same mods.
-> Feel free to suggest content at : [AE2:Cosmolite](https://github.com/Frontiers-PackForge/CosmicFrontiers/issues)
+> Feel free to suggest content and report issues at : [The Cosmic Frontiers Issue Tracker](https://github.com/Frontiers-PackForge/CosmicFrontiers/issues) firstly so we can verify this is an error of our own creation!
 > 
-> Please Report Issues to : [The Cosmic Frontiers Issue Tracker](https://github.com/Frontiers-PackForge/CosmicFrontiers/issues) firstly so we can verify this is an error of our own creation!
 
 
 
