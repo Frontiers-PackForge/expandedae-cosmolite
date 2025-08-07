@@ -4,15 +4,14 @@ import appeng.core.AppEng;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.implementations.MenuTypeBuilder;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import lu.kolja.expandedae.block.entity.ExpIOPortBlockEntity;
 import lu.kolja.expandedae.menu.ExpIOPortMenu;
 import lu.kolja.expandedae.menu.ExpPatternProviderMenu;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ExpMenus {
 

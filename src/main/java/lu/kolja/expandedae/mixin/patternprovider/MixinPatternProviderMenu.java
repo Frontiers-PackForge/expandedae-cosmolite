@@ -2,49 +2,27 @@ package lu.kolja.expandedae.mixin.patternprovider;
 
 import appeng.api.crafting.PatternDetailsHelper;
 import appeng.api.stacks.GenericStack;
-import appeng.api.upgrades.IUpgradeInventory;
-import appeng.api.upgrades.IUpgradeableObject;
 import appeng.crafting.pattern.AEProcessingPattern;
-import appeng.helpers.patternprovider.PatternProviderLogic;
 import appeng.helpers.patternprovider.PatternProviderLogicHost;
 import appeng.menu.AEBaseMenu;
 import appeng.menu.SlotSemantics;
-import appeng.menu.ToolboxMenu;
-import appeng.menu.guisync.GuiSync;
 import appeng.menu.implementations.PatternProviderMenu;
-import lu.kolja.expandedae.definition.ExpSettings;
-import lu.kolja.expandedae.enums.BlockingMode;
+import java.util.Arrays;
 import lu.kolja.expandedae.helper.base.IUpgradableMenu;
 import lu.kolja.expandedae.helper.misc.KeybindUtil;
 import lu.kolja.expandedae.helper.patternprovider.IPatternProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.level.ItemLike;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Arrays;
-
 @Mixin(value = PatternProviderMenu.class, remap = false)
 public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUpgradableMenu, IPatternProvider {
     @Unique
     private static final int BASE_FACTOR = 2;
-
-    @Final
-    @Shadow(remap = false)
-    protected PatternProviderLogic logic;
-
-    @Unique
-    private ToolboxMenu eae_$toolbox;
-
-    @Unique
-    @GuiSync(8)
-    private BlockingMode eae$blockingMode = BlockingMode.DEFAULT;
 
     public MixinPatternProviderMenu(MenuType<?> menuType, int id, Inventory playerInventory, Object host) {
         super(menuType, id, playerInventory, host);
@@ -56,8 +34,6 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
             remap = false
     )
     private void initToolbox(MenuType<?> menuType, int id, Inventory playerInventory, PatternProviderLogicHost host, CallbackInfo ci) {
-        this.eae_$toolbox = new ToolboxMenu(this);
-        this.setupUpgrades(((IUpgradeableObject) host).getUpgrades());
         this.registerClientAction("modifyPatterns", Boolean.class, this::expandedae$modifyPatterns);
     }
 
@@ -86,10 +62,12 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
         }
 
     }
+
     @Unique
     private int expandedae$getScale() {
         return BASE_FACTOR * KeybindUtil.shiftMultiplier() * KeybindUtil.ctrlMultiplier();
     }
+
     @Unique
     private boolean expandedae$checkModify(GenericStack[] stacks, int scale, boolean division) {
         if (division) {
@@ -112,6 +90,7 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
         }
         return true;
     }
+
     @Unique
     private void expandedae$modifyStacks(GenericStack[] stacks, GenericStack[] des, int scale, boolean division) {
         for (int i = 0; i < stacks.length; i ++) {
@@ -120,44 +99,5 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
                 des[i] = new GenericStack(stacks[i].what(), amt);
             }
         }
-    }
-
-    @Override
-    public ToolboxMenu getToolbox() {
-        return this.eae_$toolbox;
-    }
-
-    @Override
-    public IUpgradeInventory getUpgrades() {
-        return ((IUpgradeableObject) this.logic).getUpgrades();
-    }
-
-    @Override
-    public boolean hasUpgrade(ItemLike upgradeCard) {
-        return getUpgrades().isInstalled(upgradeCard);
-    }
-
-    @Inject(
-            method = "broadcastChanges",
-            at = @At("TAIL"),
-            remap = true
-    )
-    public void tickToolbox(CallbackInfo ci) {
-        this.eae_$toolbox.tick();
-    }
-
-    @Inject(method = "broadcastChanges",
-            at = @At(value = "INVOKE",
-                    target = "Lappeng/helpers/patternprovider/PatternProviderLogic;getUnlockStack()Lappeng/api/stacks/GenericStack;",
-                    remap = false
-            )
-    )
-    private void broadcastChanges(CallbackInfo ci) {
-        eae$blockingMode = logic.getConfigManager().getSetting(ExpSettings.BLOCKING_MODE);
-    }
-
-    @Override
-    public BlockingMode expandedae$getBlockingMode() {
-        return eae$blockingMode;
     }
 }

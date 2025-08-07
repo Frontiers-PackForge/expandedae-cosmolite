@@ -6,26 +6,59 @@ import appeng.core.definitions.AEParts;
 import com.glodblock.github.extendedae.common.EPPItemAndBlock;
 import gripe._90.megacells.definition.MEGABlocks;
 import gripe._90.megacells.definition.MEGAItems;
+import java.util.function.Consumer;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.datagen.conditionals.ModNotLoadedCondition;
 import lu.kolja.expandedae.enums.ExpTiers;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeBuilder;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.Consumer;
-
-import static appeng.core.definitions.AEItems.*;
+import static appeng.core.definitions.AEItems.ADVANCED_CARD;
+import static appeng.core.definitions.AEItems.BLANK_PATTERN;
+import static appeng.core.definitions.AEItems.CALCULATION_PROCESSOR;
+import static appeng.core.definitions.AEItems.CAPACITY_CARD;
+import static appeng.core.definitions.AEItems.ENGINEERING_PROCESSOR;
+import static appeng.core.definitions.AEItems.LOGIC_PROCESSOR;
+import static appeng.core.definitions.AEItems.SPEED_CARD;
 import static appeng.core.definitions.AEParts.PATTERN_PROVIDER;
-import static lu.kolja.expandedae.definition.ExpBlocks.*;
-import static lu.kolja.expandedae.definition.ExpItems.*;
+import static lu.kolja.expandedae.definition.ExpBlocks.EXP_CRAFTING_UNIT;
+import static lu.kolja.expandedae.definition.ExpBlocks.EXP_IO_PORT;
+import static lu.kolja.expandedae.definition.ExpBlocks.EXP_PATTERN_PROVIDER;
+import static lu.kolja.expandedae.definition.ExpItems.EXP_PATTERN_PROVIDER_PART;
+import static lu.kolja.expandedae.definition.ExpItems.EXP_PATTERN_PROVIDER_UPGRADE;
+import static lu.kolja.expandedae.definition.ExpItems.GREATER_ACCEL_CARD;
+import static lu.kolja.expandedae.definition.ExpItems.PATTERN_REFILLER_CARD;
 import static lu.kolja.expandedae.enums.Addons.EXT;
 import static lu.kolja.expandedae.enums.Addons.MEGA;
-import static lu.kolja.expandedae.enums.ExpTiers.*;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_128;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_128K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_16;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_16K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_1K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_1M;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_2;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_256;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_256K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_2K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_32;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_32K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_4;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_4K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_512;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_512K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_64;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_64K;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_8;
+import static lu.kolja.expandedae.enums.ExpTiers.TIER_8K;
 import static net.minecraft.data.recipes.RecipeCategory.MISC;
 
 public class ExpRecipeProvider extends RecipeProvider {
@@ -63,13 +96,6 @@ public class ExpRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_engineering_processor", has(ENGINEERING_PROCESSOR))
                 .unlockedBy("has_capacity_card", has(CAPACITY_CARD))
                 .save(out, craftingId("exp_pattern_provider_upgrade"));
-
-        ShapelessRecipeBuilder.shapeless(MISC, AUTO_COMPLETE_CARD)
-                .requires(ADVANCED_CARD)
-                .requires(CRAFTING_CARD)
-                .unlockedBy("has_advanced_card", has(ADVANCED_CARD))
-                .unlockedBy("has_crafting_card", has(CRAFTING_CARD))
-                .save(out, craftingId("auto_complete_card"));
 
         ShapedRecipeBuilder.shaped(MISC, PATTERN_REFILLER_CARD)
                 .pattern("AB")

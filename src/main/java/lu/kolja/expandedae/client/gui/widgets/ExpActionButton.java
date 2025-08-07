@@ -1,11 +1,10 @@
 package lu.kolja.expandedae.client.gui.widgets;
 
+import java.util.function.Consumer;
+import java.util.regex.Pattern;
 import lu.kolja.expandedae.definition.ExpText;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Consumer;
-import java.util.regex.Pattern;
 
 public class ExpActionButton extends ExpIconButton{
     private static final Pattern PATTERN_NEW_LINE = Pattern.compile("\\n", 16);
