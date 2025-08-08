@@ -8,6 +8,10 @@ import appeng.core.definitions.ItemDefinition;
 import appeng.items.materials.UpgradeCardItem;
 import appeng.items.parts.PartItem;
 import appeng.items.parts.PartModelsHelper;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.item.misc.ExpPatternProviderUpgradeItem;
 import lu.kolja.expandedae.item.part.ExpPatternProviderPartItem;
@@ -22,12 +26,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
 
 @SuppressWarnings("ALL")
 public class ExpItems {
@@ -52,18 +50,6 @@ public class ExpItems {
             ExpPatternProviderUpgradeItem::new
     );
 
-    public static final ItemDefinition<UpgradeCardItem> AUTO_COMPLETE_CARD = item(
-            "Auto Complete Card",
-            "auto_complete_card",
-            p -> new UpgradeCardItem(p) {
-                @Override
-                public void appendHoverText(@NotNull ItemStack stack, Level level, @NotNull List<Component> tooltip, @NotNull TooltipFlag advancedTooltips) {
-                    tooltip.add(Component.translatable("item.expandedae.auto_complete_card.tooltip.1").withStyle(ChatFormatting.GRAY));
-                    tooltip.add(Component.translatable("item.expandedae.auto_complete_card.tooltip.2").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.RED));
-                    super.appendHoverText(stack, level, tooltip, advancedTooltips);
-                }
-            }
-    );
     public static final ItemDefinition<UpgradeCardItem> PATTERN_REFILLER_CARD = item(
             "Pattern Refiller Card",
             "pattern_refiller_card",

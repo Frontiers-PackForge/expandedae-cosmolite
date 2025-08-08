@@ -27,3 +27,9 @@ jei/xei integration to show cell contents
 me beam former, maybe cooler alternative to wireless connector
 
 allow pinning any item in terminal
+
+bigger drive
+
+bigger energy cell
+
+better interface to dump items in

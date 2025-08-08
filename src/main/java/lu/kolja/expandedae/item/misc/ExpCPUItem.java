@@ -4,6 +4,7 @@ import appeng.block.crafting.CraftingBlockItem;
 import appeng.core.AEConfig;
 import appeng.core.definitions.AEItems;
 import appeng.util.InteractionUtil;
+import java.util.function.Supplier;
 import lu.kolja.expandedae.definition.ExpBlocks;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -13,8 +14,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Supplier;
 
 public class ExpCPUItem extends CraftingBlockItem {
     private final Block id;

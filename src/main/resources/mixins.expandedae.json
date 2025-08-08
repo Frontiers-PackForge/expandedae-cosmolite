@@ -3,34 +3,17 @@
   "minVersion": "0.8",
   "package": "lu.kolja.expandedae.mixin",
   "compatibilityLevel": "JAVA_17",
-  "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
     "accessor.AccessorIOPortBlockEntity",
-    "compat.appflux.MixinPatternProviderLogicAppFlux",
-    "compat.appflux.MixinPatternProviderMenuAppFlux",
-    "compat.cosmic.MixinPatternEncodingTerminalMenuCosm",
-    "compat.cosmic.MixinPatternProviderLogicCosm",
-    "compat.cosmic.MixinPatternProviderMenuCosm",
-    "cpu.MixinCPUSelectionList",
     "cpu.MixinCraftingCPUCluster",
     "emi.MixinEmiScreenBase",
-    "misc.MixinMathExpressionParser",
-    "misc.MixinSettings",
-    "misc.MixinStyleManager",
-    "patternprovider.MixinPatternProviderLogic",
-    "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
-    "terminal.MixinPatternEncodingTerminalMenu",
-    "terminal.MixinProcessingEncodingPanel"
+    "terminal.MixinPatternEncodingTerminalMenu"
   ],
   "client": [
     "accessor.AccessorBuiltInModelHooks",
-    "compat.appflux.MixinPatternProviderScreenAppFlux",
-    "compat.cosmic.MixinPatternProviderScreenCosm",
-    "cpu.MixinCraftConfirmScreen",
     "cpu.MixinModelBakery",
-    "misc.MixinSettingToggleButton",
     "patternprovider.MixinPatternProviderScreen"
   ],
   "injectors": {

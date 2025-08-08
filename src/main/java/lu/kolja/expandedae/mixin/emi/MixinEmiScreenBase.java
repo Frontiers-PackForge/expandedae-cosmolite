@@ -1,8 +1,6 @@
 package lu.kolja.expandedae.mixin.emi;
 
-import appeng.client.gui.AEBaseScreen;
 import appeng.menu.AEBaseMenu;
-import appeng.menu.me.crafting.CraftConfirmMenu;
 import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.mixin.accessor.HandledScreenAccessor;
 import dev.emi.emi.screen.EmiScreenBase;

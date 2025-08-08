@@ -7,9 +7,6 @@ import net.minecraftforge.fml.ModList;
 public enum Addons {
     EXT("expatternprovider"),
     MEGA("megacells"),
-    APPFLUX("appflux"),
-    ADV("advancedae"),
-    APPMEK("appmek"),
     ARSENG("arseng"),
     APPBOT("appbot");
 

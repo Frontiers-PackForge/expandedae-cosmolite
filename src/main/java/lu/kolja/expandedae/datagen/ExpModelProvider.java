@@ -10,7 +10,9 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
-import static lu.kolja.expandedae.definition.ExpItems.*;
+import static lu.kolja.expandedae.definition.ExpItems.EXP_PATTERN_PROVIDER_UPGRADE;
+import static lu.kolja.expandedae.definition.ExpItems.GREATER_ACCEL_CARD;
+import static lu.kolja.expandedae.definition.ExpItems.PATTERN_REFILLER_CARD;
 
 public class ExpModelProvider extends AE2BlockStateProvider {
     public ExpModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -22,7 +24,6 @@ public class ExpModelProvider extends AE2BlockStateProvider {
         // General
         basicItem(EXP_PATTERN_PROVIDER_UPGRADE);
         // CARDS
-        basicItem(AUTO_COMPLETE_CARD);
         basicItem(PATTERN_REFILLER_CARD);
         basicItem(GREATER_ACCEL_CARD);
         // CPU
