@@ -47,6 +47,7 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
             if (detail instanceof AEProcessingPattern processingPattern) {
                 var input = Arrays.stream(processingPattern.getSparseInputs()).toArray(GenericStack[]::new);
                 var output = Arrays.stream(processingPattern.getOutputs()).toArray(GenericStack[]::new);
+                var author = processingPattern.getAuthor();
                 if (expandedae$checkModify(input, expandedae$getScale(), rightClick) && expandedae$checkModify(output, expandedae$getScale(), rightClick)) {
                     var mulInput = new GenericStack[input.length];
                     var mulOutput = new GenericStack[output.length];
@@ -54,7 +55,8 @@ public abstract class MixinPatternProviderMenu extends AEBaseMenu implements IUp
                     expandedae$modifyStacks(output, mulOutput, expandedae$getScale(), rightClick);
                     var newPattern = PatternDetailsHelper.encodeProcessingPattern(
                             mulInput,
-                            mulOutput
+                            mulOutput,
+                            author
                     );
                     slot.set(newPattern);
                 }

@@ -110,7 +110,6 @@ repositories {
         content {
             includeGroup "appeng"
             includeGroup "de.mari_023"
-            includeGroup "mekanism"
         }
     }
     maven { // Registrate
