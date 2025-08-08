@@ -11,6 +11,7 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'idea'
+    id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+'
     id 'io.freefair.lombok' version '8.13.1'
@@ -228,5 +229,25 @@ tasks.jarJar.finalizedBy('reobfJarJar')
 sourceSets {
     main {
         ext.refMap = "mixins.${mod_id}.refmap.json"
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'lu.kolja'
+            artifactId = base.archivesName.get()
+            jarJar.component(it)
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = "https://maven.gtceu.com"
+            credentials {
+                username = System.getenv("MAVEN_USER")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
     }
 }
