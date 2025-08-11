@@ -8,7 +8,6 @@ import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableItem;
 import appeng.core.definitions.AEItems;
 import appeng.helpers.IMenuCraftingPacket;
-import appeng.helpers.IPatternTerminalMenuHost;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.menu.slot.RestrictedInputSlot;
@@ -17,7 +16,6 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import lu.kolja.expandedae.definition.ExpItems;
 import lu.kolja.expandedae.helper.misc.KeybindUtil;
-import lu.kolja.expandedae.helper.patternprovider.IPatternEncodingTerminalMenu;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
@@ -33,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = PatternEncodingTermMenu.class, remap = false)
-public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu implements IMenuCraftingPacket, IPatternEncodingTerminalMenu {
+public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu implements IMenuCraftingPacket {
     @Final
     @Shadow
     @Mutable
@@ -87,12 +85,5 @@ public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu imp
         var locator = WUTHandler.findTerminal(player, "pattern_encoding");
         if (locator == null) return null;
         return WUTHandler.getItemStackFromLocator(player, locator);
-    }
-
-    @Inject(method = "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/IPatternTerminalMenuHost;Z)V",
-            at = @At("TAIL"),
-            remap = false)
-    private void initHooks(MenuType<?> menuType, int id, Inventory ip, IPatternTerminalMenuHost host, boolean bindInventory, CallbackInfo ci) {
-        registerClientAction("modifyPattern", Integer.class, this::eae$ModifyPattern);
     }
 }
