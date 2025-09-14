@@ -12,10 +12,8 @@ import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.menu.slot.RestrictedInputSlot;
 import de.mari_023.ae2wtlib.wut.WUTHandler;
-import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import lu.kolja.expandedae.definition.ExpItems;
-import lu.kolja.expandedae.helper.misc.KeybindUtil;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
@@ -51,14 +49,6 @@ public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu imp
         AtomicReference<Player> player = new AtomicReference<>();
         this.getActionSource().player().ifPresent(player::set);
         if (encodedPatternSlot.getItem() != ItemStack.EMPTY) {
-            if (KeybindUtil.isShiftDown()) {
-                if (player.get().getInventory().getFreeSlot() > 0) {
-                    player.get().addItem(encodedPatternSlot.getItem());
-                    encodedPatternSlot.set(ItemStack.EMPTY);
-                    encodedPatternSlot.setChanged();
-                }
-            }
-
             var terminalItem = expandedae$getTerminalItem(player.get());
             if (terminalItem == null) return;
             if (terminalItem.getItem() instanceof IUpgradeableItem item) {
@@ -68,7 +58,7 @@ public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu imp
 
             var blankPatternSlotCount = blankPatternSlot.getItem().getCount();
             if (node == null) return;
-            int changed = (int) Objects.requireNonNull(node).getGrid().getStorageService().getInventory().extract(
+            int changed = (int) node.getGrid().getStorageService().getInventory().extract(
                     AEItemKey.of(AEItems.BLANK_PATTERN),
                     64 - blankPatternSlotCount,
                     Actionable.MODULATE,
