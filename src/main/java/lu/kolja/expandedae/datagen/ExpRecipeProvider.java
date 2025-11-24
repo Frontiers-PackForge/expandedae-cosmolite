@@ -105,13 +105,6 @@ public class ExpRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_capacity_card", has(CAPACITY_CARD))
                 .save(out, craftingId("exp_pattern_provider_upgrade"));
 
-        ShapelessRecipeBuilder.shapeless(MISC, AUTO_COMPLETE_CARD)
-                .requires(ADVANCED_CARD)
-                .requires(CRAFTING_CARD)
-                .unlockedBy("has_advanced_card", has(ADVANCED_CARD))
-                .unlockedBy("has_crafting_card", has(CRAFTING_CARD))
-                .save(out, craftingId("auto_complete_card"));
-
         ShapedRecipeBuilder.shaped(MISC, PATTERN_REFILLER_CARD)
                 .pattern("AB")
                 .pattern("BE")

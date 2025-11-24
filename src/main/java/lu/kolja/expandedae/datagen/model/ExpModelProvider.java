@@ -17,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import static lu.kolja.expandedae.definition.ExpItems.AUTO_COMPLETE_CARD;
 import static lu.kolja.expandedae.definition.ExpItems.EXP_PATTERN_PROVIDER_UPGRADE;
 import static lu.kolja.expandedae.definition.ExpItems.GREATER_ACCEL_CARD;
 import static lu.kolja.expandedae.definition.ExpItems.PATTERN_REFILLER_CARD;
@@ -32,7 +31,6 @@ public class ExpModelProvider extends AE2BlockStateProvider {
         // General
         basicItem(EXP_PATTERN_PROVIDER_UPGRADE);
         // CARDS
-        basicItem(AUTO_COMPLETE_CARD);
         basicItem(PATTERN_REFILLER_CARD);
         basicItem(GREATER_ACCEL_CARD);
         energyCell(ExpBlocks.EXP_ENERGY_CELL, "block/exp_energy_cell");

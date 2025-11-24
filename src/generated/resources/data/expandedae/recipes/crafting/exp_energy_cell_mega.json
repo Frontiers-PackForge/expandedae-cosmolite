@@ -1,0 +1,34 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "megacells"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "category": "misc",
+        "key": {
+          "D": {
+            "item": "megacells:mega_energy_cell"
+          },
+          "E": {
+            "item": "ae2:engineering_processor"
+          }
+        },
+        "pattern": [
+          "DDD",
+          "DED",
+          "DDD"
+        ],
+        "result": {
+          "item": "expandedae:exp_energy_cell"
+        },
+        "show_notification": true
+      }
+    }
+  ]
+}

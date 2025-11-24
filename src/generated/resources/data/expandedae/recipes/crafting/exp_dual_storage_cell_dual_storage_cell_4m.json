@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "megacells:cell_component_4m"
+    },
+    {
+      "item": "expandedae:mega_dual_cell_housing"
+    }
+  ],
+  "result": {
+    "item": "expandedae:dual_storage_cell_4m"
+  }
+}

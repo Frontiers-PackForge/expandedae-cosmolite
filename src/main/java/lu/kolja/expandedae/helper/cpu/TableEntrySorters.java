@@ -29,11 +29,19 @@ public class TableEntrySorters {
 
         public static final Comparator<CraftingStatusEntry> MOD_DESC = MOD_ASC.reversed();
 
+        public static final Comparator<CraftingStatusEntry> REGISTRY_ASC = Comparator.comparingInt(
+                        (CraftingStatusEntry entry) -> entry.getWhat().getTypeRegistryId())
+                .thenComparingInt(entry -> entry.getWhat().getRegistryId())
+                .thenComparing(MOD_ASC);
+
+        public static final Comparator<CraftingStatusEntry> REGISTRY_DESC = REGISTRY_ASC.reversed();
+
         public static Comparator<CraftingStatusEntry> getComparator (SortOrder order, SortDir dir){
             return switch (order) {
                 case NAME -> dir == SortDir.ASCENDING ? NAME_ASC : NAME_DESC;
                 case MOD -> dir == SortDir.ASCENDING ? MOD_ASC : MOD_DESC;
                 case AMOUNT -> dir == SortDir.ASCENDING ? DEFAULT : DEFAULT_REV;
+                case REGISTRY -> dir == SortDir.ASCENDING ? REGISTRY_ASC : REGISTRY_DESC;
             };
         }
     }
@@ -60,11 +68,19 @@ public class TableEntrySorters {
 
         public static final Comparator<CraftingPlanSummaryEntry> MOD_DESC = MOD_ASC.reversed();
 
+        public static final Comparator<CraftingPlanSummaryEntry> REGISTRY_ASC = Comparator.comparingInt(
+                        (CraftingPlanSummaryEntry entry) -> entry.getWhat().getTypeRegistryId())
+                .thenComparingInt(entry -> entry.getWhat().getRegistryId())
+                .thenComparing(MOD_ASC);
+
+        public static final Comparator<CraftingPlanSummaryEntry> REGISTRY_DESC = REGISTRY_ASC.reversed();
+
         public static Comparator<CraftingPlanSummaryEntry> getComparator(SortOrder order, SortDir dir) {
             return switch (order) {
                 case NAME -> dir == SortDir.ASCENDING ? NAME_ASC : NAME_DESC;
                 case MOD -> dir == SortDir.ASCENDING ? MOD_ASC : MOD_DESC;
                 case AMOUNT -> dir == SortDir.ASCENDING ? DEFAULT : DEFAULT_REV;
+                case REGISTRY -> dir == SortDir.ASCENDING ? REGISTRY_ASC : REGISTRY_DESC;
             };
         }
     }

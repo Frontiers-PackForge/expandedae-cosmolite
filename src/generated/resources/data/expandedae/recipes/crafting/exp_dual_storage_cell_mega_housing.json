@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "megacells"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "category": "misc",
+        "ingredients": [
+          {
+            "item": "megacells:mega_item_cell_housing"
+          },
+          {
+            "item": "megacells:mega_fluid_cell_housing"
+          }
+        ],
+        "result": {
+          "item": "expandedae:mega_dual_cell_housing"
+        }
+      }
+    }
+  ]
+}
