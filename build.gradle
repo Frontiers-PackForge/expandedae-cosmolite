@@ -11,13 +11,9 @@ buildscript {
 plugins {
     id 'eclipse'
     id 'idea'
-    id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
-    id 'org.spongepowered.mixin' version '0.7.+'
+    id 'net.neoforged.moddev.legacyforge' version '2.0.91'
     id 'io.freefair.lombok' version '8.13.1'
 }
-
-apply plugin: 'org.spongepowered.mixin'
 
 group = mod_group_id
 version = mod_version
@@ -30,58 +26,52 @@ java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-    copyIdeResources = true
+legacyForge {
+    version = project.minecraft_version + '-' + project.forge_version
+
     runs {
         configureEach {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
+            gameDirectory = project.file('run')
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
         }
 
         client {
-            property 'mixin.excludes', 'architectury.mixins.json'
-            arg "-mixin.config=mixins.${mod_id}.json"
-            arg "-XX:+AllowEnhancedClassRedefinition"
-            property 'forge.enabledGameTestNamespaces', mod_id
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'expandedae'
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            mods {
-                expandedae {
-                    source sourceSets.main
-                }
-            }
+            client()
+            sourceSet = sourceSets.main
+
+
+            systemProperty 'mixin.excludes', 'architectury.mixins.json'
+            jvmArgument "-mixin.config=mixins.${mod_id}.json"
+            jvmArgument "-XX:+AllowEnhancedClassRedefinition"
+            systemProperty 'forge.enabledGameTestNamespaces', mod_id
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'forge.logging.console.level', 'debug'
+            systemProperty 'forge.enabledGameTestNamespaces', 'expandedae'
         }
 
         server {
-            property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
-            arg "-mixin.config=mixins.${mod_id}.json"
-        }
-        gameTestServer {
-            property 'forge.enabledGameTestNamespaces', mod_id
+            server()
+            sourceSet = sourceSets.main
+
+            systemProperty 'forge.enabledGameTestNamespaces', mod_id
+            programArguments.addAll('--nogui', '--world', 'world-extra')
+            programArgument "-mixin.config=mixins.${mod_id}.json"
         }
 
         data {
-            workingDirectory project.file('run-data')
+            data()
 
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            sourceSet = sourceSets.main
+
+            programArguments.addAll('--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath())
+            programArguments.addAll('--existing-mod', 'ae2')
         }
     }
-    mixin {
-        add sourceSets.main, "mixins.${mod_id}.json"
-        defaultObfuscationEnv 'searge'
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
     }
 }
 
@@ -93,6 +83,9 @@ sourceSets {
         ext.refMap = "mixins.${mod_id}.refmap.json"
     }
 }
+
+def extraModsDir = "extra-mods"
+file(extraModsDir).mkdir()
 
 repositories {
     mavenLocal()
@@ -117,10 +110,6 @@ repositories {
         url "https://maven.tterrag.com/"
     }
     maven {
-        name = "Illusive Soulworks maven"
-        url = "https://maven.theillusivec4.top/"
-    }
-    maven {
         name = 'GTCEu Maven'
         url = 'https://maven.gtceu.com'
         content {
@@ -136,47 +125,53 @@ repositories {
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
     }
+    flatDir {
+        name "extra-mods"
+        dir file(extraModsDir)
+    }
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    implementation fg.deobf("appeng:appliedenergistics2-forge:$ae2_version")
-    implementation fg.deobf("curse.maven:guideme-1173950:6489464")
+    // literally AE2
+    modImplementation "appeng:appliedenergistics2-forge:$ae2cl_version"
+    modImplementation "curse.maven:guideme-1173950:6489464"
 
-    implementation fg.deobf("curse.maven:ex-pattern-provider-892005:6518515")
-    implementation fg.deobf("curse.maven:glodium-957920:5226922")
+    // AE Addons
+    modImplementation "curse.maven:applied-energistics-2-wireless-terminals-459929:5217955"
+    modImplementation "curse.maven:mega-cells-622112:6175008"
+    modImplementation "curse.maven:ex-pattern-provider-892005:6518515"
+    // And their dependencies
+    modImplementation "curse.maven:glodium-957920:5226922"
+    modRuntimeOnly "curse.maven:architectury-api-419699:5137938"
+    modRuntimeOnly "curse.maven:curios-309927:6418456"
+    modRuntimeOnly "curse.maven:geckolib-388172:6027567"
+    modRuntimeOnly "curse.maven:cloth-config-348521:5729105"
 
-    //runtimeOnly fg.deobf("curse.maven:modern-ae2-additions-1028068:6342203")
+    modRuntimeOnly "curse.maven:jade-324717:6271651"
+    modRuntimeOnly "curse.maven:observable-509575:5643037"
+    modRuntimeOnly "curse.maven:architectury-api-419699:5137938"
+    modRuntimeOnly "curse.maven:kotlin-for-forge-351264:5402061"
 
-    implementation fg.deobf("curse.maven:applied-energistics-2-wireless-terminals-459929:5217955")
-    runtimeOnly fg.deobf("curse.maven:architectury-api-419699:5137938")
-    runtimeOnly fg.deobf("curse.maven:curios-309927:6418456")
+    modRuntimeOnly "curse.maven:patchouli-306770:6164575"
+    modImplementation "dev.emi:emi-forge:${emi_version}"
+    modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
-    runtimeOnly fg.deobf("curse.maven:geckolib-388172:6027567")
-    implementation fg.deobf("curse.maven:mega-cells-622112:6175008")
-    runtimeOnly fg.deobf("curse.maven:cloth-config-348521:5729105")
-
-    runtimeOnly fg.deobf("curse.maven:jade-324717:6271651")
-    runtimeOnly fg.deobf("curse.maven:observable-509575:5643037")
-    runtimeOnly fg.deobf("curse.maven:architectury-api-419699:5137938")
-    runtimeOnly fg.deobf("curse.maven:kotlin-for-forge-351264:5402061")
-
-    implementation 'org.spongepowered:mixin:0.8.5'
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
-    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {
-        jarJar.ranged(it, "[0.4.1,)")
+    for (extraModJar in fileTree(dir: "extra-mods", include: '*.jar')) {
+        def basename = extraModJar.name.substring(0, extraModJar.name.length() - ".jar".length())
+        def versionSep = basename.lastIndexOf('-')
+        assert versionSep != -1
+        def artifactId = basename.substring(0, versionSep)
+        def version = basename.substring(versionSep + 1)
+        modRuntimeOnly "extra-mods:$artifactId:$version"
     }
 
-    runtimeOnly fg.deobf("curse.maven:patchouli-306770:6164575")
-
-    implementation fg.deobf("curse.maven:ars-energistique-905641:5504444")
-    runtimeOnly fg.deobf("curse.maven:ars-nouveau-401955:5894609")
-
-    implementation fg.deobf("dev.emi:emi-forge:${emi_version}")
-    runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
+    compileOnly "org.jetbrains:annotations:26.0.2-1"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1"))
+    compileOnly(annotationProcessor("com.github.bawnorton.mixinsquared:mixinsquared-common:0.3.6-beta.1"))
+    implementation(jarJar("com.github.bawnorton.mixinsquared:mixinsquared-forge:0.3.6-beta.1"))
 }
-
 
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
@@ -218,35 +213,11 @@ mixin {
     add sourceSets.main, "mixins.expandedae.refmap.json"
     config "mixins.expandedae.json"
 }
-jarJar.enable()
-reobf {
-    jarJar { }
-}
 
-tasks.jarJar.finalizedBy('reobfJarJar')
-
-sourceSets {
-    main {
-        ext.refMap = "mixins.${mod_id}.refmap.json"
-    }
-}
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            groupId = 'lu.kolja'
-            artifactId = base.archivesName.get()
-            jarJar.component(it)
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url = "https://maven.gtceu.com"
-            credentials {
-                username = System.getenv("MAVEN_USER")
-                password = System.getenv("MAVEN_PASSWORD")
-            }
-        }
+jar {
+    manifest {
+        attributes([
+                "MixinConfigs": "mixins.expandedae.json"
+        ])
     }
 }
