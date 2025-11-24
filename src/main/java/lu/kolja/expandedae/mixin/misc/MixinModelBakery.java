@@ -1,4 +1,4 @@
-package lu.kolja.expandedae.mixin.cpu;
+package lu.kolja.expandedae.mixin.misc;
 
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.mixin.accessor.AccessorBuiltInModelHooks;

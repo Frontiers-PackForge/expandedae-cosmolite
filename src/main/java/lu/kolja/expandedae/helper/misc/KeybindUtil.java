@@ -2,7 +2,10 @@ package lu.kolja.expandedae.helper.misc;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class KeybindUtil {
 
     public static boolean isShiftDown() {

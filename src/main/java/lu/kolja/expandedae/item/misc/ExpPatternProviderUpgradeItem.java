@@ -4,7 +4,6 @@ import appeng.blockentity.crafting.PatternProviderBlockEntity;
 import appeng.blockentity.networking.CableBusBlockEntity;
 import appeng.parts.AEBasePart;
 import appeng.parts.crafting.PatternProviderPart;
-import java.util.List;
 import lu.kolja.expandedae.definition.ExpBlockEntities;
 import lu.kolja.expandedae.definition.ExpBlocks;
 import lu.kolja.expandedae.definition.ExpItems;
@@ -23,6 +22,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class ExpPatternProviderUpgradeItem extends UpgradeItem {
     public ExpPatternProviderUpgradeItem(Properties pProperties) {

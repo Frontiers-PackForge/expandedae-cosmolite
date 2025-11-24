@@ -2,10 +2,11 @@ package lu.kolja.expandedae.enums;
 
 import appeng.block.crafting.ICraftingUnitType;
 import appeng.core.definitions.BlockDefinition;
-import java.io.Serializable;
 import lombok.Getter;
 import lu.kolja.expandedae.definition.ExpBlocks;
 import net.minecraft.world.item.Item;
+
+import java.io.Serializable;
 
 public enum ExpTiers implements ICraftingUnitType, Serializable {
     UNIT(0, "exp_crafting_unit", false),

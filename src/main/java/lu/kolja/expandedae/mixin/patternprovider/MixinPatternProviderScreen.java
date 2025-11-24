@@ -6,8 +6,8 @@ import appeng.client.gui.style.ScreenStyle;
 import appeng.menu.implementations.PatternProviderMenu;
 import lu.kolja.expandedae.client.gui.widgets.ExpActionButton;
 import lu.kolja.expandedae.client.gui.widgets.ExpActionItems;
+import lu.kolja.expandedae.helper.misc.KeybindUtil;
 import lu.kolja.expandedae.helper.patternprovider.IPatternProvider;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,8 +27,9 @@ public abstract class MixinPatternProviderScreen<C extends PatternProviderMenu> 
             remap = false
     )
     private void init(PatternProviderMenu menu, Inventory playerInventory, Component title, ScreenStyle style, CallbackInfo ci) {
-        ExpActionButton modifyPatterns = new ExpActionButton(ExpActionItems.MODIFY_PATTERNS, act -> ((IPatternProvider) menu).expandedae$modifyPatterns(
-                ((AEBaseScreen<?>) Minecraft.getInstance().screen).isHandlingRightClick()
+        ExpActionButton modifyPatterns = new ExpActionButton(ExpActionItems.MODIFY_PATTERNS,
+                act -> ((IPatternProvider) menu).expandedae$modifyPatterns(
+                KeybindUtil.shiftMultiplier() * KeybindUtil.ctrlMultiplier() * (this.isHandlingRightClick() ? -1 : 1)
         ));
         this.addToLeftToolbar(modifyPatterns);
     }

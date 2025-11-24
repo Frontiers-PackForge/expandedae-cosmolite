@@ -3,18 +3,44 @@
   "minVersion": "0.8",
   "package": "lu.kolja.expandedae.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
+    "accessor.AccessorCraftingCpuLogic",
+    "accessor.AccessorExecutingCraftingJob",
+    "accessor.AccessorExecutingCraftingJob$AccessorTaskProgress",
     "accessor.AccessorIOPortBlockEntity",
+    "compat.advancedae.AAEAccessorAdvCraftingCPULogic",
+    "compat.advancedae.AAEAccessorExecutingCraftingJob",
+    "compat.advancedae.AAEAccessorExecutingCraftingJob$AAEAccessorTaskProgress",
+    "compat.appflux.MixinPatternProviderLogicAppFlux",
+    "compat.appflux.MixinPatternProviderMenuAppFlux",
+    "compat.gtceu.MixinMEPatternBufferPartMachine",
+    "cpu.MixinCPUSelectionList",
     "cpu.MixinCraftingCPUCluster",
+    "crafting.MixinCraftingStatusMenu",
+    "emi.MixinEmiItemStackConverter",
     "emi.MixinEmiScreenBase",
+    "misc.MixinControllerValidator",
+    "misc.MixinMathExpressionParser",
+    "misc.MixinSettings",
+    "misc.MixinStyleManager",
+    "patternprovider.MixinPatternProviderLogic",
+    "patternprovider.MixinPatternProviderLogicHost",
     "patternprovider.MixinPatternProviderMenu",
-    "terminal.MixinPatternEncodingTerminalMenu"
+    "terminal.MixinPatternEncodingTerminalMenu",
+    "terminal.MixinProcessingEncodingPanel"
   ],
   "client": [
     "accessor.AccessorBuiltInModelHooks",
-    "cpu.MixinModelBakery",
-    "patternprovider.MixinPatternProviderScreen"
+    "compat.appflux.MixinPatternProviderScreenAppFlux",
+    "cpu.MixinCraftingCPUScreen",
+    "crafting.MixinCraftConfirmScreen",
+    "crafting.MixinCraftingStatusScreen",
+    "misc.MixinModelBakery",
+    "misc.MixinSettingToggleButton",
+    "patternprovider.MixinPatternProviderScreen",
+    "terminal.MixinPatternEncodingTermScreen"
   ],
   "injectors": {
     "defaultRequire": 1
