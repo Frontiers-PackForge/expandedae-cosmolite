@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dual_storage_cell_256k_core_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ae2:cell_component_256k"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_dual_storage_cell_256k_housing_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "expandedae:dual_cell_housing"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "expandedae:crafting/exp_dual_storage_cell_dual_storage_cell_256k"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_dual_storage_cell_256k_core_item",
+      "has_dual_storage_cell_256k_housing_item",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "expandedae:crafting/exp_dual_storage_cell_dual_storage_cell_256k"
+    ]
+  },
+  "sends_telemetry_event": false
+}

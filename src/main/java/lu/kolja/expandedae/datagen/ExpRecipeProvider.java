@@ -6,10 +6,11 @@ import appeng.core.definitions.AEParts;
 import com.glodblock.github.extendedae.common.EPPItemAndBlock;
 import gripe._90.megacells.definition.MEGABlocks;
 import gripe._90.megacells.definition.MEGAItems;
-import java.util.function.Consumer;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.datagen.conditionals.ModNotLoadedCondition;
+import lu.kolja.expandedae.definition.ExpItems;
 import lu.kolja.expandedae.enums.ExpTiers;
+import lu.kolja.expandedae.xmod.megacells.MegaCells;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
@@ -22,17 +23,24 @@ import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Consumer;
+
 import static appeng.core.definitions.AEItems.ADVANCED_CARD;
 import static appeng.core.definitions.AEItems.BLANK_PATTERN;
 import static appeng.core.definitions.AEItems.CALCULATION_PROCESSOR;
 import static appeng.core.definitions.AEItems.CAPACITY_CARD;
+import static appeng.core.definitions.AEItems.CRAFTING_CARD;
 import static appeng.core.definitions.AEItems.ENGINEERING_PROCESSOR;
+import static appeng.core.definitions.AEItems.FLUID_CELL_HOUSING;
+import static appeng.core.definitions.AEItems.ITEM_CELL_HOUSING;
 import static appeng.core.definitions.AEItems.LOGIC_PROCESSOR;
 import static appeng.core.definitions.AEItems.SPEED_CARD;
 import static appeng.core.definitions.AEParts.PATTERN_PROVIDER;
 import static lu.kolja.expandedae.definition.ExpBlocks.EXP_CRAFTING_UNIT;
+import static lu.kolja.expandedae.definition.ExpBlocks.EXP_ENERGY_CELL;
 import static lu.kolja.expandedae.definition.ExpBlocks.EXP_IO_PORT;
 import static lu.kolja.expandedae.definition.ExpBlocks.EXP_PATTERN_PROVIDER;
+import static lu.kolja.expandedae.definition.ExpItems.DUAL_CELL_HOUSING;
 import static lu.kolja.expandedae.definition.ExpItems.EXP_PATTERN_PROVIDER_PART;
 import static lu.kolja.expandedae.definition.ExpItems.EXP_PATTERN_PROVIDER_UPGRADE;
 import static lu.kolja.expandedae.definition.ExpItems.GREATER_ACCEL_CARD;
@@ -171,6 +179,53 @@ public class ExpRecipeProvider extends RecipeProvider {
                 .requires(ENGINEERING_PROCESSOR)
                 .unlockedBy("has_engineering_processor", has(ENGINEERING_PROCESSOR))
                 .save(out, craftingId("exp_crafting_accelerator_2"));
+        ConditionalRecipe.builder()
+                .addCondition(notLoaded(MEGA.mod))
+                .addRecipe(
+                        ShapedRecipeBuilder.shaped(MISC, EXP_ENERGY_CELL)
+                                .pattern("DDD")
+                                .pattern("DED")
+                                .pattern("DDD")
+                                .define('D', AEBlocks.DENSE_ENERGY_CELL)
+                                .define('E', ENGINEERING_PROCESSOR)
+                                .unlockedBy("has_engineering_processor", has(ENGINEERING_PROCESSOR))
+                                ::save
+                ).build(out, craftingId("exp_energy_cell_ae"));
+        ConditionalRecipe.builder()
+                .addCondition(loaded(MEGA.mod))
+                .addRecipe(
+                        ShapedRecipeBuilder.shaped(MISC, EXP_ENERGY_CELL)
+                                .pattern("DDD")
+                                .pattern("DED")
+                                .pattern("DDD")
+                                .define('D', MEGABlocks.MEGA_ENERGY_CELL)
+                                .define('E', ENGINEERING_PROCESSOR)
+                                .unlockedBy("has_engineering_processor", has(ENGINEERING_PROCESSOR))
+                                ::save
+                ).build(out, craftingId("exp_energy_cell_mega"));
+        ShapelessRecipeBuilder.shapeless(MISC, DUAL_CELL_HOUSING)
+                .requires(ITEM_CELL_HOUSING)
+                .requires(FLUID_CELL_HOUSING)
+                .unlockedBy("has_item_cell_housing", has(ITEM_CELL_HOUSING))
+                .unlockedBy("has_fluid_cell_housing", has(FLUID_CELL_HOUSING))
+                .save(out, craftingId("exp_dual_storage_cell_housing"));
+        ConditionalRecipe.builder()
+                .addCondition(loaded(MEGA.mod))
+                .addRecipe(ShapelessRecipeBuilder.shapeless(MISC, MegaCells.DUAL_CELL_MEGA_HOUSING)
+                        .requires(MEGAItems.MEGA_ITEM_CELL_HOUSING)
+                        .requires(MEGAItems.MEGA_FLUID_CELL_HOUSING)
+                        .unlockedBy("has_mega_item_cell_housing", has(MEGAItems.MEGA_ITEM_CELL_HOUSING))
+                        .unlockedBy("has_mega_fluid_cell_housing", has(MEGAItems.MEGA_FLUID_CELL_HOUSING))
+                        ::save)
+                .build(out, craftingId("exp_dual_storage_cell_mega_housing"));
+        for (var cell : ExpItems.getCells().entrySet()) {
+            ShapelessRecipeBuilder.shapeless(MISC, cell.getKey())
+                    .requires(cell.getKey().asItem().coreItem)
+                    .requires(cell.getKey().asItem().housingItem)
+                    .unlockedBy("has_" + cell.getKey().id().getPath() + "_core_item", has(cell.getKey().asItem().coreItem))
+                    .unlockedBy("has_" + cell.getKey().id().getPath() + "_housing_item", has(cell.getKey().asItem().housingItem))
+                    .save(out, craftingId("exp_dual_storage_cell_" + cell.getKey().id().getPath()));
+        }
 
         upgrade(out, TIER_2, TIER_4);
         upgrade(out, TIER_4, TIER_8);
@@ -219,5 +274,9 @@ public class ExpRecipeProvider extends RecipeProvider {
 
     private ResourceLocation craftingId(String name) {
         return Expandedae.makeId("crafting/" + name);
+    }
+
+    private ResourceLocation transformId(String name) {
+        return Expandedae.makeId("transform/" + name);
     }
 }

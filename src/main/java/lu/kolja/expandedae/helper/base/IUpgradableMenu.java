@@ -6,10 +6,10 @@ import net.minecraft.world.level.ItemLike;
 
 public interface IUpgradableMenu {
 
-    ToolboxMenu getToolbox();
+    ToolboxMenu expandedae$getToolbox();
 
-    IUpgradeInventory getUpgrades();
+    IUpgradeInventory expandedae$getUpgrades();
 
-    boolean hasUpgrade(ItemLike upgradeCard);
+    boolean expandedae$hasUpgrade(ItemLike upgradeCard);
 
 }

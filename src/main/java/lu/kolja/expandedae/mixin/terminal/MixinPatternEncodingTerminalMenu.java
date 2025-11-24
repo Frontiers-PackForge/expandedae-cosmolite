@@ -1,19 +1,21 @@
 package lu.kolja.expandedae.mixin.terminal;
 
 import appeng.api.config.Actionable;
-import appeng.api.networking.IGridNode;
 import appeng.api.stacks.AEItemKey;
+import appeng.api.stacks.GenericStack;
 import appeng.api.storage.ITerminalHost;
 import appeng.api.upgrades.IUpgradeInventory;
 import appeng.api.upgrades.IUpgradeableItem;
 import appeng.core.definitions.AEItems;
 import appeng.helpers.IMenuCraftingPacket;
+import appeng.helpers.IPatternTerminalMenuHost;
 import appeng.menu.me.common.MEStorageMenu;
 import appeng.menu.me.items.PatternEncodingTermMenu;
 import appeng.menu.slot.RestrictedInputSlot;
+import appeng.util.ConfigInventory;
 import de.mari_023.ae2wtlib.wut.WUTHandler;
-import java.util.concurrent.atomic.AtomicReference;
 import lu.kolja.expandedae.definition.ExpItems;
+import lu.kolja.expandedae.helper.patternprovider.IPatternEncodingTerminalMenu;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MenuType;
@@ -28,8 +30,13 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Objects;
+
 @Mixin(value = PatternEncodingTermMenu.class, remap = false)
-public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu implements IMenuCraftingPacket {
+public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu implements IMenuCraftingPacket, IPatternEncodingTerminalMenu {
+    @Unique
+    private final String ACTION_MOVE_PATTERN = "movePattern";
+
     @Final
     @Shadow
     @Mutable
@@ -45,14 +52,13 @@ public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu imp
 
     @Inject(method = "encode", at = @At("RETURN"))
     private void encode(CallbackInfo ci) {
-        final IGridNode node = this.getNetworkNode();
-        AtomicReference<Player> player = new AtomicReference<>();
-        this.getActionSource().player().ifPresent(player::set);
+        var node = this.getNetworkNode();
+
         if (encodedPatternSlot.getItem() != ItemStack.EMPTY) {
-            var terminalItem = expandedae$getTerminalItem(player.get());
+            var terminalItem = expandedae$getTerminalItem(this.getPlayer());
             if (terminalItem == null) return;
             if (terminalItem.getItem() instanceof IUpgradeableItem item) {
-                IUpgradeInventory inventory = item.getUpgrades(player.get().getMainHandItem());
+                IUpgradeInventory inventory = item.getUpgrades(this.getPlayer().getMainHandItem());
                 if (!inventory.isInstalled(ExpItems.PATTERN_REFILLER_CARD)) return;
             }
 
@@ -65,7 +71,6 @@ public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu imp
                     this.getActionSource()
             );
             blankPatternSlot.set(new ItemStack(AEItems.BLANK_PATTERN, blankPatternSlotCount + changed));
-            blankPatternSlot.setChanged();
         }
     }
 
@@ -75,5 +80,28 @@ public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu imp
         var locator = WUTHandler.findTerminal(player, "pattern_encoding");
         if (locator == null) return null;
         return WUTHandler.getItemStackFromLocator(player, locator);
+    }
+
+    @Inject(method = "<init>(Lnet/minecraft/world/inventory/MenuType;ILnet/minecraft/world/entity/player/Inventory;Lappeng/helpers/IPatternTerminalMenuHost;Z)V",
+            at = @At("TAIL"),
+            remap = false)
+    private void initHooks(MenuType<?> menuType, int id, Inventory ip, IPatternTerminalMenuHost host,
+                           boolean bindInventory, CallbackInfo ci) {
+        registerClientAction(ACTION_MOVE_PATTERN, Boolean.class, this::eae$MovePattern);
+    }
+
+    @Unique
+    public void eae$MovePattern(Boolean data) {
+        if (isClientSide()) {
+            sendClientAction(ACTION_MOVE_PATTERN, data);
+        } else {
+            if (!data) return;
+            var player = this.getPlayer();
+            // Need to do this check first because #addItem ignores that there are no free slots if the player is in creative mode
+            if (player.getInventory().getFreeSlot() > 0) {
+                player.addItem(encodedPatternSlot.getItem());
+                encodedPatternSlot.setChanged();
+            }
+        }
     }
 }

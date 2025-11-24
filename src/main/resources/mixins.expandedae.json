@@ -3,18 +3,25 @@
   "minVersion": "0.8",
   "package": "lu.kolja.expandedae.mixin",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "lu.kolja.expandedae.mixin.MixinPlugin",
   "refmap": "mixins.expandedae.refmap.json",
   "mixins": [
     "accessor.AccessorIOPortBlockEntity",
+    "compat.gtceu.MixinMEPatternBufferPartMachine",
+    "cpu.MixinCPUSelectionList",
     "cpu.MixinCraftingCPUCluster",
-    "emi.MixinEmiScreenBase",
+    "crafting.MixinCraftingStatusMenu",
     "patternprovider.MixinPatternProviderMenu",
     "terminal.MixinPatternEncodingTerminalMenu"
   ],
   "client": [
     "accessor.AccessorBuiltInModelHooks",
-    "cpu.MixinModelBakery",
-    "patternprovider.MixinPatternProviderScreen"
+    "cpu.MixinCraftingCPUScreen",
+    "crafting.MixinCraftConfirmScreen",
+    "crafting.MixinCraftingStatusScreen",
+    "misc.MixinModelBakery",
+    "patternprovider.MixinPatternProviderScreen",
+    "terminal.MixinPatternEncodingTermScreen"
   ],
   "injectors": {
     "defaultRequire": 1

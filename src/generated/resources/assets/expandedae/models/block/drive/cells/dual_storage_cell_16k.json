@@ -1,0 +1,6 @@
+{
+  "parent": "ae2:block/drive/drive_cell",
+  "textures": {
+    "cell": "expandedae:block/drive/cells/dual_cell"
+  }
+}

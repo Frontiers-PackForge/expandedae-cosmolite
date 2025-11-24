@@ -1,7 +1,8 @@
 package lu.kolja.expandedae.helper.misc;
 
-import java.util.Objects;
 import org.jetbrains.annotations.Contract;
+
+import java.util.Objects;
 
 /**
  * Custom Tuple implementation with added features

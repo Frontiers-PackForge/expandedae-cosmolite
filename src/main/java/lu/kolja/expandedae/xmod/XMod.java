@@ -7,7 +7,7 @@ import lu.kolja.expandedae.xmod.megacells.MegaCells;
 public class XMod {
     public XMod() {
         for (var mod : Addons.values()) {
-            if (!mod.isLoaded()) continue;
+            if (!mod.isLoaded) continue;
             switch (mod) {
                 case EXT -> new ExtendedAE();
                 case MEGA -> new MegaCells();

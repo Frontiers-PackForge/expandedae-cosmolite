@@ -3,12 +3,8 @@ package lu.kolja.expandedae.definition;
 import appeng.block.AEBaseEntityBlock;
 import appeng.blockentity.AEBaseBlockEntity;
 import appeng.blockentity.crafting.CraftingBlockEntity;
+import appeng.blockentity.networking.EnergyCellBlockEntity;
 import appeng.core.definitions.BlockDefinition;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.block.entity.ExpIOPortBlockEntity;
 import lu.kolja.expandedae.block.entity.ExpPatternProviderBlockEntity;
@@ -16,6 +12,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ExpBlockEntities {
     private static final Map<ResourceLocation, BlockEntityType<?>> BLOCK_ENTITY_TYPES = new HashMap<>();
@@ -31,6 +33,14 @@ public class ExpBlockEntities {
             ExpIOPortBlockEntity::new,
             ExpBlocks.EXP_IO_PORT
     );
+
+    public static final BlockEntityType<EnergyCellBlockEntity> EXP_ENERGY_CELL = create(
+            "exp_energy_cell",
+            EnergyCellBlockEntity.class,
+            EnergyCellBlockEntity::new,
+            ExpBlocks.EXP_ENERGY_CELL
+    );
+
     public static final BlockEntityType<CraftingBlockEntity> EXP_CPUS = create(
             "exp_cpus",
             CraftingBlockEntity.class,

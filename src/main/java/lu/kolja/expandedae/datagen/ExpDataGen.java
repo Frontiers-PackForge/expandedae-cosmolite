@@ -1,6 +1,8 @@
 package lu.kolja.expandedae.datagen;
 
 import lu.kolja.expandedae.Expandedae;
+import lu.kolja.expandedae.datagen.model.ExpItemModelProvider;
+import lu.kolja.expandedae.datagen.model.ExpModelProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,6 +17,7 @@ public class ExpDataGen {
 
         gen.addProvider(event.includeClient(), new ExpLangProvider(out));
         gen.addProvider(event.includeClient(), new ExpModelProvider(out, existing));
+        gen.addProvider(event.includeClient(), new ExpItemModelProvider(out, existing));
         gen.addProvider(event.includeServer(), new ExpRecipeProvider(out));
         gen.addProvider(event.includeServer(), new ExpLootProvider(out));
     }

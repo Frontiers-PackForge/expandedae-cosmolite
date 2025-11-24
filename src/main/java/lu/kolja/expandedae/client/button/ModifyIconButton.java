@@ -5,14 +5,15 @@ import appeng.client.gui.style.Blitter;
 import appeng.client.gui.widgets.ITooltip;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import java.util.Collections;
-import java.util.List;
 import lu.kolja.expandedae.client.gui.widgets.ExpIcon;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collections;
+import java.util.List;
 
 public final class ModifyIconButton extends Button implements ITooltip {
 

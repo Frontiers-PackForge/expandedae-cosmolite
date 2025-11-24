@@ -1,11 +1,12 @@
 package lu.kolja.expandedae.helper.misc;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 
 public class NumberUtil {
     private static final String[] UNITS = {"", "K", "M", "G", "T", "P", "E", "Y", "Z", "R", "Q"};

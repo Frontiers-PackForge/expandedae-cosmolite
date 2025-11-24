@@ -3,10 +3,6 @@ package lu.kolja.expandedae.client.render;
 import appeng.client.render.crafting.AbstractCraftingUnitModelProvider;
 import appeng.client.render.crafting.LightBakedModel;
 import appeng.client.render.crafting.UnitBakedModel;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Function;
 import lu.kolja.expandedae.Expandedae;
 import lu.kolja.expandedae.enums.ExpTiers;
 import net.minecraft.client.renderer.RenderType;
@@ -21,6 +17,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ChunkRenderTypeSet;
 import net.minecraftforge.client.model.data.ModelData;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Function;
 
 @OnlyIn(Dist.CLIENT)
 public class ExpCraftingUnitModelProvider extends AbstractCraftingUnitModelProvider<ExpTiers> {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "expandedae:block/exp_energy_cell_4"
+  }
+}
