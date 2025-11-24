@@ -64,7 +64,7 @@ public abstract class MixinPatternEncodingTerminalMenu extends MEStorageMenu imp
 
             var blankPatternSlotCount = blankPatternSlot.getItem().getCount();
             if (node == null) return;
-            int changed = (int) Objects.requireNonNull(node).getGrid().getStorageService().getInventory().extract(
+            int changed = (int) node.getGrid().getStorageService().getInventory().extract(
                     AEItemKey.of(AEItems.BLANK_PATTERN),
                     64 - blankPatternSlotCount,
                     Actionable.MODULATE,
